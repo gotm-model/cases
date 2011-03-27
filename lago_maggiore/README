@@ -1,0 +1,25 @@
+The measurements for this Lago Maggiore
+scenario were made during three days in winter 1995
+(December 18-21) at the shore of Ispra (45deg 49,244'N, 8 deg 36,377'E).
+The measurements were carried out with an uprising profiler located 150 m 
+from the shore at a water depth of 42 m.  Such the sampled depth interval 
+ranged from 30 m up to the surface.  On the profiler, an MST shear
+probe, a fast temperature sensor and temperature and conductivity probes 
+were mounted such that profiles of turbulent dissipation rate, temperature 
+variance, mean temperature and mean salinity could be derived. For a detailed 
+description of the data analysis, see Stips et al. (2002).
+
+Wind speed was measured from a small buoy about 30 m away from the
+probe location with an anemometer at a height of 95 cm above the water
+surface. The surface heat fluxes were calculated from the heat gain of the 
+water column under consideration of the solar radiation.
+
+For further information ceck the GOTM documentation on www.gotm.net.
+
+References:
+
+Stips, A., H. Burchard, K. Bolding, and W. Eifler, 2002: Modelling of 
+convective turbulence with a two-equation k-epsilon turbulence closure scheme, 
+Ocean Dynamics, 52, 153-168.
+
+

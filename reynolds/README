@@ -1,0 +1,27 @@
+Here a campaign (REYNOLDS, funded by the German Federal Ministry for
+Education and Research, chief-scientist Hans Ulrich Lass, IOW)
+in the Eastern Bornholm Basin (55 deg 35' N, 16 deg 39' E, mean water depth: 
+55 m) is simulated. The simulation period is August 30, 2001 at 17 h to 
+September 9, 2001 at 14 h. The water column is characterised by a thermocline 
+at about 25 m depth and a halocline at about 50 m depth. The simulation period
+is charaterised by storms up to 0.2 N/m2. As forcing, surface stress, heat 
+fluxes and solar radiation have been calculated on the basis of meteorological 
+observations according to Kondo (1975). The barotropic pressure gradient 
+has been recalculated from vertically averaged observed velocity profiles, 
+see Burchard (1999) for this method. As initial conditions, observed 
+temperature, salinity and velocity profiles are used.
+Additionally the vertical velocity at the thermocline has been diagnosed from
+temperature observations and is used for vertical advection.
+The turbulent dissipation rate has been observed during two
+sub-periods, such that turbulence model results may be compared with
+observations.
+
+So far, these data have not yet been published.
+
+References:
+
+Burchard, H., 1999: Recalculation of surface slopes as forcing for numerical
+water column models of tidal flow, Appl. Math. Modelling, 23, 737-755.
+
+Kondo, J., 1975: Air-sea bulk transfer coefficients in diabatic conditions,
+Bound. Layer Meteor., 9, 91-112.

@@ -1,0 +1,8 @@
+cp heatflux.dat heatflux.dat.kb
+cat heatflux.dat.kb | cut -b 0-20 > time
+cat heatflux.dat.kb | cut -b 35- > aa
+paste -d" " time aa > heatflux.dat
+cat heatflux.dat.kb | cut -b 0-34 > swr.dat
+#rm aa time
+
+# filelist

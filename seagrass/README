@@ -1,0 +1,24 @@
+SEAGRASS SCENARIO:
+==================
+
+A wave with 0.15 m amplitude, 15 s period and a wave length of 100 m
+travels in positive x-direction. Water depth is 4.2 m, at the bed,
+a seagrass canopy of 0.48 m height is situated. Seagrass specification
+such as excursion limits and friction parameters are read in from
+the file seagrass.dat. 
+
+For further info, see GOTM documentation at www.gotm.net 
+and the short feasability study by
+
+Burchard, H. and K. Bolding, Implementation of the Verduin and Backhaus
+seagrass-current interaction into the General Ocean Turbulence Model 
+(GOTM). A short feasability study, 2000. Unpublished manuscript, see the
+document Canopy.pdf stored in the seagrass test case scenario.
+
+The original paper is the following:
+
+Verduin, J.J., and J.O. Backhaus, 
+Dynamics of plant-flow interactions for the seagrass
+Amphibolis Antarctica: Field observations and model simulations, 
+Estuarine Coastal and Shelf Science, 50, 185-204, 2000.
+

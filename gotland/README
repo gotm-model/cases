@@ -1,0 +1,27 @@
+These simulations are made for the location of station 271 Central Eastern
+Gotland Sea of the Baltic Sea at 20 deg E and 57.3 deg N with a water depth 
+of 250 m. Initial conditions for temperature and salinity are derived from 
+measurements. Meteorological forcing was available from the ERA15 reanalysis 
+data set (http://wms.ecmwf.int/research/era/Era-15.html).
+For the penetration of solar radiation into the water column, fairly 
+turbid water (Jerlov type IB) is assumed. Salinity concentrations are nudged 
+to observations with a time scale of 2 days.
+
+The simulation is carried out for the years 1980-1990.
+For the discretisation, the water column has been
+divided into 100 vertical layers, with a strong zooming towards the surface,
+resulting in a mean near-surface resolution of less than 0.5 m.
+The time step for these simulations is set to 10 minutes.
+
+For details of the gotland scenario see:
+
+Burchard, H., K. Bolding, W. Kuehn, A. Meister, T. Neumann, and L. Umlauf, 2006:
+Description of a flexible and extendable physical-biogeochemical model system 
+for the water column, J. Mar. Syst., 61, 180-211, 2006. 
+
+Data files:
+
+meteo.dat      meteorological data extracted from the ERA15 reanalysis data set
+sprof_271.dat  deep salinity profiles at station 271
+tprof_271.dat  deep temperature profiles at station 271
+

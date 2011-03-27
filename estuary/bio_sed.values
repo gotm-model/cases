@@ -1,0 +1,9 @@
+#$Id$
+
+# bio_sed.nmp
+
+s/numc_sed/1/
+s/C_initial_sed/1.0/
+s/w_C_sed/-86.4/
+s/cnpar_sed/1.0/
+

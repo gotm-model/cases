@@ -1,0 +1,14 @@
+This is basically the channel scenario plus a suspended matter
+equation. The settling velocity has to be set in bio_sed.inp.
+
+This Rouse scenario may be calculated with Eulerian concentrations
+or with Lagrangian particles, depending on the setting
+of bio_eulerian in bio.inp.
+When using the Lagrangian particle method, it is advisable
+to average the concentration over all time steps
+which belong to one output time step,
+by setting bio_lagrange_mean=.true.
+
+For further information have a look into the GOTM documentation,
+in subsection 'Channel flow - Rouse profile' of the GOTM scenarios section.
+

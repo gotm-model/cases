@@ -1,0 +1,47 @@
+!$Id$
+!-------------------------------------------------------------------------------
+! Sediment calculation
+!
+! spm_calc:	logical
+! nclass:	number of grain size fractions
+! spm_mode:     1: read from file; 2: calculate using advection/diffusion
+! C_initial:    initial concentration, units??
+! grainsize:    grain size of sediment [m]
+! rho_s:        density of sediment [kg/m3]
+! dd_mode:      deposition function: 0: none; 1: proportional to ws
+! pp_mode:      pickup function: 0: none; 1: pickup through ref. conc.
+! a_d:          proportionality constant deposition function
+! a_p:          proportionality constant pickup function
+! tau_mode:     method to compute combined wave-current shear stress
+!               1: linear addition, 2: Soulsby method
+! tauc_mode:    method to compute current shear stress. 1:  Soulsby method
+! tauw_mode:    method to compute wave shear stress: 1:  Soulsby method
+! sd_mode:      sediment diffusivity: 1: linear, 2: parabolic (Rouse profile)
+! refconc_mode  reference concentration: 1: Smith & McLean (1977)
+! taucrit_mode  include critical shear stress (1) or not (0)
+! cnpar:        
+! w_adv_discr:  advection method - see .../src/utils/ode_solvers.F90
+! solver:	which ode-solver to use - see .../src/utils/ode_solvers.F90
+!-----------------------------------------------------------------------------
+&spm_nml
+  spm_calc=.true.
+  nclass=4
+  spm_mode=2
+  C_initial=0.003
+  grainsize=10E-6, 31E-6, 60E-6, 250E-6 
+  rho_s=2650, 2650, 2650, 2650,
+  dd_mode=1
+  pp_mode=1
+  a_d=1.0, 1.0, 1.0, 1.0      
+  a_p=0.0001, 0.005, 0.03, 1.0 
+  tau_mode=2
+  tauc_mode=1
+  tauw_mode=1
+  sd_mode=2
+  refconc_mode=1
+  taucrit_mode=0
+  cnpar=0.6
+  w_adv_discr=5
+  solver=1
+/
+

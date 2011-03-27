@@ -1,0 +1,14 @@
+!namelist for the seagrass stand alone module only.
+!-------------------------------------------------------------------------------
+!   seagrass_calc= seagrass calculation '.true.' or '.false.'
+!   grassfile    = file from which excursion limits and friction may
+!                  be read from
+!   XP_rat       = between 0 and 1, factor for extra turbulence
+!                  production due to seagrass friction
+!-------------------------------------------------------------------------------
+ &canopy
+  seagrass_calc= seagrass_calc_sed
+  grassfile=     grassfile_sed
+  XP_rat=        XP_rat_sed
+ /
+

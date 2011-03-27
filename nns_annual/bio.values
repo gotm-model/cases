@@ -1,0 +1,14 @@
+#$Id$
+
+# bio.nml
+
+s/bio_calc_sed/.true./
+s/bio_model_sed/1/
+s/bio_eulerian_sed/.true./
+s/cnpar_sed/1.0/
+s/w_adv_discr_sed/6/
+s/ode_method_sed/8/
+s/split_factor_sed/1/
+s/bioshade_feedback_sed/.true./
+s/bio_lagrange_mean_sed/.false./
+s/bio_npar_sed/100000/

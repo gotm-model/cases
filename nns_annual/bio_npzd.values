@@ -1,0 +1,27 @@
+#$Id$
+
+# bio_npzd.nml
+
+s/numc_sed/4/
+s/N_initial_sed/4.5/
+s/P_initial_sed/1.e-15/
+s/Z_initial_sed/1.e-15/
+s/D_initial_sed/4.5/
+s/P0_sed/0.0225/
+s/Z0_sed/0.0225/
+s/w_P_sed/-1./
+s/w_D_sed/-5./
+s/kc_sed/0.03/
+s/I_min_sed/25./
+s/rmax_sed/1./
+s/gmax_sed/0.2/
+s/Iv_sed/1.1/
+s/alpha_sed/1.35/
+s/rpn_sed/0.01/
+s/rzn_sed/0.01/
+s/rdn_sed/0.003/
+s/rpdu_sed/0.02/
+s/rpdl_sed/0.1/
+s/rzd_sed/0.02/
+s/aa_sed/0.62/
+s/g2_sed/20.0/

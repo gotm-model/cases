@@ -1,0 +1,16 @@
+Rules.make
+rouse/timestamp
+rouse/Makefile
+rouse/filelist
+rouse/README
+rouse/rouse.values
+rouse/bio.values
+rouse/bio_sed.values
+rouse/airsea.nml
+rouse/gotmmean.nml
+rouse/gotmrun.nml
+rouse/gotmturb.nml
+rouse/kpp.nml
+rouse/obs.nml
+rouse/bio.nml
+rouse/bio_sed.nml

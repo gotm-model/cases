@@ -1,0 +1,27 @@
+In this idealised experiment, an estuarine circulation is simulated,
+mainly in order to demonstrate how to use tracer advection and
+internal pressure gradients in GOTM, but also to show the basic
+physical process of tidal asymmetries and its impact on SPM dynamics.
+
+The average water depth is H=15 m, the model is run for 10 days.
+The forcing is a M2 tide (of period 44714 s) which prescribes
+sinusoidal time series for the vertically averaged momentum in
+west-east direction with an amplitude of 1.5 m/s and an offset
+of 0.05 m/s directed to the west in order to simulate river
+run-off.  The surface elevation is sinusoidal as well with an
+amplitude of 1 m and a phase shift of 1.5 hours compared to the
+velocity.  A constant in time and space horizontal west-east salinity
+gradient of -0.0005 ppt/m is prescribed, advection of salinity
+is turned on. In order not to obtain negative salinities, relaxation
+to the initial salinity profile of 15 ppt is made.  In order to avoid
+strong stratification near the surface, a small wind stress of 0.01027
+N/m^2 is applied.
+
+A simple suspended matter equation with constant settling velocity is
+calculated in order to show the effect of tidal asymmetries on SPM
+transport. It is clearly seen that during flood SPM is mixed higher up into
+the water column than during ebb, an effect which has been described
+by Geyer 1993.
+
+For further information have a look into the GOTM documentation,
+in subsection 'Estuarine dynamics' of the GOTM scenarios section.

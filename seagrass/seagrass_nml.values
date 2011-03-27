@@ -1,0 +1,5 @@
+#$Id$
+
+s/seagrass_calc_sed/.true./
+s/grassfile_sed/'seagrass.dat'/
+s/XP_rat_sed/1.0/

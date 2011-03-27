@@ -1,0 +1,16 @@
+A data set which has been used throughout the last 20 years as a calibration 
+for mixing parameterisations has been collected during the measurements of 
+the Fladenground Experiment 1976 (FLEX'76) campaign. These measurements
+of meteorological forcing and potential temperature profiles were carried out 
+in spring 1976 in the northern North Sea at a water depth of about 145 m and 
+a geographical position at 58 deg 55'N and 0 deg 32'E.
+The simulation is run from April 6 to June 7, 1976. The Kondo (1975) bulk 
+formulae have been used for calculating the surface fluxes.
+
+This test case comes together with the Fasham et al. 
+(1990) biogeochemical model. For details, see the GOTM test case documentation
+on www.gotm.net or Burchard et al., 2006:
+
+Burchard, H., K. Bolding, W. Kuehn, A. Meister, T. Neumann, and L. Umlauf, 2006:
+Description of a flexible and extendable physical-biogeochemical model 
+system for the water column, J. Mar. Syst., 61, 180-211, 2006. 

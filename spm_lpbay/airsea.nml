@@ -1,0 +1,42 @@
+!$Id: airsea.proto,v 1.1.1.1 2003/03/11 13:38:58 kbk Exp $
+!-------------------------------------------------------------------------------
+! Air-sea interaction (heat and momentum fluxes)
+!
+! calc_fluxes= .true.: surface fluxes are calculated by means of bulk formulae
+! meteo_file= : file with meteo data
+! wet_mode=1  ! Relative humidity given in meteo_file
+!         =2  ! Wet bulb temperature given in meteo_file
+!         =3  ! Dew point temperature given in meteo_file
+! heat_method=2,
+! heatflux_file='heatflux.dat',
+! momentum_method=2,
+! const_tx=0.0,
+! const_ty=0.0,
+! momentumflux_file='momentumflux.dat',
+! p_e_method=0,
+! p_e_flux_file='p_e.dat',
+! sst_method=2,
+! sst_file='sst.dat',
+! sss_method=0,
+! sss_file='sss.dat',
+!-------------------------------------------------------------------------------
+ &airsea
+  calc_fluxes=         .true.,
+  meteo_file=          'Metout_LB_2000-2006_gotmformat.dat',
+  wet_mode=            1,
+  heat_method=         0,
+  const_swr=           0.0,
+  const_heat=          0.0,
+  heatflux_file=       'heatflux.dat',
+  momentum_method=     0,
+  const_tx=            0.0,
+  const_ty=            0.0,
+  momentumflux_file=   'momentumflux.dat',
+  p_e_method=          0,
+  const_p_e=           0.0,
+  p_e_flux_file=       'p_e.dat',
+  sst_method=          0,
+  sst_file=            'sst.dat',
+  sss_method=          0,
+  sss_file=            'sss.dat',
+ /

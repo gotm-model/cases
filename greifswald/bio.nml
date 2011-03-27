@@ -1,0 +1,56 @@
+!$Id$
+!-------------------------------------------------------------------------------
+! Basic settings for biogeochemical model
+!
+!  bio_calc        -> calculation of the bio model 'bio_model' (.true./.false.)
+!  bio_model       -> choice of the bio model:
+!                  1: NPZD                     (4 variables)
+!                  2: IOW-ERGOM                (9 variables)
+!                  3: Suspended matter only    (1 variable)
+!                  4: Fasham et al. 1990       (7 variables)
+!
+!  bio_eulerian    -> state variables are Eulerian (.true./.false.)
+!
+!  cnpar           -> Cranck-Nicolson parameter for vertical diffusion
+!
+!  w_adv_discr     -> advection scheme for vertical motion
+!                  1: first order upstream
+!                  2: not coded yet
+!                  3: third-order polynomial
+!                  4: TVD with Superbee limiter
+!                  5: TVD with MUSCL limiter
+!                  6: TVD with ULTIMATE QUICKEST
+!
+!  ode_method      -> ODE scheme for source and sink dynamics
+!                  1: first-order explicit (not positive)
+!                  2: second order explicit Runge-Kutta (not positive)
+!                  3: fourth-order explicit Runge-Kutta (not positive)
+!                  4: Patankar (first order, not conservative)
+!                  5: Patankar-RK (second order, not conservative)
+!                  6: Patankar-RK (does not work, not conservative)
+!                  7: Modified Patankar (1. order, conservat., posit.)
+!                  8: Modified Patankar-RK (2. order, conservat., posit.)
+!                  9: Modified Patankar-RK (does not work, conservat., posit.)
+!                 10: Ext. Modified Patankar (1. order, conservat., posit.)
+!                 11: Ext. Modified Patankar-RK (2. order, conservat., posit.)
+!
+!  split_factor   -> number of biogeochemical time steps per physical time step
+!
+!  bioshade_feedback -> feedback of bio-turbidity to temp. eq. (.true./.false.)
+!
+!  bio_lagrange_mean -> averaging Lagrangian conc. on output (.true./.false.)
+!
+!  bio_npar       -> total number of Lagrangian particles
+!-------------------------------------------------------------------------------
+&bio_nml
+  bio_calc=           .true.
+  bio_model=          2
+  bio_eulerian=       .true.
+  cnpar=              1.0
+  w_adv_discr=        6
+  ode_method=         8
+  split_factor=       1
+  bioshade_feedback=  .true.
+  bio_lagrange_mean=  .false.
+  bio_npar=           100000
+ /

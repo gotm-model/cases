@@ -1,0 +1,41 @@
+This Northern North Sea Experiment has been carried out in the framework
+of the PROVESS (PROcesses of VErtical mixing in Shealf Seas) project
+(MAS3-CT97-0025, 1998-2001) which has been funded by the European Communities
+MAST-III program.
+ 
+The observations in the Northern North Sea were carried out in September
+and October 1998.  Here, a period of 20 days from October 7 - 27, 1998 
+is simulated.  All forcing and validation data have been carefully processed
+from observations during this PROVESS-NNS experiment.
+
+Two different dissipation rate data sets are included:
+  
+eps_fly.dat: data from a FLY profiler, processed by School
+             of Ocean Sciences, University of Bangor, Wales 
+
+eps_mst.dat: data from an MST profiler, processed by the Joint Research
+             Centre, Ispra, Italy.
+   
+These files are read in into GOTM through the eobs namelist in
+obs.nml. The dissipation rate has only been observed at
+short intervals, periods without observations are set to minimum
+values in the files. These dissipation rate observations are read in
+into GOTM in order to allow for proper interpolation to the temporal 
+and spatial output steps, and they are not used for any type of nudging.
+
+The data files are prepared such that the maximum simulation
+interval can be extended to September 7 at 10.00 h --
+November 2 at 13.00 h, 1998.
+
+For discussions of various model simulations, see Burchard et al. (2002).
+and also the annual simulation in the test case nns_annual and
+Bolding et al. (2002).
+
+Bolding, K., H. Burchard, T. Pohlmann, and A. Stips, 2002: Turbulent mixing 
+in the Northern North Sea: a numerical model study, Cont. Shelf Res., 22, 
+2707-2724, 2002.
+
+Burchard, H., K. Bolding, T. P. Rippeth, A. Stips, J. H. Simpson, 
+and J. Suendermann, 2002:, Microstructure of turbulence in the Northern North 
+Sea: A comparative study of observations and model simulations, 
+J. Sea Res., 47, 223-238, 2002.

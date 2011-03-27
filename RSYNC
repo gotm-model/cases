@@ -1,0 +1,3 @@
+rsync -avz * gate:/public/ftp/pub/gotm-cases/v4.2
+rsync -avz * gotm.net:/data/kamel/domains/gotm.net/cases/v4.2
+

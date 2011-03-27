@@ -1,0 +1,17 @@
+Rules.make
+lago_maggiore/timestamp
+lago_maggiore/README
+lago_maggiore/Makefile
+lago_maggiore/filelist
+lago_maggiore/eps_lmd95.dat
+lago_maggiore/hflu2_05lt.dat
+lago_maggiore/lago_maggiore.values
+lago_maggiore/momentumflux.dat
+lago_maggiore/salz_lmd95.dat
+lago_maggiore/temp_lmd95.dat
+lago_maggiore/airsea.nml
+lago_maggiore/gotmmean.nml
+lago_maggiore/gotmrun.nml
+lago_maggiore/gotmturb.nml
+lago_maggiore/kpp.nml
+lago_maggiore/obs.nml

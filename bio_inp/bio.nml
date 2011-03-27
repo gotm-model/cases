@@ -1,0 +1,48 @@
+!-------------------------------------------------------------------------------
+! Geobiochemical model
+! 
+!  bio_calc=    .true.: calculate geobiochemical model
+!  bio_model=
+!              -1: template bio model
+!               1: NPZD model
+!               2: IOW model
+!               3: only sediment
+!               4: Fasham et al. 1990 
+!  bio_eulerian= take state variables as Eulerian concentrations
+!  cnpar=       Cranck-Nicolson parameter
+!  w_adv_discr= advection scheme for vertical motion
+!               2: first order upstream
+!               3: third-order polynomial
+!               4: TVD with Superbee limiter
+!               5: TVD with MUSCL limiter
+!               6: TVD with ULTIMATE QUICKEST
+!  ode_method=  scheme for source & sink dynamics
+!               1: first-order explicit (not positive)              
+!               2: second order explicit Runge-Kutta (not positive)
+!               3: fourth-order explicit Runge-Kutta (not positive)
+!               4: Patankar scheme (first order, not conservative)
+!               5: Patankar-RK scheme (second order, not conservative)
+!               6: Patankar-RK scheme (fourth order, not conservative)
+!               7: mod. Patankar scheme (first order, positive, conservative)
+!               8: mod. Patankar-RK scheme (second ord., positive, conservative)
+!               9: mod. Patankar-RK scheme (fourth ord., positive, conservative)
+!  split_factor= number of time bio steps per physical time step 
+!  bioshade_feedback=: feedback of bio-turbidity to T-equation
+!  bio_lagrange_mean=: particle concentrations averaged over output time step
+!  bio_npar=: initial number of Lagrangian particles in water column
+
+!-------------------------------------------------------------------------------
+&bio_nml
+  bio_calc=.true.,
+  bio_model=4,
+  bio_eulerian=.true.,
+  cnpar=0.6,
+  ode_method=11,
+  w_adv_discr=6,
+  split_factor=1,
+  bioshade_feedback=.true.,
+  bio_lagrange_mean=.false.,
+  bio_npar=100000,
+ /
+
+

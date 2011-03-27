@@ -1,0 +1,65 @@
+!$Id$
+!-------------------------------------------------------------------------------
+! The namelist 'spm_nml' is read in extras/spm/spm.F90.
+!-------------------------------------------------------------------------------
+
+!-------------------------------------------------------------------------------
+! The module reads a namelist input file called spm.nml with the following 
+! structure:
+!  
+! spm_calc:     logical: true: carry out SPM calculation; false: don't
+! nclass:       number of grain size fractions
+! spm_mode:     1: read from file (not yet implemented) 
+!               2: calculate using advection/diffusion
+! C_initial:    initial concentration, [kg/m3]
+! grainsize:    vector of grain sizes of sediment [m], length nclass
+! rho_s:        vector of density of sediment [kg/m3], length nclass
+! dd_mode:      method of calculating sediment deposition 
+!               0: no deposition
+!               1: proportional to settling velocity and sediment conc.
+! pp_mode:      method of calculating sediment pickup
+!               0: no pickup 
+!               1: pickup through reference concentration
+! a_d:          vector of proportionality constants for deposition 
+!               function, length nclass. Limits: 0<=a_d<=1.
+! a_p:          vector of proportionality constants for pickup function
+!               describes relative composition of sea bed in terms of
+!               size fractions, length nclass. Limits: 0<=a_p<=1.
+! tau_mode:     method to compute combined wave-current shear stress
+!               1: linear addition, 2: Soulsby method
+! tauc_mode:    method to compute current shear stress. 
+!               1:  Soulsby method
+! tauw_mode:    method to compute wave shear stress: 
+!               1:  Soulsby method
+! sd_mode:      method to calculate sediment diffusivity: 
+!               1: linear
+!               2: parabolic (Rouse profile)
+! refconc_mode  method to calculate reference concentration: 
+!               1: Smith & McLean (1977)
+! taucrit_mode  include critical shear stress (1) or not (0)
+! cnpar:        Crank-Nicholson parameter
+! w_adv_discr:  advection method - see .../src/utils/ode_solvers.F90
+! solver:       which ode-solver to use - see .../src/utils/ode_solvers.F90
+!-------------------------------------------------------------------------------
+ &spm_nml
+  spm_calc=      spm_calc_sed
+  nclass=        nclass_sed
+  spm_mode=      spm_mode_sed
+  C_initial=     C_initial_sed
+  grainsize=     grainsize_sed
+  rho_s=         rho_s_sed
+  dd_mode=       dd_mode_sed
+  pp_mode=       pp_mode_sed
+  a_d=           a_d_sed
+  a_p=           a_p_sed
+  tau_mode=      tau_mode_sed
+  tauc_mode=     tauc_mode_sed
+  tauw_mode=     tauw_mode_sed
+  sd_mode=       sd_mode_sed
+  refconc_mode=  refconc_mode_sed
+  taucrit_mode=  taucrit_mode_sed
+  cnpar=         cnpar_sed
+  w_adv_discr=   w_adv_discr_sed
+  solver=        solver_sed
+ /
+

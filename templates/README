@@ -1,0 +1,9 @@
+#$Id: README,v 1.1.1.1 2003/03/11 13:38:58 kbk Exp $
+
+To add new variables to existing name lists or to a new namelist edit
+*.proto and values.proto.
+
+In addition the values.<case> in each case specific directory also needs to be 
+updated.
+
+Karsten

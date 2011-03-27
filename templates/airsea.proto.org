@@ -1,0 +1,39 @@
+!$Id: airsea.proto,v 1.1.1.1 2003/03/11 13:38:58 kbk Exp $
+!-------------------------------------------------------------------------------
+! Air-sea interaction (heat and momentum fluxes)
+!
+! heat_method=2,
+! heatflux_file='heatflux.dat',
+! momentum_method=2,
+! const_tx=0.0,
+! const_ty=0.0,
+! momentumflux_file='momentumflux.dat',
+! p_e_method=0,
+! p_e_flux_file='p_e.dat',
+! sst_method=2,
+! sst_file='sst.dat',
+! sss_method=0,
+! sss_file='sss.dat',
+! airt_method=0,
+! airt_file='airt.dat',
+!-------------------------------------------------------------------------------
+ &airsea
+  calc_fluxes=         calc_fluxes_sed,
+  meteo_file =         meteo_file_sed,
+  heat_method=         heat_method_sed,
+  const_qin=           const_qin_sed,
+  const_qout=          const_qout_sed,
+  heatflux_file=       heatflux_file_sed,
+  momentum_method=     momentum_method_sed,
+  const_tx=            const_tx_sed,
+  const_ty=            const_ty_sed,
+  momentumflux_file=   momentumflux_file_sed,
+  p_e_method=          p_e_method_sed,
+  p_e_flux_file=       p_e_flux_file_sed,
+  sst_method=          sst_method_sed,
+  sst_file=            sst_file_sed,
+  sss_method=          sss_method_sed,
+  sss_file=            sss_file_sed,
+  airt_method=         airt_method_sed,
+  airt_file=           airt_file_sed,
+ /

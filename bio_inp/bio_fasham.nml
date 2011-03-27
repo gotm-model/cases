@@ -1,0 +1,80 @@
+!-------------------------------------------------------------------------------
+! Fasham et al. biological model with modifications by Kuehn and Radach
+! 
+!  numc=        number of compartments for geobiochemical model
+!
+!  p_initial= initial phytoplankton concentration                  [mmol n/m3]
+!  z_initial= initial zooplakton concentration                     [mmol n/m3] 
+!  b_initial= initial bacteria concentration                       [mmol n/m3]
+!  d_initial= initial detritus concentration                       [mmol n/m3]
+!  n_initial= initial nitrate concentration                        [mmol n/m3]
+!  a_initial= initial ammonium concentration                       [mmol n/m3]
+!  l_initial= initial LDON concentration                           [mmol n/m3]
+!  p0       = minimum phytoplankton concentration                  [mmol n/m3]
+!  z0       = minimum zooplakton concentration                     [mmol n/m3]
+!  b0       = minimum bacteria concentration                       [mmol n/m3]
+!  vp       = maximum phytoplankton uptake rate                    [1/day] 
+!  alpha    = slope of the PI-curvea                               [m2/(W day)] 
+!  k1       = half saturation constant nitrate uptake              [mmol n/m3]
+!  k2       = half saturation constant ammonium uptake             [mmol n/m3]
+!  mu1      = phytoplankton mortality rate                         [1/day] 
+!  k5       = half saturation constant phytoplankton mortality     [mmol n/m3]
+!  gamma    = exudation fraction                                   [-]
+!  w_p      = phytoplankton settling velocity                      [m/day]
+!  gmax     = maximum ingestion rate                               [1/day]
+!  k3       = half saturation constant ingestion                   [mmol n/m3]
+!  beta     = grazing efficiency                                   [-]
+!  mu2      = maximum zooplankton loss rate                        [1/day]
+!  k6       = half saturation zooplankton loss                     [mmol n/m3]
+!  delta    = fractional zooplankton loss to LDON                  [-]
+!  epsi     = fractional zooplankton loss to ammonium              [-]
+!  r1       = grazing preference phytoplankton                     [-]
+!  r2       = grazing preference bacteria                          [-] 
+!  r3       = grazing preference detritus                          [-] 
+!  vb       = maximum bacterial uptake rate                        [1/day]
+!  k4       = half saturation bacterial uptake                     [mmol n/m3]
+!  mu3      = bacteria excretion rate                              [1/day]  
+!  eta      = uptake ratio ammonium:LDON                           [-]  
+!  mu4      = detritus breakdown rate                              [1/day] 
+!  w_d      = detritus settling velocity                           [m/day]
+!  kc       = attenuation constant for the self shading effect     [m**2/mmol N]
+!  I_min    = minimum photosynthetically active radiation (PAR)    [W/m**2]
+!-------------------------------------------------------------------------------
+ &bio_fasham_nml
+  numc=7,
+  p_initial= 0.056666666,
+  z_initial= 0.05,
+  b_initial= 0.001,
+  d_initial= 0.416666666,
+  n_initial= 8.3,
+  a_initial= 0.22,
+  l_initial= 0.14,
+  p0       = 0.0001,
+  z0       = 0.0001,
+  b0       = 0.0001,
+  vp       = 1.5,
+  alpha    = 0.065,
+  k1       = 0.2,
+  k2       = 0.8,
+  mu1      = 0.05,
+  k5       = 0.2,
+  gamma    = 0.05,
+  w_p      = -1.0,
+  gmax     = 1.0,
+  k3       = 1.0,
+  beta     = 0.625,
+  mu2      = 0.3,
+  k6       = 0.2,
+  delta    = 0.1,
+  epsi     = 0.70,
+  r1       = 0.55,
+  r2       = 0.4,
+  r3       = 0.05,
+  vb       = 1.2,
+  k4       = 0.5,
+  mu3      = 0.15,
+  eta      = 0.0,
+  mu4      = 0.02,
+  w_d      = -2.0,
+  kc       = 0.03,
+ /

@@ -1,0 +1,42 @@
+!$Id: sediment.proto,v 1.3 2004/03/22 10:11:13 kbk Exp $
+!-------------------------------------------------------------------------------
+! Sediment calculation
+!
+! sedi_calc=    sediment calculation '.true.' or '.false.'
+! sedi_eulerian=.true. -> eulerian approach, .false. -> lagrangian approach
+! sedi_dens=    density effect of sediment '.true.' or '.false.'
+! rho_sed=      density of sediment particles in kg/m^3
+! size=         diameter of sediment particles in m
+! init_conc=    initial relative sediment concentration
+! adv_method=   advection method
+!               1: first order upstream
+!               2: second-order polynomial
+!               3: third-order polynomial
+!               4: TVD with Superbee limiter
+!               5: TVD with MUSCL limiter
+!               6: TVD with ULTIMATE QUICKEST
+! cnpar=        Crank-Nicholson parameter
+! sedi_method=  method to calculate sediment flux or sediment
+!               concentration at the reference level
+!               1: zero net flux at lowest interface
+!               2: Smith and McLean (1977)
+! z0bMethod=    1: z0 from namelist.inp
+!               2: z0 from formula
+! sedi_npar=    number of particles to use if lagrangian simulation
+! take_mean=    average output over all time steps between output steps -
+!               makes the output smoother - only when lagrangian
+!-------------------------------------------------------------------------------
+&sedi
+  sedi_calc=    sedi_calc_sed
+  sedi_eulerian=sedi_eulerian_sed
+  sedi_dens=    sedi_dens_sed
+  rho_sed=      rho_sed_sed
+  size=         size_sed
+  init_conc=    init_conc_sed
+  adv_method=   adv_method_sed
+  cnpar=        cnpar_sed
+  sedi_method=  sedi_method_sed
+  z0bMethod=    z0bMethod_sed
+  sedi_npar=    sedi_npar_sed
+  take_mean=    take_mean_sed
+/

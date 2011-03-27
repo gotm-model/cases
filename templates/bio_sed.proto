@@ -1,0 +1,13 @@
+#$Id$
+!-------------------------------------------------------------------------------
+! SEDIMENTATION biological model
+! 
+!  numc=        number of compartments for geobiochemical model
+!  C_initial=   initial nutrient concentration                    [mmol N/m**3]
+!  w_C=         settling velocity of phytoplankton                [m/d]
+!-------------------------------------------------------------------------------
+&bio_sed_nml
+  numc=      numc_sed
+  C_initial= C_initial_sed
+  w_C=       w_C_sed
+ /

@@ -1,0 +1,13 @@
+#!/usr/bin/tcsh
+
+echo '#$Id: convert,v 1.1.1.1 2003/03/11 13:38:58 kbk Exp $' > values
+
+foreach f ( airsea.inp gotmmean.inp gotmrun.inp gotmturb.inp obs.inp kpp.inp )
+  if ( -e $f ) then
+     cp $f $f.keep
+     echo "" >> values
+     echo "# $f" >> values
+     egrep -v \! $f | egrep -v " &" | egrep -v " /" | sed -f ../templates/sed_script |  tr -d '[\t ]'  >> values
+  endif
+end
+

@@ -1,0 +1,40 @@
+!$Id$
+!-------------------------------------------------------------------------------
+!
+!-------------------------------------------------------------------------------
+! specifications for the KPP turbulence model
+!
+! Set "turb_method=99" in gotmturb.inp and check for the correct pre-processor
+! macros in cppdefs.h.
+! These are (see documentation at www.gotm.net):
+!
+! NONLOCAL                for inclusion of non-local fluxes
+! KPP_SHEAR	          for shear instability interior mixing
+! KPP_INTERNAL_WAVE       for internal waves interior mixing
+! KPP_CONVEC	          for convective interior mixing
+! KPP_DDMIX	          for double-diffusion interior mixing
+! KPP_TWOPOINT_REF        for two grid points to compute reference values
+! KPP_IP_FC	          for scheme to interpolate MLD
+! KPP_CLIP_GS	          for clipping of shape function G(sigma)
+! KPP_SALINITY            for computation of salinity diffusivity
+!
+! These pre-processor macros have been introduced for higher efficiency
+! of the code.
+!
+! The main flags for the KPP algorithm can be set in this file.
+! They are:
+!
+! kpp_sbl         ->   .true. for active surface boundary layer module
+! kpp_bbl         ->   .true. for active bottom boundary layer module
+! kpp_internal    ->   .true. for active interior mixing
+! clip_mld        ->   .true. for clipping of MLD at MO or Ekman scale
+! Ric             ->    critical value of bulk Richardson number
+!
+!-------------------------------------------------------------------------------
+ &kpp
+  kpp_sbl=         kpp_sbl_sed
+  kpp_bbl=         kpp_bbl_sed
+  kpp_interior=    kpp_interior_sed
+  clip_mld=        clip_mld_sed
+  Ric=             Ric_sed
+ /

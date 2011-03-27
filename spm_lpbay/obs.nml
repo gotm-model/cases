@@ -1,0 +1,277 @@
+!$Id: obs.proto,v 1.1.1.1 2003/03/11 13:38:58 kbk Exp $
+!-------------------------------------------------------------------------------
+! General info on reading variables from file:
+! Relaxation times:
+! All relaxation times have to be positive (non-zero)
+! Relaxation time > 1.e10 ==> no relaxation
+!-------------------------------------------------------------------------------
+ 
+!-------------------------------------------------------------------------------
+! Salinity profiles
+!
+! s_prof_method=0:S not calculated, 1:analytical, 2:from file
+! z_s1=         Upper layer thickness, if s_prof_method=1
+! s_1=          Upper layer salinity, if s_prof_method=1
+! z_s2=         Depth below surface of start of lower layer, if s_prof_method=1
+! s_2=          Lower layer salinity, if s_prof_method=1
+! s_prof_file=  file with salinity profiles
+! SRelaxTauM= relaxation time for bulk of the flow [s]
+! SRelaxTauB= relaxation time for bottom layer of thickness SRelaxBott  [s]
+! SRelaxTauS= relaxation time for surface layer of thickness SRelaxSurf [s]
+! SRelaxBott= height of bottom relaxation layer, set to 0. if not used
+! SRelaxSurf= height of bottom relaxation layer, set to 0. if not used
+!-------------------------------------------------------------------------------
+ &sprofile
+  s_prof_method=1,
+  s_analyt_method=1,
+  s_prof_file=  'sprof_271.dat',
+  s_obs_NN=	0,
+  z_s1=         30.,
+  s_1=          35.,
+  z_s2=         40.,
+  s_2=          35.,
+  SRelaxTauM=   172800.,
+  SRelaxTauS=   172800.,
+  SRelaxTauB=   172800.,
+  SRelaxSurf=   0.,
+  SRelaxBott=   0.,
+ /
+
+!-------------------------------------------------------------------------------
+! Potential temperature profiles
+!
+! t_prof_method=0: T not calculated, 1=analytical, 2=from file
+! For the following 4 lines, see analytical_profile.F90
+! z_t1=         Upper layer thickness, if t_prof_method=1
+! t_1=          Upper layer temperature, if t_prof_method=1
+! z_t2=         Depth below surface of start of lower layer, if t_prof_method=1
+! t_2=          Lower layer temperature, if t_prof_method=1
+! t_prof_file=  file with temperature profiles
+! TRelaxTauM= relaxation time for bulk of the flow [s]
+! TRelaxTauB= relaxation time for bottom layer of thickness TRelaxBott  [s]
+! TRelaxTauS= relaxation time for surface layer of thickness TRelaxSurf [s]
+! TRelaxBott= height of bottom relaxation layer, set to 0. if not used
+! TRelaxSurf= height of bottom relaxation layer, set to 0. if not used
+!-------------------------------------------------------------------------------
+ &tprofile
+  t_prof_method=1,
+  t_analyt_method=1,
+  t_prof_file=  'tprof_oyster.dat',
+  z_t1=         20.,
+  t_1=          8.0,
+  z_t2=         20.,
+  t_2=          8.0,
+  TRelaxTauM=   172800000.,
+  TRelaxTauS=   172800000.,
+  TRelaxTauB=   172800000.,
+  TRelaxSurf=   0.,
+  TRelaxBott=   0.,
+ /
+
+!-------------------------------------------------------------------------------
+! External Pressure Forcing
+!
+! ext_press_method=0=const,1=tidal,2=from file
+! PressMethod=  0,1,2 - external pressure method
+!               0= sea surface elevation gradients
+!               1= current meter obs.
+!               2= vertical mean velocities
+! ext_press_file= used if PressType=2
+! The following two variables are used only for ext_press_method=0
+!   PressConstU=        const. pressure gradient - x direction
+!   PressConstV=        const. pressure gradient - y direction
+! The following variable is used only if ext_press_method=0 or =1
+!   PressHeight=        height above bottom of current obs.
+! The following 10 variables are used only if ext_press_method=1
+!   PeriodM=    period of 1. harmonic (eg. M2-tide)
+!   AmpMu=      u amp. of 1. harmonic  - [m/s]
+!   AmpMv=      v amp. of 1. harmonic  - [m/s]
+!   PhaseMu=    u phase of 1. harmonic - [dgrs]
+!   PhaseMv=    v phase of 1. harmonic - [dgrs]
+!   PeriodS=    period of 2. harmonic (eg. S2-tide)
+!   AmpSu=      v amp. of 2. harmonic  - [m/s]
+!   AmpSv=      v amp. of 2. harmonic  - [m/s]
+!   PhaseSu=    v phase of 2. harmonic - [dgrs]
+!   PhaseSv=    v phase of 2. harmonic - [dgrs]
+!   f_Mvelo=    nodal factor for M2-tide, for year of run
+!   f_Svelo=    nodal factor for S2-tide, for year of run
+!   G_Mvelo=    Greenwich phase for M2-tide, for midnight of day of start of run
+!   G_Svelo=    Greenwich phase for S2-tide, for midnight of day of start of run
+!-------------------------------------------------------------------------------
+ &ext_pressure
+  ext_press_method=2,
+  ext_press_mode=2,
+  ext_press_file='uv_01-04-2003_to_12-05-2004.dat',
+  PressConstU=  0.0,
+  PressConstV=  0.0,
+  PressHeight=  0.0,
+  PeriodM=      44714.0,
+  AmpMu=        0.527,
+  AmpMv=        0.045,
+  PhaseMu=      235.92,
+  PhaseMv=      29.69,
+  PeriodS=      43200.0,
+  AmpSu=        0.178,
+  AmpSv=        0.019,
+  PhaseSu=      280.26,
+  PhaseSv=      78.41,
+ /
+
+!-------------------------------------------------------------------------------
+! Internal Pressure Forcing
+!
+! int_press_method=     0=const,1=const,2=from file
+! int_press_file=file with profiles of dsdx,dsdy,dtdx,dtdy
+! const_dsdx=   x-gradient of S [psu/m]
+! const_dsdy=   y-gradient of S [psu/m]
+! const_dtdx=   x-gradient of T [K/m]
+! const_dtdy=   y-gradient of T [K/m]
+! s_adv=        advection of salinity (.true./.false.)
+! t_adv=        advection of temperature (.true./.false.)
+!-------------------------------------------------------------------------------
+ &int_pressure
+  int_press_method=0,
+  int_press_file='intern_press.dat',
+  const_dsdx=   0.0,
+  const_dsdy=   0.0,
+  const_dtdx=   0.0,
+  const_dtdy=   0.0,
+  s_adv=        .false.,
+  t_adv=        .false.,
+ /
+
+!-------------------------------------------------------------------------------
+! Light extinction - Jerlov type or from file
+!
+! extinct_method=  0: from file, 1-6=Jerlov type
+!               1= Jerlov type I
+!               2= Jerlov type 1 (upper 50 m)
+!               3= Jerlov type IA
+!               4= Jerlov type IB
+!               5= Jerlov type II
+!               6= Jerlov type III
+!               7= Adolf Stips, Lago Maggiore 
+! extinct_file= used if extinct_method=0
+!-------------------------------------------------------------------------------
+ &extinct
+  extinct_method=6,
+  extinct_file= 'extinction.dat',
+ /
+
+!-------------------------------------------------------------------------------
+! Vertical advection - none, constant or from file, see get_w_adv.F90.
+!
+! w_adv_method= 0=const, 1=constant, 2=from file
+! w_adv0=       const. vertical advection velocity
+! w_adv_file=   used if w_adv_method=2
+! w_adv_discr=  0: no vertical advection
+!               1: not used, program will abort
+!               2: first order upstream
+!               3: third-order polynomial
+!               4: TVD with Superbee limiter
+!               5: TVD with MUSCL limiter
+!               6: TVD with ULTIMATE QUICKEST
+!-------------------------------------------------------------------------------
+ &w_advspec
+  w_adv_method= 0,
+  w_adv_file=   'w_adv.dat',
+  w_adv_height0= 0.,
+  w_adv0=       0.,
+  w_adv_discr=  4,
+ /
+
+!-------------------------------------------------------------------------------
+! Sea surface elevations - none, from file or 2 tidal constituents.
+!
+! zeta_method=  0=const,1=tidal,2=from file
+! zeta_file=    used if zeta_method=2
+! The following variables is used only if zeta_method=0
+!   zeta0=      const. sea surface elevation
+! The following 6 variables are used only if zeta_method=1
+!   period1=    period of 1. harmonic (eg. M2-tide) - [s]
+!   amp1=       amp. of 1. harmonic  - [m]
+!   phase1=     phase of 1. harmonic - [dgrs]
+!   period2=    period of 2. harmonic (eg. S2-tide) - [s]
+!   amp2=       amp. of 2. harmonic  - [m]
+!   phase2=     phase of 2. harmonic - [dgrs]
+!   f_zeta_1=   nodal factor for M2-tide, for year of run
+!   f_zeta_2=   nodal factor for S2-tide, for year of run
+!   G_zeta_1=   Greenwich phase for M2-tide, for midnight of day of start of run
+!   G_zeta_2=   Greenwich phase for S2-tide, for midnight of day of start of run
+!-------------------------------------------------------------------------------
+ &zetaspec
+  zeta_method=  2,
+  zeta_file=    'z_01-04-2003_to_12-05-2004.dat',
+  zeta_0=       0.00000,
+  period_1=     44714.0,
+  amp_1=        3.52000,
+  phase_1=      310.000,
+  period_2=     43200.0,
+  amp_2=        0.75000,
+  phase_2=      5.00000,
+ /
+
+!---------
+!  waves
+ &wave_nml
+  wave_method=         2,
+  wave_file=           'wn_lpb_w_01-04-2003_to_12-05-2004_gotm.dat',
+  Hs=0.,
+  Tz=0.,
+  phiw=0.,
+ /
+
+!-------------------------------------------------------------------------------
+! Observed velocity profiles
+!
+! vel_prof_method=      0=no,1=not impl. yet,2=from file
+! vel_prof_file=        file with velocity profiles
+! vel_relax_tau=        relaxation time constant for velocity in [s]
+! vel_relax_ramp=       duration of initial relaxation in [s]
+! set vel_relax_tau=vel_relax_ramp=1.e15 for no relaxation
+! set vel_relax_ramp=1.e15 for constant relaxation
+!-------------------------------------------------------------------------------
+ &velprofile
+  vel_prof_method=0,
+  vel_prof_file='velprof.dat',
+  vel_relax_tau=1.e15,
+  vel_relax_ramp=1.e15,
+ /
+
+!-------------------------------------------------------------------------------
+! Turbulent dissipation rate profiles
+!
+! e_prof_method=  0=no,1=not impl. yet,2=from file
+! e_obs_const=    a constant filling value - [W/kg]
+! e_prof_file=    file with dissipation profiles
+!-------------------------------------------------------------------------------
+ &eprofile
+  e_prof_method=0,
+  e_obs_const=  1.e-12,
+  e_prof_file=  'eprof.dat',
+ /
+
+!-------------------------------------------------------------------------------
+! Buoyancy - only used if buoy_method .ne. 1 (see buoyancy.f90)
+!
+! b_obs_surf=   prescribed initial buoyancy at the surface - [m/s^2]
+! b_obs_NN=     prescribed initial const. NN (Brunt-Vaisalla squared) - [1/s^2]
+! b_obs_sbf=    prescribed constant surface buoyancy flux
+!-------------------------------------------------------------------------------
+ &bprofile
+  b_obs_surf=   0.0,
+  b_obs_NN=     1.e-4,
+  b_obs_sbf=    0.0,
+ /
+
+!-------------------------------------------------------------------------------
+! Potential oxygen profiles
+!
+! o2_prof_method=0: T not calculated, 1=analytical, 2=from file
+! For the following 4 lines, see analytical_profile.F90
+! o2_prof_file=  file with temperature profiles
+!-------------------------------------------------------------------------------
+ &o2_profile
+  o2_prof_method=1,
+  o2_prof_file=  'tprof_oyster.dat',
+ /

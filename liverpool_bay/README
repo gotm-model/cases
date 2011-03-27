@@ -1,0 +1,40 @@
+The observations for this scenario have been carried out by Rippeth et al (2001}
+in the Liverpool Bay ROFI on July 5 and 6, 1999 at a position
+of 53 deg 28.4'N, 3 deg 39.2'W.  The dissipation rate measurements were 
+carried out with a FLY shear probe mounted on a free-falling profiler.
+Sensors for temperature and conductivity attached to the profiler
+give detailed information on the vertical density distribution
+during each cast. Nearby, an ADCP was mounted on the bottom, giving 
+information on the vertical velocity structure. Some accompanying CTD 
+casts were made in order to achieve estimates for the horizontal gradients of
+temperature and salinity.
+
+The surface fluxes are calculated externally by means of bulk
+formulae of Kondo (1975), where the sea surface temperature from measurements 
+(FLY profiler) has been used. The bed roughness has been estimated from 
+near-bed ADCP measurements as z0 = 0.0025 m by means of fits to the law of 
+the wall. The external pressure gradient due to surface slopes is
+estimated according to a method suggested by Burchard (1999)
+by means of adjustment to near bed velocity observations.
+The horizontal salinity and temperature gradients for a typical summer 
+situation are prescribed.
+
+The numerical simulations of this scenario have been described in 
+Simpson et al (2002). For further information ceck the GOTM documentation
+on www.gotm.net.
+
+References:
+
+Burchard, H., 1999: Recalculation of surface slopes as forcing for numerical 
+water column models of tidal flow, Appl. Math. Modelling, 23, 737-755.
+
+Kondo, J., 1975: Air-sea bulk transfer coefficients in diabatic conditions,
+Bound. Layer Meteor., 9, 91-112.
+
+Rippeth, T.P., and N. Fisher, and J.H. Simpson, 2001: The semi-diurnal cycle 
+of turbulent dissipation in the presence of tidal straining, J. Phys. Oceanogr.,
+31, 2458-2471.
+
+Simpson, J.H., H. Burchard, N.R. Fisher, and T.P. Rippeth, 2002:
+The semi-diurnal cycle of dissipation in a ROFI: model-measurement comparisons,
+Cont. Shelf Res., 22, 1615-1628.
