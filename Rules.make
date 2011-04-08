@@ -1,41 +1,50 @@
-#$Id$
+#
+# Rules.make is included by all test cases to perform common tasks
+#
 
-ver=v4.2
+# GOTM target version
+ver=4.1.0
 
 ifndef GOTMDIR
-GOTMDIR = $(HOME)/GOTM/v4.1.x/
+export GOTMDIR = $(HOME)/GOTM/gotm-git
 endif
 
-ifndef GOTM_CASES
-GOTM_CASES = $(HOME)/gotm-cases/$(ver)
-endif
+SCHEMADIR = $(GOTMDIR)/gui.py/schemas/scenario/
 
 tarflags =  --files-from filelist -C ../ -cvzf
 tarflags =  -C ../ --files-from filelist -cvzf
 
-namelist:
-	$(GOTM_CASES)/templates/make_namelist $(name)
+all: namelist run
 
-scenario:
-#	$(GOTMDIR)/gui.py/util/nml2xml.py -ns . ../$(name).gotmscenario
-	$(GOTMDIR)/gui.py/util/nml2xml.py -ns -check . ../$(name).gotmscenario
-#	$(GOTMDIR)/gui.py/util/nml2xml.py ../$(name).tar.gz ../$(name).gotmscenario
+namelist:
+#	editscenario.py -e nml --schemadir=$(SCHEMADIR) $(setup).xml . --targetversion=gotm-$(ver)
+	editscenario.py --skipvalidation -e nml --schemadir=$(SCHEMADIR) $(setup).xml . --targetversion=gotm-$(ver)
 
 run:
 	@echo
 	@echo "running gotm"
 	@echo
-	../gotm >& log.$(name)
+	../gotm 2> log.$(name)
 	@echo
+
+scenario:
+	editscenario.py -e zip --schemadir=$(SCHEMADIR) $(setup).xml $(setup).gotmscenario --targetversion=gotm-$(ver)
 
 example:
 	echo -n "Created at: " > timestamp
 	date >> timestamp
 	tar $(tarflags) ../$(setup).tar.gz
 
+clean:
+
+realclean: clean
+	$(RM) log.$(name)
+	$(RM) $(name).nc
+
 distclean: realclean
-	$(RM) -r *~
+	$(RM) *.nml
+	$(RM) -r *~ $(name).gotmscenario
 
 #-----------------------------------------------------------------------
 # Copyright by the GOTM-team under the GNU Public License - www.gnu.org
-#----------------------------------------------------------------------- 
+#----------------------------------------------------------------------

@@ -1,4 +1,3 @@
-#$Id: Makefile,v 1.1.1.1 2003/03/11 13:38:57 kbk Exp $
 #
 # Makefile for 'couette' setup.
 # targets are:
@@ -8,10 +7,10 @@
 #    for specific turbulence closure models (will be placed in
 #    subdirectories)
 
-SHELL	= /bin/sh
-
 name	= couette
 setup	= $(name)
+
+include ../Rules.make
 
 all:
 	@echo
@@ -20,7 +19,6 @@ all:
 
 run_all: kepsilon komega MellorYamada clean
 
-include ../Rules.make
 
 namelists: kepsilon_nml komega_nml MellorYamada_nml
 
@@ -60,15 +58,6 @@ kepsilon komega MellorYamada:
 	$(MAKE) run
 	mv log.$(name) log.$@.$(name)
 	mv $(name).nc $(name).$@.nc
-
-clean:
-	$(RM) *.nml
-	$(RM) -r *_nml/ 
-
-realclean: clean
-	$(RM) log.*.$(name)
-	$(RM) $(name).*.nc $(name).nc
-	$(RM) -r gotm timestamp 
 
 #-----------------------------------------------------------------------
 # Copyright by the GOTM-team under the GNU Public License - www.gnu.org

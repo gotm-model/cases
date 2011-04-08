@@ -1,9 +1,8 @@
-#$Id$
 #
-# Master Makefile for making gotm v4.2 examples
+# Master Makefile for making GOTM git examples
 #
 
-SHELL = /bin/sh
+SHELL = /bin/bash
 
 ver=4.1.x
 
@@ -12,7 +11,7 @@ export GOTMDIR=$(HOME)/GOTM/v$(ver)
 endif
 
 # Set the subdirectories of the different test cases
-SUBDIRS = `cat CASES_READY`
+SUBDIRS = $(shell grep -v not_ready READY_CASES)
 
 all: link
 
@@ -27,22 +26,22 @@ release: distclean examples scenarios
 	tar -cvzf gotm-cases-v4.2.tar.gz *.tar.gz
 	. ./RSYNC
 
-namelists:
+namelist:
 ifdef SUBDIRS
 	set -e; for i in $(SUBDIRS); do $(MAKE) -C $$i $@; done
 endif
 
-examples:
+example:
 ifdef SUBDIRS
 	set -e; for i in $(SUBDIRS); do $(MAKE) -C $$i $@; done
 endif
 
-scenarios:
+scenario:
 ifdef SUBDIRS
 	set -e; for i in $(SUBDIRS); do $(MAKE) -C $$i $@; done
 endif
 
-run_all: link
+run: link
 ifdef SUBDIRS
 	set -e; for i in $(SUBDIRS); do $(MAKE) -C $$i $@; done
 endif
@@ -58,7 +57,7 @@ distclean:
 ifdef SUBDIRS
 	set -e; for i in $(SUBDIRS); do $(MAKE) -C $$i $@; done
 endif
-	$(RM) *.tar.gz *.gotmscenario gotm
+	$(RM) *.tar.gz gotm
 
 #-----------------------------------------------------------------------
 # Copyright by the GOTM-team under the GNU Public License - www.gnu.org

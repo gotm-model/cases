@@ -1,8 +1,0 @@
-!-------------------------------------------------------------------------------
-! TEMPLATE biological model
-! 
-!  numc=        number of compartments for geobiochemical model
-!-------------------------------------------------------------------------------
-&bio_template_nml
-  numc=5,
- /

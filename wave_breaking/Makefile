@@ -1,4 +1,3 @@
-#$Id: Makefile,v 1.1.1.1 2003/03/11 13:38:57 kbk Exp $
 #
 # Makefile for 'waves_breaking' setup.
 # targets are:
@@ -7,8 +6,6 @@
 #    prescribed kepsilon komega generic: to generate input files
 #    for specific turbulence closure models (will be placed in
 #    subdirectories)
-
-SHELL	= /bin/sh
 
 name	= wave_breaking
 setup	= $(name)
@@ -62,15 +59,6 @@ prescribed kepsilon komega generic:
 	$(MAKE) run
 	mv log.$(name) log.$@.$(name)
 	mv $(name).nc $(name).$@.nc
-
-clean:
-	$(RM) *.nml
-	$(RM) -r *_nml/ 
-
-realclean: clean
-	$(RM) log.*.$(name)
-	$(RM) $(name).*.nc $(name).nc
-	$(RM) -r gotm timestamp 
 
 #-----------------------------------------------------------------------
 # Copyright by the GOTM-team under the GNU Public License - www.gnu.org

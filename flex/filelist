@@ -1,12 +1,9 @@
-Rules.make
 flex/timestamp
+flex/filelist
 flex/README
 flex/Makefile
+flex/flex.xml
 flex/extinction.dat
-flex/filelist
-flex/flex.values
-flex/bio.values
-flex/bio_fasham.values
 flex/swr.dat
 flex/heatflux.dat
 flex/momentumflux.dat
@@ -16,11 +13,3 @@ flex/sprof_ctd.dat
 flex/sst.dat
 flex/tprof.dat
 flex/tprof_ctd.dat
-flex/airsea.nml
-flex/gotmmean.nml
-flex/gotmrun.nml
-flex/gotmturb.nml
-flex/kpp.nml
-flex/obs.nml
-flex/bio.nml
-flex/bio_fasham.nml
