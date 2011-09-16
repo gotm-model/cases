@@ -7,7 +7,7 @@ SHELL = /bin/bash
 ver=4.1.x
 
 ifndef GOTMDIR
-export GOTMDIR=$(HOME)/GOTM/v$(ver)
+export GOTMDIR=$(HOME)/GOTM/gotm-git
 endif
 
 # Set the subdirectories of the different test cases
@@ -19,7 +19,7 @@ gotm-exe:
 	$(MAKE) -C $(GOTMDIR)/src
 
 link: gotm-exe
-	ln -sf $(GOTMDIR)/src/gotm_prod_$(FORTRAN_COMPILER) gotm
+	ln -sf $(GOTMDIR)/bin/gotm_prod_$(FORTRAN_COMPILER) gotm
 
 release: distclean examples scenarios
 	tar -cvzf templates.tar.gz templates/
