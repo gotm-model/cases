@@ -1,11 +1,8 @@
 #
 # Makefile for 'channel' setup.
 # targets are:
-#    namelists
 #    run_all
 #    kepsilon komega MellorYamada: to run specific model
-#    for specific turbulence closure models (will be placed in
-#    subdirectories)
 
 name	= channel
 setup	= $(name)
@@ -23,10 +20,7 @@ kepsilon komega MellorYamada:
 	@echo
 	@echo "Generating input files for: "$@
 	@echo
-	ln -sf $@.xml $(setup).xml
-	$(MAKE) namelist
-	$(MAKE) run
-	mv log.$(name) log.$@.$(name)
+	ln -sf $@.xml $(setup).xml && $(MAKE) namelist && $(MAKE) run && mv $(name).nc $@.nc && mv log.$(name) log.$@.$(name)
 
 $(name)_clean:
 	$(RM) $(name).xml
