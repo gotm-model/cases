@@ -60,6 +60,8 @@ prescribed kepsilon komega generic:
 	mv log.$(name) log.$@.$(name)
 	mv $(name).nc $(name).$@.nc
 
+$(name)_clean:
+
 #-----------------------------------------------------------------------
 # Copyright by the GOTM-team under the GNU Public License - www.gnu.org
 #-----------------------------------------------------------------------

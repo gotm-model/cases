@@ -41,7 +41,7 @@ realclean: clean
 	$(RM) log.$(name)
 	$(RM) $(name).nc
 
-distclean: realclean
+distclean: realclean $(name)_clean
 	$(RM) *.nml
 	$(RM) -r *~ $(name).gotmscenario
 
