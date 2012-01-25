@@ -205,6 +205,9 @@
 			<precip_factor>
 				1.0
 			</precip_factor>
+			<ssuv_method>
+				0
+			</ssuv_method>
 		</airsea>
 	</airsea>
 	<gotmturb>

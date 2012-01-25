@@ -217,6 +217,9 @@
 				0
 			</sss_method>
 			<sss_file/>
+                        <ssuv_method>
+                                0
+                        </ssuv_method>
 		</airsea>
 	</airsea>
 	<gotmturb>
