@@ -59,6 +59,9 @@
 			<nsave>
 				144
 			</nsave>
+			<sync_out>
+				0
+			</sync_out>
 			<diagnostics>
 				False
 			</diagnostics>
