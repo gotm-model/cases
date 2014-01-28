@@ -1,0 +1,14 @@
+resolute/timestamp
+resolute/filelist
+resolute/Makefile
+resolute/meteo_file.dat
+resolute/Reolute_data_inf.txt
+resolute/Resolute_ice_data_all.dat
+resolute/Resolute_ice_snow_thickness.dat
+resolute/resolute.xml
+resolute/salprof_nemo.dat
+resolute/sprofile.dat
+resolute/tempprof_nemo.dat
+resolute/tprofile.dat
+resolute/uprof_nemo.dat
+resolute/vprof_nemo.dat

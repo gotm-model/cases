@@ -1,0 +1,36 @@
+' ice data at Station Resolute from the Canadian ice service ice thickness program collection: http://www.ec.gc.ca/glaces-ice/ data is available  in two chunks, one from 1997-2002 ‘Original Ice Thickness Program Collection’ , one from 2002-2013'New Arctic Ice Thickness Program’ 
+
+all Resolute data for the first chunk is included in Resolute_ice_data_all.dat
+including infos on measurement methods, surface topography and cracks and leads for later data.
+
+extracted sea ice thickness and snow thickness data is in Resolute_ice_snow_thickness.dat. Note that for earlier years snow thickness is not available and interrupted at the beginning of the snow measurement period.
+
+An example where these data has been used fior modelling purposes is: 
+Dumas et al. 2006 Future Projections of Landfast Ice Thickness and Duration in the Canadian Arctic, Journal of Climate, 19, 5175-5189
+
+
+
+Meteorological data is available from the Canadian Climate Sensor website  
+http://climate.weather.gc.ca/index_e.html The basic climate variables (T, RH, wind, p) can be downloaded from the Canadian Climate Sensor website directly, separately by station. This is a little inconvenient because hourly data come only in month-long blocks and daily average data in year-long blocks. More exotic variables such as cloud cover and opacity are by special request. Larry Flysak at CCC mailto:Larry.Flysak@ec.gc.ca was given to me as a contact
+
+
+meteorological data has been put together in a standard GOTM forcing file:
+
+meteo_file.dat
+
+(Note, I can't quite track down the source of this specific files, but assume that they are from the same source, which is publicly accessible)
+
+
+No suitable observations for oceanographic profiles are available, hence model results from a regional model by Youyu Lu, BIO Dartmouth have been used.
+these should eventually be updated, but will do for initial testing.
+
+data are in 
+salprof_nemo.dat
+tempprof_nemo.dat
+
+respective velocities are in
+
+uprof_nemo.dat
+vprof_nemo.dat
+
+(velocities have not been used for anything yet) 
