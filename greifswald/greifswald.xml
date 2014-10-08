@@ -56,6 +56,7 @@
 			<out_fn>
 				greifswald
 			</out_fn>
+                        <nfirst>0</first>
 			<nsave>
 				144
 			</nsave>
@@ -181,6 +182,7 @@
 			<swr_method>
 				3
 			</swr_method>
+                        <albedo_correction>True</albedo_correction>
 			<const_swr>
 				0.0
 			</const_swr>

@@ -56,6 +56,7 @@
 			<out_fn>
 				lago_maggiore
 			</out_fn>
+                        <nfirst>0</first>
 			<nsave>
 				180
 			</nsave>
@@ -179,6 +180,7 @@
 			<swr_method>
 				0
 			</swr_method>
+                        <albedo_correction>False</albedo_correction>
 			<const_swr>
 				0.0
 			</const_swr>

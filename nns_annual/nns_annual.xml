@@ -56,6 +56,7 @@
 			<out_fn>
 				nns_annual
 			</out_fn>
+                        <nfirst>0</first>
 			<nsave>
 				24
 			</nsave>
@@ -181,6 +182,7 @@
 			<swr_method>
 				3
 			</swr_method>
+                        <albedo_correction>True</albedo_correction>
 			<const_swr>
 				0.0
 			</const_swr>
@@ -227,6 +229,11 @@
                         </ssuv_method>
 		</airsea>
 	</airsea>
+	<ice>
+		<ice>
+			<ice_method>1</ice_method>
+		</ice>
+	</ice>
 	<gotmturb>
 		<turbulence>
 			<turb_method>

@@ -56,6 +56,9 @@
 			<out_fn>
 				kepsilon
 			</out_fn>
+			<nfirst>
+				0
+			</first>
 			<nsave>
 				360
 			</nsave>
@@ -201,6 +204,7 @@
 			<swr_method>
 				1
 			</swr_method>
+                        <albedo_correction>False</albedo_correction>
 			<swr_file/>
 			<swr_factor>
 				1.0
