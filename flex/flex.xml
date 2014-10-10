@@ -24,7 +24,7 @@
 			<out_fmt>2</out_fmt>
 			<out_dir>.</out_dir>
 			<out_fn>flex</out_fn>
-                        <nfirst>0</first>
+                        <nfirst>0</nfirst>
 			<nsave>30</nsave>
 			<sync_out>0</sync_out>
 			<diagnostics>False</diagnostics>

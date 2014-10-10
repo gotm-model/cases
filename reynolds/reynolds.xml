@@ -56,7 +56,7 @@
 			<out_fn>
 				reynolds
 			</out_fn>
-                        <nfirst>0</first>
+                        <nfirst>0</nfirst>
 			<nsave>
 				60
 			</nsave>

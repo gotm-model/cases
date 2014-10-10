@@ -56,7 +56,7 @@
 			<out_fn>
 				nns_seasonal
 			</out_fn>
-                        <nfirst>0</first>
+                        <nfirst>0</nfirst>
 			<nsave>
 				36
 			</nsave>

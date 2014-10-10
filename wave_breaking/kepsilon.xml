@@ -56,7 +56,7 @@
 			<out_fn>
 				wave_breaking
 			</out_fn>
-                        <nfirst>0</first>
+                        <nfirst>0</nfirst>
 			<nsave>
 				86400
 			</nsave>
