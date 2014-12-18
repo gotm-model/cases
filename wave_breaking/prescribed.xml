@@ -202,7 +202,8 @@
 			<swr_method>
 				1
 			</swr_method>
-                        <albedo_correction>False</albedo_correction>
+                        <albedo_method>0</albedo_method>
+                        <const_albedo>0.</const_albedo>
 			<swr_file/>
 			<swr_factor>
 				1.0

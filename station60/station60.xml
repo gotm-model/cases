@@ -3,13 +3,13 @@
 	<gotmrun>
 		<model_setup>
 			<title>
-				couette flow
+				GOTM Simulation
 			</title>
 			<nlev>
-				50
+				25
 			</nlev>
 			<dt>
-				10.0
+				360.0
 			</dt>
 			<cnpar>
 				1.0
@@ -20,16 +20,16 @@
 		</model_setup>
 		<station>
 			<name>
-				north pole
+				Station 60 - Roskilde Fjord
 			</name>
 			<latitude>
-				0.0
+				58.91666
 			</latitude>
 			<longitude>
-				0.0
+				0.32
 			</longitude>
 			<depth>
-				10.0
+				5.0
 			</depth>
 		</station>
 		<time>
@@ -40,10 +40,10 @@
 				800
 			</MaxN>
 			<start>
-				2005-01-01 00:00:00
+				2012-01-01 00:00:00
 			</start>
 			<stop>
-				2005-01-02 00:00:00
+				2012-12-01 00:00:00
 			</stop>
 		</time>
 		<output>
@@ -54,13 +54,11 @@
 				.
 			</out_dir>
 			<out_fn>
-				couette
+				station60
 			</out_fn>
-                        <nfirst>
-                                0
-                        </nfirst>
+                        <nfirst>0</nfirst>
 			<nsave>
-				360
+				30
 			</nsave>
 			<sync_out>
 				0
@@ -86,7 +84,7 @@
 				1
 			</eq_state_mode>
 			<eq_state_method>
-				2
+				1
 			</eq_state_method>
 			<T0>
 				10.0
@@ -108,10 +106,10 @@
 	<gotmmean>
 		<meanflow>
 			<h0b>
-				0.1
+				0.05
 			</h0b>
 			<z0s_min>
-				0.003
+				0.02
 			</z0s_min>
 			<charnock>
 				False
@@ -158,43 +156,23 @@
 	<airsea>
 		<airsea>
 			<calc_fluxes>
-				False
+				True
 			</calc_fluxes>
-			<meteo_file/>
-			<heat_method>
-				1
-			</heat_method>
-			<const_swr>
-				0.0
-			</const_swr>
-			<const_heat>
-				0.0
-			</const_heat>
-			<heatflux_file/>
-			<momentum_method>
-				1
-			</momentum_method>
-			<const_tx>
-				1.027
-			</const_tx>
-			<const_ty>
-				0.0
-			</const_ty>
-			<momentumflux_file/>
-			<sst_method>
-				0
-			</sst_method>
-			<sst_file/>
-			<sss_method>
-				0
-			</sss_method>
-			<sss_file/>
 			<fluxes_method>
 				1
 			</fluxes_method>
 			<back_radiation_method>
 				1
 			</back_radiation_method>
+			<meteo_file>
+				meteo.dat
+			</meteo_file>
+			<hum_method>
+				1
+			</hum_method>
+			<heat_method>
+				2
+			</heat_method>
 			<rain_impact>
 				False
 			</rain_impact>
@@ -202,17 +180,59 @@
 				False
 			</calc_evaporation>
 			<swr_method>
-				1
+				3
 			</swr_method>
-                        <albedo_method>0</albedo_method>
+                        <albedo_method>1</albedo_method>
                         <const_albedo>0.</const_albedo>
-			<swr_file/>
+			<const_swr>
+				0.0
+			</const_swr>
+			<swr_file>
+				swr.dat
+			</swr_file>
 			<swr_factor>
 				1.0
 			</swr_factor>
+			<const_heat>
+				0.0
+			</const_heat>
+			<heatflux_file>
+				heatflux.dat
+			</heatflux_file>
+			<momentum_method>
+				2
+			</momentum_method>
+			<const_tx>
+				0.0
+			</const_tx>
+			<const_ty>
+				0.0
+			</const_ty>
+			<momentumflux_file>
+				momentumflux.dat
+			</momentumflux_file>
+			<precip_method>
+				0
+			</precip_method>
+			<const_precip>
+				0.0
+			</const_precip>
+			<precip_file/>
 			<precip_factor>
 				1.0
 			</precip_factor>
+			<sst_method>
+				2
+			</sst_method>
+			<sst_file>
+				sst.dat
+			</sst_file>
+			<sss_method>
+				0
+			</sss_method>
+			<sss_file>
+				sss.dat
+			</sss_file>
                         <ssuv_method>
                                 0
                         </ssuv_method>
@@ -221,16 +241,16 @@
 	<gotmturb>
 		<turbulence>
 			<turb_method>
-				2
+				3
 			</turb_method>
 			<tke_method>
-				3
+				2
 			</tke_method>
 			<len_scale_method>
-				9
+				8
 			</len_scale_method>
 			<stab_method>
-				1
+				3
 			</stab_method>
 		</turbulence>
 		<bc>
@@ -241,7 +261,7 @@
 				1
 			</k_lbc>
 			<psi_ubc>
-				0
+				1
 			</psi_ubc>
 			<psi_lbc>
 				1
@@ -264,16 +284,16 @@
 				100.0
 			</cw>
 			<compute_kappa>
-				True
+				False
 			</compute_kappa>
 			<kappa>
 				0.4
 			</kappa>
 			<compute_c3>
-				False
+				True
 			</compute_c3>
 			<Ri_st>
-				0.18
+				0.25
 			</Ri_st>
 			<length_lim>
 				True
@@ -291,7 +311,7 @@
 				1e-10
 			</k_min>
 			<eps_min>
-				1e-14
+				1e-12
 			</eps_min>
 			<kb_min>
 				1e-10
@@ -305,40 +325,40 @@
 				False
 			</compute_param>
 			<gen_m>
-				1.5
+				1.0
 			</gen_m>
 			<gen_n>
-				-1.0
+				-0.67
 			</gen_n>
 			<gen_p>
 				3.0
 			</gen_p>
 			<cpsi1>
-				1.44
+				1.0
 			</cpsi1>
 			<cpsi2>
-				1.92
+				1.22
 			</cpsi2>
 			<cpsi3minus>
-				0.0
+				0.05
 			</cpsi3minus>
 			<cpsi3plus>
-				0.0
+				1.0
 			</cpsi3plus>
 			<sig_kpsi>
-				1.0
+				0.8
 			</sig_kpsi>
 			<sig_psi>
-				1.3
+				1.07
 			</sig_psi>
 			<gen_d>
-				-1.087
+				-1.2
 			</gen_d>
 			<gen_alpha>
-				-4.97
+				-2.0
 			</gen_alpha>
 			<gen_l>
-				0.09
+				0.2
 			</gen_l>
 		</generic>
 		<keps>
@@ -349,7 +369,7 @@
 				1.92
 			</ce2>
 			<ce3minus>
-				0.0
+				-0.4
 			</ce3minus>
 			<ce3plus>
 				1.0
@@ -381,7 +401,7 @@
 				0.2
 			</sl>
 			<my_length>
-				1
+				3
 			</my_length>
 			<new_constr>
 				False
@@ -398,43 +418,43 @@
 				1
 			</epsb_method>
 			<scnd_coeff>
-				3
+				7
 			</scnd_coeff>
 			<cc1>
-				5.0
+				3.6
 			</cc1>
 			<cc2>
 				0.8
 			</cc2>
 			<cc3>
-				1.968
+				1.2
 			</cc3>
 			<cc4>
-				1.136
+				1.2
 			</cc4>
 			<cc5>
 				0.0
 			</cc5>
 			<cc6>
-				0.4
+				0.3
 			</cc6>
 			<ct1>
-				5.95
+				3.28
 			</ct1>
 			<ct2>
-				0.6
+				0.4
 			</ct2>
 			<ct3>
-				1.0
+				0.4
 			</ct3>
 			<ct4>
 				0.0
 			</ct4>
 			<ct5>
-				0.3333
+				0.4
 			</ct5>
 			<ctt>
-				0.72
+				0.8
 			</ctt>
 		</scnd>
 		<iw>
@@ -442,7 +462,7 @@
 				0
 			</iw_model>
 			<alpha>
-				0.0
+				0.7
 			</alpha>
 			<klimiw>
 				1e-06
@@ -483,7 +503,7 @@
 	<obs>
 		<sprofile>
 			<s_prof_method>
-				0
+				2
 			</s_prof_method>
 			<s_analyt_method>
 				1
@@ -503,15 +523,17 @@
 			<s_obs_NN>
 				0.000256
 			</s_obs_NN>
-			<s_prof_file/>
+			<s_prof_file>
+				sprof.dat
+			</s_prof_file>
 			<SRelaxTauM>
-				1e+15
+				172800.0
 			</SRelaxTauM>
 			<SRelaxTauB>
-				1e+15
+				172800.0
 			</SRelaxTauB>
 			<SRelaxTauS>
-				1e+15
+				172800.0
 			</SRelaxTauS>
 			<SRelaxBott>
 				0.0
@@ -522,7 +544,7 @@
 		</sprofile>
 		<tprofile>
 			<t_prof_method>
-				0
+				2
 			</t_prof_method>
 			<t_analyt_method>
 				3
@@ -540,9 +562,11 @@
 				15.0
 			</t_2>
 			<t_obs_NN>
-				0.0001
+				0.000256
 			</t_obs_NN>
-			<t_prof_file/>
+			<t_prof_file>
+				tprof.dat
+			</t_prof_file>
 			<TRelaxTauM>
 				1e+15
 			</TRelaxTauM>
@@ -566,7 +590,9 @@
 			<ext_press_mode>
 				0
 			</ext_press_mode>
-			<ext_press_file/>
+			<ext_press_file>
+				pressure.dat
+			</ext_press_file>
 			<PressConstU>
 				0.0
 			</PressConstU>
@@ -633,9 +659,11 @@
 		</int_pressure>
 		<extinct>
 			<extinct_method>
-				1
+				5
 			</extinct_method>
-			<extinct_file/>
+			<extinct_file>
+				extinction.dat
+			</extinct_file>
 		</extinct>
 		<w_advspec>
 			<w_adv_method>
@@ -649,7 +677,7 @@
 			</w_adv0>
 			<w_adv_file/>
 			<w_adv_discr>
-				4
+				6
 			</w_adv_discr>
 		</w_advspec>
 		<zetaspec>
@@ -745,10 +773,10 @@
 	<bio>
 		<bio_nml>
 			<bio_calc>
-				False
+				True
 			</bio_calc>
 			<bio_model>
-				1
+				4
 			</bio_model>
 			<bio_eulerian>
 				True
@@ -760,7 +788,7 @@
 				6
 			</w_adv_discr>
 			<ode_method>
-				3
+				8
 			</ode_method>
 			<split_factor>
 				1
@@ -769,406 +797,120 @@
 				True
 			</bioshade_feedback>
 			<npar>
-				100000
+				-1
 			</npar>
 		</bio_nml>
 	</bio>
-	<seagrass>
-		<canopy>
-			<seagrass_calc>
-				False
-			</seagrass_calc>
-			<grassfile/>
-			<XP_rat>
-				1.0
-			</XP_rat>
-		</canopy>
-	</seagrass>
-	<bio_iow>
-		<bio_iow_nml>
-			<lsd>
-				25.0
-			</lsd>
-			<tau_crit>
-				0.07
-			</tau_crit>
-		</bio_iow_nml>
-	</bio_iow>
-	<bio_sed>
-		<bio_sed_nml>
-			<ntype>
-				1
-			</ntype>
-			<nprop>
-				1
-			</nprop>
-		</bio_sed_nml>
-	</bio_sed>
-	<bio_npzd_fe>
-		<bio_npzd_fe_nml>
+	<bio_fasham>
+		<bio_fasham_nml>
 			<numc>
-				16
+				7
 			</numc>
-			<N_initial>
-				1.0
-			</N_initial>
-			<P_initial>
-				0.01
-			</P_initial>
-			<Z_initial>
+			<p_initial>
+				0.056666666
+			</p_initial>
+			<z_initial>
+				0.05
+			</z_initial>
+			<b_initial>
 				0.001
-			</Z_initial>
-			<D_initial>
-				1e-05
-			</D_initial>
-			<f3_initial>
-				1e-05
-			</f3_initial>
-			<f2_initial>
-				1e-10
-			</f2_initial>
-			<fc_initial>
-				0.02
-			</fc_initial>
-			<fl_initial>
-				0.27
-			</fl_initial>
-			<fp_initial>
-				1e-10
-			</fp_initial>
-			<li_initial>
-				2.4
-			</li_initial>
-			<pt_initial>
-				1e-10
-			</pt_initial>
-			<ho_initial>
-				1e-10
-			</ho_initial>
-			<om_initial>
-				1e-10
-			</om_initial>
-			<pf_initial>
-				0.00033
-			</pf_initial>
-			<zf_initial>
-				3.3e-05
-			</zf_initial>
-			<df_initial>
-				3.3e-07
-			</df_initial>
-			<sfl_pt>
-				2.38e-09
-			</sfl_pt>
-			<sfl_f3>
-				1.4889
-			</sfl_f3>
-			<sfl_ho>
-				0.0
-			</sfl_ho>
-			<surface_flux_method>
-				0
-			</surface_flux_method>
-			<P0>
-				1e-15
-			</P0>
-			<Z0>
-				1e-15
-			</Z0>
-			<I_min>
-				25.0
-			</I_min>
-			<Iv>
-				1.1
-			</Iv>
+			</b_initial>
+			<d_initial>
+				0.416666666
+			</d_initial>
+			<n_initial>
+				8.3
+			</n_initial>
+			<a_initial>
+				0.22
+			</a_initial>
+			<l_initial>
+				0.14
+			</l_initial>
+			<p0>
+				0.0001
+			</p0>
+			<z0>
+				0.0001
+			</z0>
+			<b0>
+				0.0001
+			</b0>
+			<vp>
+				1.5
+			</vp>
 			<alpha>
-				0.256
+				0.065
 			</alpha>
-			<rkw>
-				25.0
-			</rkw>
-			<rkc>
-				0.03
-			</rkc>
-			<aa>
-				0.62
-			</aa>
-			<k_n>
-				0.7
-			</k_n>
-			<mue_m>
-				0.27
-			</mue_m>
-			<mp>
-				0.04
-			</mp>
-			<mpq>
-				0.025
-			</mpq>
-			<slopf>
-				0.925
-			</slopf>
-			<gmax>
-				1.575
-			</gmax>
-			<pcr>
-				1.6
-			</pcr>
-			<mzq>
-				0.34
-			</mzq>
-			<exf>
-				0.01
-			</exf>
-			<rem>
-				0.048
-			</rem>
-			<w_d>
-				-18.0
-			</w_d>
-			<fe_d>
-				1.32
-			</fe_d>
-			<fe_ro2m>
-				12960.0
-			</fe_ro2m>
-			<fe_col>
-				0.432
-			</fe_col>
-			<fe_o2>
-				184.8
-			</fe_o2>
-			<fe_oo2m>
-				864.0
-			</fe_oo2m>
-			<fe_h2o2>
-				6.24
-			</fe_h2o2>
-			<fe_diss>
-				0.24
-			</fe_diss>
-			<fe_dismt>
-				2.64
-			</fe_dismt>
-			<fe_lf>
-				172.8
-			</fe_lf>
-			<fe_ligand>
-				1000.0
-			</fe_ligand>
-			<fe_c>
-				2.4
-			</fe_c>
-			<fe_cd>
-				0.0
-			</fe_cd>
-			<fe_pd>
-				0.0
-			</fe_pd>
-			<fe_colag>
-				122400.0
-			</fe_colag>
-			<fe_star>
-				25000.0
-			</fe_star>
-			<fe_n2cp>
-				1.59e-07
-			</fe_n2cp>
-			<fe_phdet>
-				20.16
-			</fe_phdet>
-			<fe_solub>
-				0.01
-			</fe_solub>
-			<fe_rh2o2>
-				15000.0
-			</fe_rh2o2>
-			<fe2n>
-				0.033
-			</fe2n>
-			<fe2n_min>
-				0.0066
-			</fe2n_min>
-			<fe_irmax>
-				1978.0
-			</fe_irmax>
-			<ta_f>
-				1.066
-			</ta_f>
-			<fe_lrm>
-				86.4
-			</fe_lrm>
-			<fe_so2m>
-				1036.8
-			</fe_so2m>
-			<fe_cuox>
-				812200.0
-			</fe_cuox>
-			<fe_cured>
-				182.0
-			</fe_cured>
-			<fe_cutot>
-				1.0
-			</fe_cutot>
-			<w_fp>
-				-18.0
-			</w_fp>
-			<w_pt>
-				-18.0
-			</w_pt>
-			<smallm>
-				1e-15
-			</smallm>
-			<k_fe>
-				0.2
-			</k_fe>
-		</bio_npzd_fe_nml>
-	</bio_npzd_fe>
-	<bio_photo>
-		<bio_photo_nml>
-			<numc>
-				5
-			</numc>
-			<ntype>
-				1
-			</ntype>
-			<nprop>
-				4
-			</nprop>
-			<photo_mig>
-				True
-			</photo_mig>
-			<gamma>
-				3600.0
-			</gamma>
-			<cinit>
-				0.0
-			</cinit>
-			<pdm>
-				18.75
-			</pdm>
-			<plm>
-				1.125
-			</plm>
-			<mu>
-				0.1
-			</mu>
-			<ed>
-				163.05
-			</ed>
-			<el>
-				163.05
-			</el>
-			<eb>
-				43.5255
-			</eb>
-			<yl>
-				0.2
-			</yl>
-			<yh>
-				0.2
-			</yh>
-			<w_c>
-				0.0003
-			</w_c>
-			<aa>
-				0.78
-			</aa>
-			<g2>
-				7.9
-			</g2>
-		</bio_photo_nml>
-	</bio_photo>
-	<bio_cl>
-		<bio_cl_nml>
-			<numc>
-				2
-			</numc>
-			<cl_method>
-				1
-			</cl_method>
-			<cl_initial>
-				0.1
-			</cl_initial>
-			<s_initial>
-				0.58
-			</s_initial>
-			<cl0>
-				0.0
-			</cl0>
-			<s0>
-				0.0
-			</s0>
-			<w_cl>
-				0.0
-			</w_cl>
 			<k1>
-				4.2e-05
+				0.2
 			</k1>
 			<k2>
-				0.013
+				0.8
 			</k2>
-			<wk1>
-				-0.5757
-			</wk1>
-			<wk2>
+			<mu1>
+				0.05
+			</mu1>
+			<k5>
+				0.2
+			</k5>
+			<gamma>
+				0.05
+			</gamma>
+			<w_p>
+				-1.0
+			</w_p>
+			<gmax>
 				1.0
-			</wk2>
-		</bio_cl_nml>
-	</bio_cl>
-	<bio_mangan>
-		<bio_mangan_nml>
-			<numc>
-				6
-			</numc>
-			<mnO_ini>
-				5.0
-			</mnO_ini>
-			<mn2_ini>
-				5.0
-			</mn2_ini>
-			<spm_ini>
-				0.1
-			</spm_ini>
-			<mnO_sed_ini>
-				0.1
-			</mnO_sed_ini>
-			<mn2_sed_ini>
-				0.1
-			</mn2_sed_ini>
-			<spm_sed_ini>
-				2.0
-			</spm_sed_ini>
-			<r_ox>
-				0.1
-			</r_ox>
-			<r_red>
-				0.1
-			</r_red>
-			<r_ero>
-				0.1
-			</r_ero>
-			<tau_bc>
+			</gmax>
+			<k3>
+				1.0
+			</k3>
+			<beta>
+				0.625
+			</beta>
+			<mu2>
+				0.3
+			</mu2>
+			<k6>
 				0.2
-			</tau_bc>
-			<v_t>
-				0.002
-			</v_t>
-			<w_s>
-				-50.0
-			</w_s>
-			<d_s>
+			</k6>
+			<delta>
 				0.1
-			</d_s>
-			<spm12>
+			</delta>
+			<epsi>
+				0.7
+			</epsi>
+			<r1>
+				0.55
+			</r1>
+			<r2>
+				0.4
+			</r2>
+			<r3>
+				0.05
+			</r3>
+			<vb>
+				1.2
+			</vb>
+			<k4>
+				0.5
+			</k4>
+			<mu3>
+				0.15
+			</mu3>
+			<eta>
 				0.0
-			</spm12>
-			<spm_sed12>
-				0.2
-			</spm_sed12>
-			<mno_sed12>
-				0.01
-			</mno_sed12>
-		</bio_mangan_nml>
-	</bio_mangan>
+			</eta>
+			<mu4>
+				0.02
+			</mu4>
+			<w_d>
+				-2.0
+			</w_d>
+			<kc>
+				0.03
+			</kc>
+		</bio_fasham_nml>
+	</bio_fasham>
 </scenario>

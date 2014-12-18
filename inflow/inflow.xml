@@ -2,28 +2,28 @@
 <scenario version="gotm-4.1.0">
 	<gotmrun>
 		<model_setup>
-			<title>GOTM Simulation</title>
-			<nlev>145</nlev>
-			<dt>360.0</dt>
+			<title>inflow</title>
+			<nlev>100</nlev>
+			<dt>600.0</dt>
 			<cnpar>1.0</cnpar>
 			<buoy_method>1</buoy_method>
 		</model_setup>
 		<station>
-			<name>Flex Experiment 1976</name>
-			<latitude>58.91666</latitude>
-			<longitude>0.32</longitude>
-			<depth>145.0</depth>
+			<name>idealized north pole</name>
+			<latitude>0.0</latitude>
+			<longitude>0.0</longitude>
+			<depth>250.0</depth>
 		</station>
 		<time>
 			<timefmt>2</timefmt>
 			<MaxN>800</MaxN>
-			<start>1976-04-06 06:00:00</start>
-			<stop>1976-06-07 00:00:00</stop>
+			<start>2003-04-20 00:00:00</start>
+			<stop>2003-05-20 00:00:00</stop>
 		</time>
 		<output>
 			<out_fmt>2</out_fmt>
 			<out_dir>.</out_dir>
-			<out_fn>flex</out_fn>
+			<out_fn>inflow</out_fn>
                         <nfirst>0</nfirst>
 			<nsave>30</nsave>
 			<sync_out>0</sync_out>
@@ -31,11 +31,11 @@
 			<mld_method>1</mld_method>
 			<diff_k>1e-05</diff_k>
 			<Ri_crit>0.5</Ri_crit>
-			<rad_corr>True</rad_corr>
+			<rad_corr>False</rad_corr>
 		</output>
 		<eqstate>
-			<eq_state_mode>1</eq_state_mode>
-			<eq_state_method>1</eq_state_method>
+			<eq_state_mode>2</eq_state_mode>
+			<eq_state_method>2</eq_state_method>
 			<T0>10.0</T0>
 			<S0>35.0</S0>
 			<p0>0.0</p0>
@@ -45,13 +45,22 @@
 	</gotmrun>
 	<gotmmean>
 		<meanflow>
-			<h0b>0.05</h0b>
-			<z0s_min>0.02</z0s_min>
+			<h0b>0.0</h0b>
+			<z0s_min>0.003</z0s_min>
 			<charnock>False</charnock>
 			<charnock_val>1400.0</charnock_val>
 			<ddu>0.0</ddu>
 			<ddl>0.0</ddl>
 			<grid_method>0</grid_method>
+			<c1ad>0.4</c1ad>
+			<c2ad>0.4</c2ad>
+			<c3ad>0.1</c3ad>
+			<c4ad>0.1</c4ad>
+			<Tgrid>3600.0</Tgrid>
+			<NNnorm>0.2</NNnorm>
+			<SSnorm>0.2</SSnorm>
+			<dsurf>40.0</dsurf>
+			<dtgrid>2.0</dtgrid>
 			<grid_file/>
 			<gravity>9.81</gravity>
 			<rho_0>1027.0</rho_0>
@@ -61,6 +70,7 @@
 			<avmols>1.1e-09</avmols>
 			<MaxItz0b>1</MaxItz0b>
 			<no_shear>False</no_shear>
+			<hypsograph_file>hypsograph.dat</hypsograph_file>
 		</meanflow>
 	</gotmmean>
 	<airsea>
@@ -69,31 +79,31 @@
 			<fluxes_method>1</fluxes_method>
 			<back_radiation_method>1</back_radiation_method>
 			<meteo_file/>
-			<hum_method>2</hum_method>
-			<heat_method>2</heat_method>
+			<hum_method>1</hum_method>
+			<heat_method>1</heat_method>
 			<rain_impact>False</rain_impact>
 			<calc_evaporation>False</calc_evaporation>
-			<swr_method>2</swr_method>
-                        <albedo_method>1</albedo_method>
+			<swr_method>0</swr_method>
+                        <albedo_method>0</albedo_method>
                         <const_albedo>0.</const_albedo>
 			<const_swr>0.0</const_swr>
-			<swr_file>swr.dat</swr_file>
+			<swr_file/>
 			<swr_factor>1.0</swr_factor>
 			<const_heat>0.0</const_heat>
-			<heatflux_file>heatflux.dat</heatflux_file>
-			<momentum_method>2</momentum_method>
-			<const_tx>0.0</const_tx>
-			<const_ty>0.0</const_ty>
-			<momentumflux_file>momentumflux.dat</momentumflux_file>
+			<heatflux_file/>
+			<momentum_method>1</momentum_method>
+			<const_tx>0.001</const_tx>
+			<const_ty>0.001</const_ty>
+			<momentumflux_file/>
 			<precip_method>0</precip_method>
 			<const_precip>0.0</const_precip>
 			<precip_file/>
 			<precip_factor>1.0</precip_factor>
-			<sst_method>2</sst_method>
-			<sst_file>sst.dat</sst_file>
+			<sst_method>0</sst_method>
+			<sst_file/>
 			<sss_method>0</sss_method>
-			<sss_file/>
 			<ssuv_method>0</ssuv_method>
+			<sss_file/>
 		</airsea>
 	</airsea>
 	<gotmturb>
@@ -115,38 +125,38 @@
 			<cm0_fix>0.5477</cm0_fix>
 			<Prandtl0_fix>0.74</Prandtl0_fix>
 			<cw>100.0</cw>
-			<compute_kappa>False</compute_kappa>
+			<compute_kappa>True</compute_kappa>
 			<kappa>0.4</kappa>
 			<compute_c3>True</compute_c3>
 			<Ri_st>0.25</Ri_st>
-			<length_lim>True</length_lim>
+			<length_lim>False</length_lim>
 			<galp>0.53</galp>
 			<const_num>0.0005</const_num>
 			<const_nuh>0.0005</const_nuh>
 			<k_min>1e-10</k_min>
-			<eps_min>1e-12</eps_min>
+			<eps_min>1e-14</eps_min>
 			<kb_min>1e-10</kb_min>
 			<epsb_min>1e-14</epsb_min>
 		</turb_param>
 		<generic>
 			<compute_param>False</compute_param>
-			<gen_m>1.0</gen_m>
-			<gen_n>-0.67</gen_n>
-			<gen_p>3.0</gen_p>
-			<cpsi1>1.0</cpsi1>
-			<cpsi2>1.22</cpsi2>
-			<cpsi3minus>0.05</cpsi3minus>
+			<gen_m>0.5</gen_m>
+			<gen_n>-1.0</gen_n>
+			<gen_p>-1.0</gen_p>
+			<cpsi1>0.55555</cpsi1>
+			<cpsi2>0.83333</cpsi2>
+			<cpsi3minus>0.0</cpsi3minus>
 			<cpsi3plus>1.0</cpsi3plus>
-			<sig_kpsi>0.8</sig_kpsi>
-			<sig_psi>1.07</sig_psi>
+			<sig_kpsi>2.0</sig_kpsi>
+			<sig_psi>2.0</sig_psi>
 			<gen_d>-1.2</gen_d>
-			<gen_alpha>-2.0</gen_alpha>
-			<gen_l>0.2</gen_l>
+			<gen_alpha>-2.53</gen_alpha>
+			<gen_l>0.25</gen_l>
 		</generic>
 		<keps>
 			<ce1>1.44</ce1>
 			<ce2>1.92</ce2>
-			<ce3minus>-0.4</ce3minus>
+			<ce3minus>0.0</ce3minus>
 			<ce3plus>1.0</ce3plus>
 			<sig_k>1.0</sig_k>
 			<sig_e>1.3</sig_e>
@@ -158,14 +168,14 @@
 			<e3>1.8</e3>
 			<sq>0.2</sq>
 			<sl>0.2</sl>
-			<my_length>3</my_length>
+			<my_length>1</my_length>
 			<new_constr>False</new_constr>
 		</my>
 		<scnd>
 			<scnd_method>1</scnd_method>
 			<kb_method>1</kb_method>
 			<epsb_method>1</epsb_method>
-			<scnd_coeff>7</scnd_coeff>
+			<scnd_coeff>5</scnd_coeff>
 			<cc1>3.6</cc1>
 			<cc2>0.8</cc2>
 			<cc3>1.2</cc3>
@@ -189,40 +199,31 @@
 			<nuhiw>1e-05</nuhiw>
 		</iw>
 	</gotmturb>
-	<kpp>
-		<kpp>
-			<kpp_sbl>True</kpp_sbl>
-			<kpp_bbl>True</kpp_bbl>
-			<kpp_interior>True</kpp_interior>
-			<clip_mld>False</clip_mld>
-			<Ric>0.3</Ric>
-		</kpp>
-	</kpp>
 	<obs>
 		<sprofile>
-			<s_prof_method>2</s_prof_method>
-			<s_analyt_method>1</s_analyt_method>
-			<z_s1>30.0</z_s1>
-			<s_1>20.0</s_1>
-			<z_s2>40.0</z_s2>
-			<s_2>15.0</s_2>
+			<s_prof_method>1</s_prof_method>
+			<s_analyt_method>2</s_analyt_method>
+			<z_s1>60.0</z_s1>
+			<s_1>6.0</s_1>
+			<z_s2>230.0</z_s2>
+			<s_2>16.5</s_2>
 			<s_obs_NN>0.000256</s_obs_NN>
-			<s_prof_file>sprof_ctd.dat</s_prof_file>
-			<SRelaxTauM>172800.0</SRelaxTauM>
-			<SRelaxTauB>172800.0</SRelaxTauB>
-			<SRelaxTauS>172800.0</SRelaxTauS>
+			<s_prof_file>s_prof_file.dat</s_prof_file>
+			<SRelaxTauM>1e+15</SRelaxTauM>
+			<SRelaxTauB>1e+15</SRelaxTauB>
+			<SRelaxTauS>1e+15</SRelaxTauS>
 			<SRelaxBott>0.0</SRelaxBott>
 			<SRelaxSurf>0.0</SRelaxSurf>
 		</sprofile>
 		<tprofile>
-			<t_prof_method>2</t_prof_method>
-			<t_analyt_method>3</t_analyt_method>
+			<t_prof_method>1</t_prof_method>
+			<t_analyt_method>2</t_analyt_method>
 			<z_t1>30.0</z_t1>
-			<t_1>20.0</t_1>
+			<t_1>30.0</t_1>
 			<z_t2>40.0</z_t2>
-			<t_2>15.0</t_2>
+			<t_2>10.0</t_2>
 			<t_obs_NN>0.000256</t_obs_NN>
-			<t_prof_file>tprof_ctd.dat</t_prof_file>
+			<t_prof_file>t_prof_file.dat</t_prof_file>
 			<TRelaxTauM>1e+15</TRelaxTauM>
 			<TRelaxTauB>1e+15</TRelaxTauB>
 			<TRelaxTauS>1e+15</TRelaxTauS>
@@ -230,9 +231,9 @@
 			<TRelaxSurf>0.0</TRelaxSurf>
 		</tprofile>
 		<ext_pressure>
-			<ext_press_method>2</ext_press_method>
+			<ext_press_method>0</ext_press_method>
 			<ext_press_mode>0</ext_press_mode>
-			<ext_press_file>pressure.dat</ext_press_file>
+			<ext_press_file/>
 			<PressConstU>0.0</PressConstU>
 			<PressConstV>0.0</PressConstV>
 			<PressHeight>0.0</PressHeight>
@@ -258,15 +259,15 @@
 			<t_adv>False</t_adv>
 		</int_pressure>
 		<extinct>
-			<extinct_method>0</extinct_method>
-			<extinct_file>extinction.dat</extinct_file>
+			<extinct_method>6</extinct_method>
+			<extinct_file/>
 		</extinct>
 		<w_advspec>
 			<w_adv_method>0</w_adv_method>
-			<w_adv_height0>0.0</w_adv_height0>
-			<w_adv0>0.0</w_adv0>
+			<w_adv_height0>200.0</w_adv_height0>
+			<w_adv0>8e-05</w_adv0>
 			<w_adv_file/>
-			<w_adv_discr>6</w_adv_discr>
+			<w_adv_discr>1</w_adv_discr>
 		</w_advspec>
 		<zetaspec>
 			<zeta_method>0</zeta_method>
@@ -311,58 +312,29 @@
 			<bio_prof_method>0</bio_prof_method>
 			<bio_prof_file/>
 		</bioprofiles>
+		<inflows>
+			<inflows_method>0</inflows_method>
+			<inflows_file>inflows_file.dat</inflows_file>
+		</inflows>
 	</obs>
 	<bio>
 		<bio_nml>
-			<bio_calc>True</bio_calc>
-			<bio_model>4</bio_model>
+			<bio_calc>False</bio_calc>
+			<bio_model>1</bio_model>
 			<bio_eulerian>True</bio_eulerian>
 			<cnpar>1.0</cnpar>
 			<w_adv_discr>6</w_adv_discr>
-			<ode_method>8</ode_method>
+			<ode_method>3</ode_method>
 			<split_factor>1</split_factor>
 			<bioshade_feedback>True</bioshade_feedback>
-			<npar>-1</npar>
+			<npar>100000</npar>
 		</bio_nml>
 	</bio>
-	<bio_fasham>
-		<bio_fasham_nml>
-			<numc>7</numc>
-			<p_initial>0.056666666</p_initial>
-			<z_initial>0.05</z_initial>
-			<b_initial>0.001</b_initial>
-			<d_initial>0.416666666</d_initial>
-			<n_initial>8.3</n_initial>
-			<a_initial>0.22</a_initial>
-			<l_initial>0.14</l_initial>
-			<p0>0.0001</p0>
-			<z0>0.0001</z0>
-			<b0>0.0001</b0>
-			<vp>1.5</vp>
-			<alpha>0.065</alpha>
-			<k1>0.2</k1>
-			<k2>0.8</k2>
-			<mu1>0.05</mu1>
-			<k5>0.2</k5>
-			<gamma>0.05</gamma>
-			<w_p>-1.0</w_p>
-			<gmax>1.0</gmax>
-			<k3>1.0</k3>
-			<beta>0.625</beta>
-			<mu2>0.3</mu2>
-			<k6>0.2</k6>
-			<delta>0.1</delta>
-			<epsi>0.7</epsi>
-			<r1>0.55</r1>
-			<r2>0.4</r2>
-			<r3>0.05</r3>
-			<vb>1.2</vb>
-			<k4>0.5</k4>
-			<mu3>0.15</mu3>
-			<eta>0.0</eta>
-			<mu4>0.02</mu4>
-			<w_d>-2.0</w_d>
-			<kc>0.03</kc>
-		</bio_fasham_nml>
-	</bio_fasham>
+	<seagrass>
+		<canopy>
+			<seagrass_calc>False</seagrass_calc>
+			<grassfile/>
+			<XP_rat>1.0</XP_rat>
+		</canopy>
+	</seagrass>
 </scenario>
