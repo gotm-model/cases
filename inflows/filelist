@@ -1,0 +1,7 @@
+inflows/filelist
+inflows/Makefile
+inflows/inflows.xml
+inflows/hypsograph.dat
+inflows/inflow_1_file.dat
+inflows/inflow_2_file.dat
+inflows/outflow_1_file.dat
