@@ -1,0 +1,39 @@
+test_month.nc:
+   time_unit: month
+   time_step: 1
+   variables:
+      int_temp:
+        source: temp
+        time_method: 3
+      temp_mean:
+        source: temp
+        time_method: 2
+      salt_mean:
+        source: salt
+        time_method: 2
+      salt:
+        time_method: 1
+      sst_mean:
+        source: sst
+        time_method: 2
+test_day.nc:
+   time_unit: day
+   time_step: 1
+   variables:
+      temp:
+      salt:
+      sst:
+      num:
+      rhoa:
+      swr:
+        source: I_0
+        time_method: 1
+      swr_mean:
+        source: I_0
+        time_method: 2
+      swr_int:
+        source: I_0
+        time_method: 3
+#      tracer1_c:
+#      tracer2_c:
+#      tracer3_c:
