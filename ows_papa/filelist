@@ -6,6 +6,7 @@ ows_papa/ows_papa.xml
 ows_papa/swr.dat
 ows_papa/heatflux.dat
 ows_papa/momentumflux.dat
+ows_papa/output.yaml
 ows_papa/sprof.dat
 ows_papa/sst.dat
 ows_papa/tprof.dat

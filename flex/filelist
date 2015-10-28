@@ -7,6 +7,7 @@ flex/extinction.dat
 flex/swr.dat
 flex/heatflux.dat
 flex/momentumflux.dat
+flex/output.yaml
 flex/pressure.dat
 flex/sprof.dat
 flex/sprof_ctd.dat

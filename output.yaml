@@ -1,0 +1,14 @@
+# Multiple blocks like the one below <filename> must be unique
+<file_name>:
+   time_unit: <second|hour|day|month|year|dt>
+   time_step: <integer>
+   time_start: yyyy-mm-dd hh:mi:ss
+   time_stop: yyyy-mm-dd hh:mi:ss
+   time_reference: yyyy-mm-dd hh:mi:ss
+   sync_interval: <integer - <0 no syncing>
+   k_start: <integer>
+   k_stop: <integer>
+   k_stride: <integer>
+   variables:
+      - source: <*=all registrated variables|specific list> # multiple 'source:' allowed
+        time_method: <0=time_method_none|1=time_method_instantaneous|2=time_method_mean|3=time_method_integrated - default=1>

@@ -1,0 +1,5 @@
+rouse:
+   time_unit: dt
+   time_step: 24
+   variables:
+      - source: *
