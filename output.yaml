@@ -1,4 +1,10 @@
-# Multiple blocks like the one below <filename> must be unique
+#
+# Multiple blocks like the one below <filename> must be unique in case of 
+# multiple specifications.
+#
+# Except for time_unit, time_step and variables (including source) all other
+# specifications are optional.
+#
 <file_name>:
    time_unit: <second|hour|day|month|year|dt>
    time_step: <integer>
