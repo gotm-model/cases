@@ -153,6 +153,9 @@
 			<hypsograph_file>
 				hypsograph.dat
 			</hypsograph_file>
+			<water_balance_method>
+				3
+			</water_balance_method>
 		</meanflow>
 	</gotmmean>
 	<airsea>
@@ -674,7 +677,7 @@
 		</w_advspec>
 		<zetaspec>
 			<zeta_method>
-				0
+				3
 			</zeta_method>
 			<zeta_file>
 				zeta.dat
@@ -881,9 +884,10 @@
 			</XP_rat>
 		</canopy>
 	</seagrass>
-	<inflows>
-		<inflow>
+	<streams>
+		<stream>
 			<name>inflow1</name>
+			<method>4</method>
 			<zl>10.0</zl>
 			<zu>0.0</zu>
 			<Q_file>inflow_1_file.dat</Q_file>
@@ -892,9 +896,10 @@
 			<Q_col>1</Q_col>
 			<S_col>2</S_col>
 			<T_col>2</T_col>
-		</inflow>
-		<inflow>
+		</stream>
+		<stream>
 			<name>inflow2</name>
+			<method>3</method>
 			<zl>-10.0</zl>
 			<zu>-10.0</zu>
 			<Q_file>inflow_2_file.dat</Q_file>
@@ -903,9 +908,10 @@
 			<Q_col>1</Q_col>
 			<S_col>2</S_col>
 			<T_col>2</T_col>
-		</inflow>
-		<inflow>
+		</stream>
+		<stream>
 			<name>outflow1</name>
+			<method>3</method>
 			<zl>-18.0</zl>
 			<zu>-15.0</zu>
 			<Q_file>outflow_1_file.dat</Q_file>
@@ -914,6 +920,6 @@
 			<Q_col>1</Q_col>
 			<S_col>2</S_col>
 			<T_col>3</T_col>
-		</inflow>
-	</inflows>
+		</stream>
+	</streams>
 </scenario>
