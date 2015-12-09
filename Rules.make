@@ -16,12 +16,13 @@ tarflags =  -C ../ --files-from filelist -cvzf
 
 all: namelist run
 
-kaj:
-	$(GOTM_CASES)/templates/make_namelist $(name)
-
 namelist:
-#	editscenario.py -e nml --schemadir=$(SCHEMADIR) $(setup).xml . --targetversion=gotm-$(ver)
-	editscenario.py --skipvalidation -e nml --schemadir=$(SCHEMADIR) $(setup).xml . --targetversion=gotm-$(ver)
+	editscenario.py -e nml --schemadir=$(SCHEMADIR) $(setup).xml . --targetversion=gotm-$(ver)
+#	editscenario.py --skipvalidation -e nml --schemadir=$(SCHEMADIR) $(setup).xml . --targetversion=gotm-$(ver)
+
+namelist-gui:
+	editscenario.py -g -e nml --schemadir=$(SCHEMADIR) $(setup).xml . --targetversion=gotm-$(ver)
+#	editscenario.py --skipvalidation -g -e nml --schemadir=$(SCHEMADIR) $(setup).xml . --targetversion=gotm-$(ver)
 
 run:
 	@echo
