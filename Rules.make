@@ -6,7 +6,7 @@
 ver=4.1.0
 
 ifndef GOTMDIR
-export GOTMDIR = $(HOME)/GOTM/gotm-git
+export GOTMDIR = $(HOME)/GOTM/code
 endif
 
 SCHEMADIR = $(GOTMDIR)/gui.py/schemas/scenario/
