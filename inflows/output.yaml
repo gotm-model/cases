@@ -1,0 +1,5 @@
+inflows:
+   time_unit: day
+   time_step: 1
+   variables:
+      - source: *
