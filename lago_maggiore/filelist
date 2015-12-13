@@ -6,5 +6,6 @@ lago_maggiore/lago_maggiore.xml
 lago_maggiore/eps_lmd95.dat
 lago_maggiore/hflu2_05lt.dat
 lago_maggiore/momentumflux.dat
+lago_maggiore//output.yaml
 lago_maggiore/salz_lmd95.dat
 lago_maggiore/temp_lmd95.dat

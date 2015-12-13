@@ -2,4 +2,5 @@ rouse/timestamp
 rouse/Makefile
 rouse/filelist
 rouse/README
+rouse/output.yaml
 rouse/rouse.xml

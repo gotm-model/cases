@@ -4,4 +4,5 @@ greifswald/Makefile
 greifswald/README
 greifswald/greifswald.xml
 greifswald/meteo.dat
+greifswald//output.yaml
 greifswald/precip.dat

@@ -1,0 +1,5 @@
+flex:
+   time_unit: dt
+   time_step: 30
+   variables:
+      - source: *

@@ -4,6 +4,7 @@ gotland/Makefile
 gotland/README
 gotland/gotland.xml
 gotland/meteo.dat
+gotland//output.yaml
 gotland/precip.dat
 gotland/tprof_271.dat
 gotland/sprof_271.dat

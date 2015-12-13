@@ -7,6 +7,7 @@ liverpool_bay/eprof.dat
 liverpool_bay/swr.dat
 liverpool_bay/heatflux.dat
 liverpool_bay/momentumflux.dat
+liverpool_bay//output.yaml
 liverpool_bay/pressure.dat
 liverpool_bay/sprof.dat
 liverpool_bay/tprof.dat

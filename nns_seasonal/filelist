@@ -6,6 +6,7 @@ nns_seasonal/nns_seasonal.xml
 nns_seasonal/eps_fly.dat
 nns_seasonal/eps_mst.dat
 nns_seasonal/meteo_dana.dat
+nns_seasonal//output.yaml
 nns_seasonal/pressure.dat
 nns_seasonal/sprof.dat
 nns_seasonal/tprof.dat

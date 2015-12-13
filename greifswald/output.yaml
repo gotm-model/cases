@@ -1,0 +1,5 @@
+greifswald:
+   time_unit: dt
+   time_step: 144
+   variables:
+      - source: *

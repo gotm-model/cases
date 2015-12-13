@@ -5,4 +5,5 @@ wave_breaking/Makefile
 wave_breaking/generic.xml
 wave_breaking/kepsilon.xml
 wave_breaking/komega.xml
+wave_breaking/output.yaml
 wave_breaking/prescribed.xml

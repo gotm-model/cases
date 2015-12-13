@@ -1,39 +1,37 @@
-test_month.nc:
-   time_unit: month
-   time_step: 1
-   variables:
-      int_temp:
-        source: temp
-        time_method: 3
-      temp_mean:
-        source: temp
-        time_method: 2
-      salt_mean:
-        source: salt
-        time_method: 2
-      salt:
-        time_method: 1
-      sst_mean:
-        source: sst
-        time_method: 2
-test_day.nc:
+nns_annual_daily:
    time_unit: day
    time_step: 1
    variables:
-      temp:
-      salt:
-      sst:
-      num:
-      rhoa:
-      swr:
-        source: I_0
-        time_method: 1
-      swr_mean:
-        source: I_0
+      - source: *
+
+nns_annual_monthly_mean:
+   time_unit: month
+   time_step: 1
+   sync_interval: 0
+   variables:
+      - source: temp
+      - source: salt
         time_method: 2
-      swr_int:
-        source: I_0
-        time_method: 3
-#      tracer1_c:
-#      tracer2_c:
-#      tracer3_c:
+
+nns_annual_hourly_bottom_surface:
+   time_unit: second
+   time_step: 3600
+   k_start: 1
+   k_stop: 110
+   k_stride: 109
+   variables:
+      - source: temp
+      - source: salt
+
+nns_annual_timestep:
+   time_unit: dt
+#   time_reference: 1998-01-01 00:00:00
+   time_start: 1998-06-01 00:00:00
+   time_stop: 1998-07-10 00:00:00
+   time_step: 1
+   k_start: 110
+   k_stop: 110
+   variables:
+      - source: temp
+      - source: diagnostics/*
+

@@ -4,6 +4,7 @@ nns_annual/Makefile
 nns_annual/nns_annual.xml
 nns_annual/meteo.dat
 nns_annual/meteonns.dat
+nns_annual//output.yaml
 nns_annual/pressure.dat
 nns_annual/sprof.dat
 nns_annual/sst.dat

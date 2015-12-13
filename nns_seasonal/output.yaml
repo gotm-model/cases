@@ -1,0 +1,5 @@
+nns_seasonal:
+   time_unit: dt
+   time_step: 36
+   variables:
+      - source: *

@@ -1,0 +1,5 @@
+liverpool_bay:
+   time_unit: dt
+   time_step: 6
+   variables:
+      - source: *

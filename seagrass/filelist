@@ -2,6 +2,7 @@ seagrass/timestamp
 seagrass/README
 seagrass/filelist
 seagrass/Makefile
+seagrass/output.yaml
 seagrass/seagrass.xml
 seagrass/seagrass.dat
 seagrass/Canopy.pdf

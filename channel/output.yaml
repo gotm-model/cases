@@ -1,0 +1,5 @@
+channel:
+   time_unit: dt
+   time_step: 360
+   variables:
+      - source: *
