@@ -218,7 +218,7 @@
 				1.0
 			</precip_factor>
 			<sst_method>
-				2
+				0
 			</sst_method>
 			<sst_file/>
 			<sss_method>
