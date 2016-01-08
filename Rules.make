@@ -17,8 +17,8 @@ tarflags =  -C ../ --files-from filelist -cvzf
 all: namelist run
 
 namelist:
-	editscenario.py -e nml --schemadir=$(SCHEMADIR) $(setup).xml . --targetversion=gotm-$(ver)
-#	editscenario.py --skipvalidation -e nml --schemadir=$(SCHEMADIR) $(setup).xml . --targetversion=gotm-$(ver)
+#	editscenario.py -e nml --schemadir=$(SCHEMADIR) $(setup).xml . --targetversion=gotm-$(ver)
+	editscenario.py --skipvalidation -e nml --schemadir=$(SCHEMADIR) $(setup).xml . --targetversion=gotm-$(ver)
 
 namelist-gui:
 	editscenario.py -g -e nml --schemadir=$(SCHEMADIR) $(setup).xml . --targetversion=gotm-$(ver)
