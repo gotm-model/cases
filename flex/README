@@ -1,16 +1,41 @@
-A data set which has been used throughout the last 20 years as a calibration 
+A data set which has been used throughout the last 40 years as a calibration 
 for mixing parameterisations has been collected during the measurements of 
-the Fladenground Experiment 1976 (FLEX'76) campaign. These measurements
-of meteorological forcing and potential temperature profiles were carried out 
-in spring 1976 in the northern North Sea at a water depth of about 145 m and 
-a geographical position at 58 deg 55'N and 0 deg 32'E.
+the Fladenground Experiment 1976 (FLEX'76) campaign. 
+Starting from a well-mixed winter situation, a surface mixed layer is 
+established, which is several times deepened and partly removed by
+strom events. 
+
+The measurements of meteorological forcing and potential temperature profiles
+were carried out in spring 1976 in the northern North Sea at a water depth 
+of about 145 m and a geographical position at 58 deg 55'N and 0 deg 32'E.
+
 The simulation is run from April 6 to June 7, 1976. The Kondo (1975) bulk 
-formulae have been used for calculating the surface fluxes.
+formulae have been used for pre-calculating the surface fluxes, 
+which are given in the data files momentumflux.dat, and heatflux.dat.
+Other meteorological data files gives sea surface temperature (sst.dat) 
+and short wave radiation (swr.dat). 
 
-This test case comes together with the Fasham et al. 
-(1990) biogeochemical model. For details, see the GOTM test case documentation
-on www.gotm.net or Burchard et al., 2006:
+Tidal flow is forced by oscillating sea surface slopes (pressure.dat), 
+temperature profiles for validation are provided directly from CTD 
+(tprof_ctd.dat) or interpolated from CTD to semi-diurnal profiles  
+(tprof.dat). Salinity from CTD (s_prof_ctd.dat) or from a 3D model
+(s_prof.dat) are used for nudging simulated salinity to "observed" data
+at a time scale of 2 days. Six-hourly values for light extinction are given 
+by extinction.dat.
 
-Burchard, H., K. Bolding, W. Kuehn, A. Meister, T. Neumann, and L. Umlauf, 2006:
-Description of a flexible and extendable physical-biogeochemical model 
-system for the water column, J. Mar. Syst., 61, 180-211, 2006. 
+Model simulations similar to those provided here have been published by
+Burchard & Baumert (1995). As there, also here a k-epsilon model is used
+as turbulence closure model, but here the Cheng et al. (2002) stability
+functions are used.
+
+Literature cited:
+
+Burchard, H., and H. Baumert, On the performance of a mixed layer model 
+based on the k-epsilon turbulence closure, J. Geophys. Res., 100, 
+8523-8540, 1995.
+
+Cheng, Y., V.M. Canuto, and A.M. Howard, An improved model for the turbulent 
+PBL. J. Atmos. Sci., 59, 1550-1565, 2002.
+
+Kondo, J., Air-sea bulk transfer coefficients in diabatic conditions,
+Boundary-Layer Meteorology, 9, 91-112, 1975.
