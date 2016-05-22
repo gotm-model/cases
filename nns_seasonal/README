@@ -1,4 +1,4 @@
-This Northern North Sea Experiment has been carried out in the framework
+This Northern North Sea seasonal experiment has been carried out in the framework
 of the PROVESS (PROcesses of VErtical mixing in Shealf Seas) project
 (MAS3-CT97-0025, 1998-2001) which has been funded by the European Communities
 MAST-III program.
@@ -8,7 +8,7 @@ and October 1998.  Here, a period of 20 days from October 7 - 27, 1998
 is simulated.  All forcing and validation data have been carefully processed
 from observations during this PROVESS-NNS experiment.
 
-Two different dissipation rate data sets are included:
+Two different observed dissipation rate data sets are included:
   
 eps_fly.dat: data from a FLY profiler, processed by School
              of Ocean Sciences, University of Bangor, Wales 
@@ -27,7 +27,7 @@ The data files are prepared such that the maximum simulation
 interval can be extended to September 7 at 10.00 h --
 November 2 at 13.00 h, 1998.
 
-For discussions of various model simulations, see Burchard et al. (2002).
+For discussions of various model simulations, see Burchard et al. (2002)
 and also the annual simulation in the test case nns_annual and
 Bolding et al. (2002).
 
