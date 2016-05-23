@@ -35,7 +35,7 @@ ifndef external_GOTM_PREFIX
 	@(cd build ; cmake $(GOTMDIR)/src -DCMAKE_INSTALL_PREFIX=`pwd` \
                                           -DGOTM_EMBED_VERSION=ON \
                                           $(FABM_ARG) || false)
-	@(cd build ; make install)
+	@(cd build ; make -s install)
 endif
 
 link: gotm-exe
