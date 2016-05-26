@@ -6,7 +6,7 @@
 				channel flow
 			</title>
 			<nlev>
-				50
+				100
 			</nlev>
 			<dt>
 				10.0
@@ -20,7 +20,7 @@
 		</model_setup>
 		<station>
 			<name>
-				north pole
+				equator
 			</name>
 			<latitude>
 				0.0
@@ -54,7 +54,7 @@
 				.
 			</out_dir>
 			<out_fn>
-				MellorYamada
+				channel
 			</out_fn>
                         <nfirst>
                                 0
@@ -244,7 +244,7 @@
 				1
 			</psi_ubc>
 			<psi_lbc>
-				1
+				0
 			</psi_lbc>
 			<ubc_type>
 				1
