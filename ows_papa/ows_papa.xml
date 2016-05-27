@@ -178,7 +178,7 @@
 				False
 			</calc_evaporation>
 			<swr_method>
-				0
+				2
 			</swr_method>
                         <albedo_method>0</albedo_method>
                         <const_albedo>0.</const_albedo>

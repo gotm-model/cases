@@ -14,10 +14,15 @@ is January 1 (17.00 h), 1960 - December 31 (12.00 h), 1968.
 In this scenario, the simulation time is run from
 March 25, 1961 (0.00 h) to March 25, 1962 (0.00 h).
 
-For further information ceck the GOTM documentation on www.gotm.net.
+For further information, see Burchard and Bolding (2001).
 
 References:
 
 Burchard, H., K. Bolding, and M.R. Villarreal, 1999: GOTM - a general ocean 
 turbulence model. Theory, applications and test cases, Tech. Rep.,
-No. EUR 18745 EN, European Commission, 103 pp.
+No. EUR 18745 EN, European Commission, 103 pp. 
+(http://io-warnemuende.de/tl_files/staff/burchard/pdf/papers/report.pdf)
+
+Burchard, H., and K. Bolding, Comparative analysis of four second-moment 
+turbulence closure models for the oceanic mixed layer, 
+J. Phys. Oceanogr., 31, 1943-1968, 2001.
