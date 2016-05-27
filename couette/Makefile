@@ -7,14 +7,14 @@
 name	= couette
 setup	= $(name)
 
+help:
+	@echo
+	@echo "usage: 'make kepsilon' to run k-epsilon model"  
+	@echo "usage: 'make komega' to run k-omega model"  
+	@echo "usage: 'make MellorYamada' to run Mellor-Yamada model"  
+	@echo
+
 include ../Rules.make
-
-all:
-	@echo
-	@echo "usage: make run_all|namelists|<turbulence model - eg. kepsilon>
-	@echo
-
-run_all: kepsilon komega MellorYamada clean
 
 kepsilon komega MellorYamada:
 	@echo
@@ -26,6 +26,7 @@ $(name)_clean:
 	$(RM) $(name).xml
 	$(RM) generic.nc kepsilon.nc komega.nc prescribed.nc
 	$(RM) log.*.$(name)
+
 
 #-----------------------------------------------------------------------
 # Copyright by the GOTM-team under the GNU Public License - www.gnu.org
