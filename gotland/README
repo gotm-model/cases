@@ -6,7 +6,7 @@ data set. For the penetration of solar radiation into the water column, fairly
 turbid water (Jerlov type IB) is assumed. Salinity concentrations are nudged 
 to observations with a time scale of 2 days.
 
-The simulation is carried out for the years 1994-1996.
+The simulation is carried out for the years 1980-1990.
 For the discretisation, the water column has been
 divided into 100 vertical layers, with a strong zooming towards the surface,
 resulting in a mean near-surface resolution of less than 0.5 m.
