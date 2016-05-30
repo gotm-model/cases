@@ -1,6 +1,6 @@
-nns_annual_daily:
-   time_unit: day
-   time_step: 1
+nns_annual:
+   time_unit: dt
+   time_step: 24
    variables:
       - source: *
 
