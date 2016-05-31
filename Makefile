@@ -16,10 +16,10 @@ else
 GOTM_PREFIX=$(CURDIR)/build
 endif
 
+ifndef FABM_PREFIX
 ifdef FABMDIR
 FABM_ARG="-DFABM_BASE=$(FABMDIR)"
 else
-ifndef FABM_PREFIX
 FABM_ARG="-DGOTM_USE_FABM=OFF"
 endif
 endif
