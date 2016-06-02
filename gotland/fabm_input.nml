@@ -1,0 +1,20 @@
+!-------------------------------------------------------------------------------
+! observed FABM scalar or profile data
+!-------------------------------------------------------------------------------
+! variable       [string]
+!                  name of FABM variable - instance_varname[_streamname]
+! file           [string]
+!                  file name
+! index          [integer]
+!                  column # in file
+! constant_value [float]
+!                  constant variable value
+! relax_tau      [float, unit = s]
+!                  relaxation time (set to 1.e15 s for no relaxation)
+!-------------------------------------------------------------------------------
+
+&observations
+   variables = 'iow_ergom_t_po4','iow_ergom_t_no3','iow_ergom_t_nh4','iow_ergom_t_o2',
+   file = 'z_po4_no3_nh4_o2.dat',
+/
+
