@@ -17,12 +17,13 @@ tarflags =  -C ../ --files-from filelist -cvzf
 all: namelist run
 
 namelist:
-#	editscenario.py -e nml --schemadir=$(SCHEMADIR) $(setup).xml . --targetversion=gotm-$(ver)
-	editscenario.py --skipvalidation -e nml --schemadir=$(SCHEMADIR) $(setup).xml . --targetversion=gotm-$(ver)
+	editscenario --schemadir=$(SCHEMADIR) --targetversion=gotm-$(ver) $(setup).xml -e nml .
 
 namelist-gui:
-	editscenario.py -g -e nml --schemadir=$(SCHEMADIR) $(setup).xml . --targetversion=gotm-$(ver)
-#	editscenario.py --skipvalidation -g -e nml --schemadir=$(SCHEMADIR) $(setup).xml . --targetversion=gotm-$(ver)
+	editscenario --schemadir=$(SCHEMADIR) --targetversion=gotm-$(ver) $(setup).xml -e nml . -g
+
+scenario:
+	editscenario --schemadir=$(SCHEMADIR) --targetversion=gotm-$(ver) $(setup).xml -e zip $(setup).gotmscenario
 
 run:
 	@echo
@@ -30,9 +31,6 @@ run:
 	@echo
 	../gotm 2> log.$(name)
 	@echo
-
-scenario:
-	editscenario.py -e zip --schemadir=$(SCHEMADIR) $(setup).xml $(setup).gotmscenario --targetversion=gotm-$(ver)
 
 example:
 	echo -n "Created at: " > timestamp
