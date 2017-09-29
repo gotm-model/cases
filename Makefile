@@ -32,9 +32,7 @@ all: link
 gotm-exe:
 ifndef external_GOTM_PREFIX
 	@mkdir -p build
-	@(cd build ; cmake $(GOTMDIR)/src -DCMAKE_INSTALL_PREFIX=`pwd` \
-                                          -DGOTM_EMBED_VERSION=ON \
-                                          $(FABM_ARG) || false)
+	@(cd build ; cmake $(GOTMDIR)/src -DCMAKE_INSTALL_PREFIX=`pwd` -DCMAKE_Fortran_FLAGS="$(EXTRA_FFLAGS)" $(FABM_ARG) || false)
 	@(cd build ; make -s install)
 endif
 
