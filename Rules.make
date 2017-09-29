@@ -9,7 +9,7 @@ ifndef GOTMDIR
 export GOTMDIR = $(HOME)/GOTM/code
 endif
 
-SCHEMADIR = $(GOTMDIR)/gui.py/schemas/scenario/
+SCHEMADIR = $(GOTMDIR)/schemas
 
 tarflags =  --files-from filelist -C ../ -cvzf
 tarflags =  -C ../ --files-from filelist -cvzf
