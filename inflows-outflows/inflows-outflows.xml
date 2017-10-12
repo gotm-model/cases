@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<scenario version="gotm-4.1.0">
+<scenario version="gotm-5.0">
 	<gotmrun>
 		<model_setup>
 			<title>
@@ -760,119 +760,7 @@
 			</o2_units>
 			<o2_prof_file/>
 		</o2_profile>
-		<bioprofiles>
-			<bio_prof_method>
-				0
-			</bio_prof_method>
-			<bio_prof_file>
-				bioprofs.dat
-			</bio_prof_file>
-		</bioprofiles>
 	</obs>
-	<bio>
-		<bio_nml>
-			<bio_calc>
-				False
-			</bio_calc>
-			<bio_model>
-				1
-			</bio_model>
-			<bio_eulerian>
-				True
-			</bio_eulerian>
-			<cnpar>
-				1.0
-			</cnpar>
-			<w_adv_discr>
-				6
-			</w_adv_discr>
-			<ode_method>
-				8
-			</ode_method>
-			<split_factor>
-				1
-			</split_factor>
-			<bioshade_feedback>
-				True
-			</bioshade_feedback>
-			<npar>
-				-1
-			</npar>
-		</bio_nml>
-	</bio>
-	<bio_npzd>
-		<bio_npzd_nml>
-			<numc>
-				4
-			</numc>
-			<n_initial>
-				4.5
-			</n_initial>
-			<p_initial>
-				1e-15
-			</p_initial>
-			<z_initial>
-				1e-15
-			</z_initial>
-			<d_initial>
-				4.5
-			</d_initial>
-			<p0>
-				0.0225
-			</p0>
-			<z0>
-				0.0225
-			</z0>
-			<w_p>
-				-1.0
-			</w_p>
-			<w_d>
-				-5.0
-			</w_d>
-			<kc>
-				0.03
-			</kc>
-			<I_min>
-				25.0
-			</I_min>
-			<rmax>
-				1.0
-			</rmax>
-			<gmax>
-				0.2
-			</gmax>
-			<Iv>
-				1.1
-			</Iv>
-			<alpha>
-				1.35
-			</alpha>
-			<rpn>
-				0.01
-			</rpn>
-			<rzn>
-				0.01
-			</rzn>
-			<rdn>
-				0.003
-			</rdn>
-			<rpdu>
-				0.02
-			</rpdu>
-			<rpdl>
-				0.1
-			</rpdl>
-			<rzd>
-				0.02
-			</rzd>
-			<aa>
-				0.62
-			</aa>
-			<g2>
-				20.0
-			</g2>
-		</bio_npzd_nml>
-	</bio_npzd>
 	<seagrass>
 		<canopy>
 			<seagrass_calc>

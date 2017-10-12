@@ -80,6 +80,10 @@
 !                           from one might be applied to convert from non-GOTM
 !                           units, or to test model sensitivity.
 !                         This variable is only used if swr_method = 2
+! shf_factor            [float]
+!                         Scale factor on surface heat fluxes. Adds a scaling to
+!                           the sum of latent, sensible and net long-wave
+!                           radiation.
 ! momentum_method       [integer]
 !                         type of momentum flux
 !                         0: none
@@ -154,6 +158,7 @@
    const_swr = 0.0,
    swr_file = '',
    swr_factor = 1.0,
+   shf_factor = 1.0,
    momentum_method = 1,
    const_tx = 0.0,
    const_ty = 0.01027,

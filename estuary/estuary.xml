@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<scenario version="gotm-4.1.0">
+<scenario version="gotm-5.0">
 	<gotmrun>
 		<model_setup>
 			<title>
@@ -745,55 +745,5 @@
 			</o2_units>
 			<o2_prof_file/>
 		</o2_profile>
-		<bioprofiles>
-			<bio_prof_method>
-				0
-			</bio_prof_method>
-			<bio_prof_file/>
-		</bioprofiles>
 	</obs>
-	<bio>
-		<bio_nml>
-			<bio_calc>
-				True
-			</bio_calc>
-			<bio_model>
-				3
-			</bio_model>
-			<bio_eulerian>
-				True
-			</bio_eulerian>
-			<cnpar>
-				1.0
-			</cnpar>
-			<w_adv_discr>
-				6
-			</w_adv_discr>
-			<ode_method>
-				8
-			</ode_method>
-			<split_factor>
-				1
-			</split_factor>
-			<bioshade_feedback>
-				True
-			</bioshade_feedback>
-			<npar>
-				-1
-			</npar>
-		</bio_nml>
-	</bio>
-	<bio_sed>
-		<bio_sed_nml>
-			<numc>
-				1
-			</numc>
-			<C_initial>
-				1.0
-			</C_initial>
-			<w_C>
-				-86.4
-			</w_C>
-		</bio_sed_nml>
-	</bio_sed>
 </scenario>

@@ -3,7 +3,7 @@
 #
 
 # GOTM target version
-ver=4.1.0
+ver=5.0
 
 ifndef GOTMDIR
 export GOTMDIR = $(HOME)/GOTM/code
