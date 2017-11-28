@@ -1,0 +1,49 @@
+&observations
+  variable='jrc_med_ergom_pp'
+  file='Med_west_bio_prof.dat'
+  index=1
+/
+&observations
+  variable='jrc_med_ergom_ff'
+  file='Med_west_bio_prof.dat'
+  index=2
+/
+!&observations
+  variable='jrc_med_ergom_bb'
+  file='Med_west_bio_prof.dat'
+  index=3
+/
+&observations
+  variable='jrc_med_ergom_zz'
+  file='Med_west_bio_prof.dat'
+  index=4
+/
+&observations
+  variable='jrc_med_ergom_dd'
+  file='Med_west_bio_prof.dat'
+  index=5
+/
+&observations
+  variable='jrc_med_ergom_aa'
+  file='Med_west_bio_prof.dat'
+  index=6 
+/
+&observations
+  variable='jrc_med_ergom_nn'
+  file='Med_west_bio_prof.dat'
+  index=7
+  relax_tau = 34560000.
+/
+&observations
+  variable='jrc_med_ergom_o2'
+  file='Med_west_bio_prof.dat'
+  index=8
+  relax_tau = 34560000. !864000.
+/
+&observations
+  variable='jrc_med_ergom_po'
+  file='Med_west_bio_prof.dat'
+  index=9
+  relax_tau = 34560000.
+/
+
