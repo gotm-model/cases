@@ -2,29 +2,31 @@
 <scenario version="gotm-5.3">
 	<gotmrun>
 		<model_setup>
-			<title>Eastern Med Sea</title>
-			<nlev>200</nlev>
+			<title>LakeNgaroto</title>
+			<nlev>13</nlev>
 			<dt>3600.0</dt>
 			<cnpar>1.0</cnpar>
 			<buoy_method>1</buoy_method>
 		</model_setup>
 		<station>
-			<name>Eastern Med station</name>
-			<latitude>35.0</latitude>
-			<longitude>30.5</longitude>
-			<depth>200.0</depth>
+			<name>LakeNgaroto</name>
+			<latitude>-37.95</latitude>
+			<longitude>175.29</longitude>
+			<depth>5.71</depth>
 		</station>
 		<time>
 			<timefmt>2</timefmt>
-			<MaxN>800</MaxN>
-			<start>1996-01-01 00:00:00</start>
-			<stop>1997-01-31 18:00:00</stop>
+			<MaxN>2200</MaxN>
+			<start>2003-11-03 12:00:00</start>
+			<stop>2005-12-30 12:00:00</stop>
 		</time>
 		<output>
+			<list_fields>True</list_fields>
 			<out_fmt>2</out_fmt>
 			<out_dir>.</out_dir>
-			<out_fn>EastMedSea</out_fn>
-			<nsave>288</nsave>
+			<out_fn>LakeNgaroto</out_fn>
+			<nfirst>12</nfirst>
+			<nsave>12</nsave>
 			<sync_out>0</sync_out>
 			<diagnostics>False</diagnostics>
 			<mld_method>1</mld_method>
@@ -33,8 +35,8 @@
 			<rad_corr>True</rad_corr>
 		</output>
 		<eqstate>
-			<eq_state_mode>2</eq_state_mode>
-			<eq_state_method>2</eq_state_method>
+			<eq_state_mode>1</eq_state_mode>
+			<eq_state_method>1</eq_state_method>
 			<T0>10.0</T0>
 			<S0>35.0</S0>
 			<p0>0.0</p0>
@@ -44,11 +46,11 @@
 	</gotmrun>
 	<gotmmean>
 		<meanflow>
-			<h0b>0.05</h0b>
+			<h0b>0.03</h0b>
 			<z0s_min>0.02</z0s_min>
-			<charnock>False</charnock>
+			<charnock>True</charnock>
 			<charnock_val>1400.0</charnock_val>
-			<ddu>1.0</ddu>
+			<ddu>0.0</ddu>
 			<ddl>0.0</ddl>
 			<grid_method>0</grid_method>
 			<c1ad>0.4</c1ad>
@@ -76,26 +78,27 @@
 			<calc_fluxes>True</calc_fluxes>
 			<fluxes_method>1</fluxes_method>
 			<back_radiation_method>1</back_radiation_method>
-			<meteo_file>meteo_east.dat</meteo_file>
-			<hum_method>3</hum_method>
-			<wind_factor>1.3</wind_factor>
-			<rain_impact>False</rain_impact>
-			<calc_evaporation>False</calc_evaporation>
+			<meteo_file>meteo_file.dat</meteo_file>
+			<wind_factor>1.0</wind_factor>
+			<hum_method>1</hum_method>
+			<rain_impact>True</rain_impact>
+			<calc_evaporation>True</calc_evaporation>
 			<heat_method>0</heat_method>
 			<const_heat>0.0</const_heat>
 			<heatflux_file/>
-			<swr_method>3</swr_method>
+			<swr_method>2</swr_method>
+			<albedo_method>0</albedo_method>
+			<const_albedo>0.0</const_albedo>
 			<const_swr>0.0</const_swr>
-			<swr_file/>
-			<swr_factor>0.89</swr_factor>
-			<shf_factor>1.2</shf_factor>
+			<swr_file>swr_file.dat</swr_file>
+			<swr_factor>1.0</swr_factor>
 			<momentum_method>0</momentum_method>
 			<const_tx>0.0</const_tx>
 			<const_ty>0.0</const_ty>
 			<momentumflux_file/>
-			<precip_method>0</precip_method>
+			<precip_method>2</precip_method>
 			<const_precip>0.0</const_precip>
-			<precip_file/>
+			<precip_file>precip_file.dat</precip_file>
 			<precip_factor>1.0</precip_factor>
 			<sst_method>0</sst_method>
 			<sst_file/>
@@ -131,7 +134,7 @@
 			<galp>0.53</galp>
 			<const_num>0.0005</const_num>
 			<const_nuh>0.0005</const_nuh>
-			<k_min>6.65e-07</k_min>
+			<k_min>1e-06</k_min>
 			<eps_min>1e-12</eps_min>
 			<kb_min>1e-10</kb_min>
 			<epsb_min>1e-14</epsb_min>
@@ -173,7 +176,7 @@
 			<scnd_method>1</scnd_method>
 			<kb_method>1</kb_method>
 			<epsb_method>1</epsb_method>
-			<scnd_coeff>5</scnd_coeff>
+			<scnd_coeff>7</scnd_coeff>
 			<cc1>3.6</cc1>
 			<cc2>0.8</cc2>
 			<cc3>1.2</cc3>
@@ -197,31 +200,40 @@
 			<nuhiw>1e-05</nuhiw>
 		</iw>
 	</gotmturb>
+	<kpp>
+		<kpp>
+			<kpp_sbl>True</kpp_sbl>
+			<kpp_bbl>True</kpp_bbl>
+			<kpp_interior>True</kpp_interior>
+			<clip_mld>False</clip_mld>
+			<Ric>0.3</Ric>
+		</kpp>
+	</kpp>
 	<obs>
 		<sprofile>
-			<s_prof_method>2</s_prof_method>
+			<s_prof_method>0</s_prof_method>
 			<s_analyt_method>1</s_analyt_method>
 			<z_s1>30.0</z_s1>
 			<s_1>20.0</s_1>
 			<z_s2>40.0</z_s2>
 			<s_2>15.0</s_2>
 			<s_obs_NN>0.000256</s_obs_NN>
-			<s_prof_file>Med_east_s_prof.dat</s_prof_file>
-			<SRelaxTauM>1e+15</SRelaxTauM>
-			<SRelaxTauB>1e+15</SRelaxTauB>
-			<SRelaxTauS>1e+15</SRelaxTauS>
+			<s_prof_file/>
+			<SRelaxTauM>86400.0</SRelaxTauM>
+			<SRelaxTauB>86400.0</SRelaxTauB>
+			<SRelaxTauS>86400.0</SRelaxTauS>
 			<SRelaxBott>0.0</SRelaxBott>
 			<SRelaxSurf>0.0</SRelaxSurf>
 		</sprofile>
 		<tprofile>
-			<t_prof_method>2</t_prof_method>
-			<t_analyt_method>3</t_analyt_method>
-			<z_t1>30.0</z_t1>
-			<t_1>20.0</t_1>
-			<z_t2>40.0</z_t2>
-			<t_2>15.0</t_2>
+			<t_prof_method>1</t_prof_method>
+			<t_analyt_method>1</t_analyt_method>
+			<z_t1>1.0</z_t1>
+			<t_1>5.0</t_1>
+			<z_t2>2.0</z_t2>
+			<t_2>5.0</t_2>
 			<t_obs_NN>0.000256</t_obs_NN>
-			<t_prof_file>Med_east_t_prof.dat</t_prof_file>
+			<t_prof_file/>
 			<TRelaxTauM>1e+15</TRelaxTauM>
 			<TRelaxTauB>1e+15</TRelaxTauB>
 			<TRelaxTauS>1e+15</TRelaxTauS>
@@ -257,22 +269,19 @@
 			<t_adv>False</t_adv>
 		</int_pressure>
 		<extinct>
-			<extinct_method>7</extinct_method>
+			<extinct_method>1</extinct_method>
 			<extinct_file/>
-			<A>0.40</A>
-			<g1>2.93</g1>
-			<g2>31.3</g2>
 		</extinct>
 		<w_advspec>
 			<w_adv_method>0</w_adv_method>
 			<w_adv_height0>0.0</w_adv_height0>
 			<w_adv0>0.0</w_adv0>
 			<w_adv_file/>
-			<w_adv_discr>4</w_adv_discr>
+			<w_adv_discr>6</w_adv_discr>
 		</w_advspec>
 		<zetaspec>
-			<zeta_method>0</zeta_method>
-			<zeta_file/>
+			<zeta_method>3</zeta_method>
+			<zeta_file>water_level.dat</zeta_file>
 			<zeta_0>0.0</zeta_0>
 			<period_1>44714.0</period_1>
 			<amp_1>1.0</amp_1>
@@ -306,7 +315,7 @@
 		</bprofile>
 		<o2_profile>
 			<o2_prof_method>0</o2_prof_method>
-			<o2_units>2</o2_units>
+			<o2_units>1</o2_units>
 			<o2_prof_file/>
 		</o2_profile>
 	</obs>
@@ -317,23 +326,4 @@
 			<XP_rat>1.0</XP_rat>
 		</canopy>
 	</seagrass>
-	<gotm_fabm>
-		<gotm_fabm_nml>
-			<fabm_calc>False</fabm_calc>
-			<cnpar>1.</cnpar>
-			<w_adv_discr>6</w_adv_discr>
-			<ode_method>3</ode_method>
-			<split_factor>1</split_factor>
-			<bioshade_feedback>True</bioshade_feedback>
-			<bioalbedo_feedback>True</bioalbedo_feedback>
-			<biodrag_feedback>True</biodrag_feedback>
-			<repair_state>True</repair_state>
-			<salinity_relaxation_to_freshwater_flux>False</salinity_relaxation_to_freshwater_flux>
-			<no_precipitation_dilution>False</no_precipitation_dilution>
-			<save_inputs>True</save_inputs>
-			<no_surface>False</no_surface>
-			<configuration_method>1</configuration_method>
-			<bottom_everywhere>True</bottom_everywhere>
-		</gotm_fabm_nml>
-	</gotm_fabm>
 </scenario>

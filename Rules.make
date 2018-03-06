@@ -3,8 +3,7 @@
 #
 
 # GOTM target version
-ver=4.1.0
-ver=5.1
+ver=5.3
 
 ifndef GOTMDIR
 export GOTMDIR = $(HOME)/source/repos/GOTM/code
