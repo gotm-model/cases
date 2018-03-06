@@ -1,56 +1,133 @@
 !-------------------------------------------------------------------------------
-! gotm_fabm_nml: namelist that controls the GOTM-FABM coupler
+! GOTM coupling
 !-------------------------------------------------------------------------------
-! fabm_calc          [bool]
-!                     use the Framework for Aquatic Biogeochemical Models
-! cnpar             [float]
-!                     Cranck-Nicholson parameter for vertical diffusion
-!                     This variable is used only if fabm_calc = True
-! w_adv_discr       [integer]
-!                     advection scheme for vertical motion
-!                     1: first-order upstream
-!                     2: not coded yet
-!                     3: third-order polynomial
-!                     4: TVD with Superbee limiter
-!                     5: TVD with MUSCL limiter
-!                     6: TVD with ULTIMATE QUICKEST
-!                     This variable is used only if fabm_calc = True
-! ode_method        [integer]
-!                     ODE scheme for source and sink dynamics
-!                     1: first-order explicit (not positive)
-!                     2: second-order explicit Runge-Kutta (not positive)
-!                     3: fourth-order explicit Runge-Kutta (not positive)
-!                     4: Patankar (first-order, not conservative)
-!                     5: Patankar-RK (second-order, not conservative)
-!                     6: Patankar-RK (does not work, not conservative)
-!                     7: Modified Patankar (1st-order, conservat., posit.)
-!                     8: Modified Patankar-RK (2nd-order, conservat., posit.)
-!                     9: Modified Patankar-RK (does not work, conservat.,
-!                       posit.)
-!                     10: Extended Modified Patankar (1st-order, conservat.,
-!                       posit.)
-!                     11: Extended Modified Patankar-RK (2nd-order, conservat.,
-!                       posit.)
-!                     This variable is used only if fabm_calc = True
-! split_factor      [integer, minimum = 1]
-!                     number of biogeochemical time steps per physical time step
-!                     This variable is used only if fabm_calc = True
-! bioshade_feedback [bool]
-!                     Whether to feed back bio-turbidity to temperature equation
-!                     This variable is used only if fabm_calc = True
+! fabm_calc                              [bool]
+!                                          apply FABM - or not
+! cnpar                                  [float, minimum = 0, maximum = 1]
+!                                          Constant for the theta scheme used
+!                                            for time integration of diffusion-
+!                                            reaction components. \theta=0.5 for
+!                                            Cranck-Nicholson (second-order
+!                                            accurate), \theta=0 for Forward
+!                                            Euler (first-order accurate),
+!                                            \theta=1 for Backward Euler (first-
+!                                            order accurate). Note that only
+!                                            \theta=1 guarantees positive
+!                                            solutions for positive definite
+!                                            systems.
+!                                          This variable is only used if
+!                                            fabm_calc = True
+! w_adv_discr                            [integer]
+!                                          method to discretize the vertical
+!                                            advection due to settling/rising
+!                                          1: first-order upstream
+!                                          2: second-order polynomial (P2)
+!                                          3: third-order polynomial (P3)
+!                                          4: TVD with Superbee limiter
+!                                          5: TVD with MUSCL limiter
+!                                          6: TVD with ULTIMATE QUICKEST
+!                                          This variable is only used if
+!                                            fabm_calc = True
+! ode_method                             [integer]
+!                                          ODE scheme for source and sink
+!                                            dynamics
+!                                          1: first-order explicit (not
+!                                            positive)
+!                                          2: second-order explicit Runge-Kutta
+!                                            (not positive)
+!                                          3: fourth-order explicit Runge-Kutta
+!                                            (not positive)
+!                                          4: Patankar (first-order, not
+!                                            conservative)
+!                                          5: Patankar-RK (second-order, not
+!                                            conservative)
+!                                          6: Patankar-RK (does not work, not
+!                                            conservative)
+!                                          7: Modified Patankar (1st-order,
+!                                            conservat., posit.)
+!                                          8: Modified Patankar-RK (2nd-order,
+!                                            conservat., posit.)
+!                                          9: Modified Patankar-RK (does not
+!                                            work, conservat., posit.)
+!                                          10: Extended Modified Patankar (1st-
+!                                            order, conservat., posit.)
+!                                          11: Extended Modified Patankar-RK
+!                                            (2nd-order, conservat., posit.)
+!                                          This variable is only used if
+!                                            fabm_calc = True
+! split_factor                           [integer]
+!                                          split_factor: presently not used -
+!                                            must be 1
+!                                          This variable is only used if
+!                                            fabm_calc = True
+! bioshade_feedback                      [bool]
+!                                          feedback of bio-turbidity to
+!                                            temperature equation
+!                                          This variable is only used if
+!                                            fabm_calc = True
+! bioalbedo_feedback                     [bool]
+!                                          feedback of bio-albedo to albedo
+!                                            calculation
+!                                          This variable is only used if
+!                                            fabm_calc = True
+! biodrag_feedback                       [bool]
+!                                          feedback of bio-drag to surface
+!                                            stress calculation
+!                                          This variable is only used if
+!                                            fabm_calc = True
+! repair_state                           [bool]
+!                                          allow FABM to keep variables within
+!                                            given limits
+!                                          This variable is only used if
+!                                            fabm_calc = True
 ! salinity_relaxation_to_freshwater_flux [bool]
-!                     Whether to impose relaxation-induced change in column-
-!                     integrated salt (dilution or concentration) to
-!                     biogeochemical variables via surface flux
-!                     This variable is used only if fabm_calc = True
+!                                          add virtual surface freshwater flux
+!                                            corresponding to relaxation of
+!                                            salinity profile
+!                                          This variable is only used if
+!                                            fabm_calc = True
+! no_precipitation_dilution              [bool]
+!                                          switch off dilution due to surface
+!                                            freshwater fluxes (useful to check
+!                                            mass conservation)
+!                                          This variable is only used if
+!                                            fabm_calc = True
+! save_inputs                            [bool]
+!                                          save FABM specific input to output
+!                                            file
+!                                          This variable is only used if
+!                                            fabm_calc = True
+! no_surface                             [bool]
+!                                          switch off surface processes, e.g.
+!                                            gas exchange and ice algae (good to
+!                                            check mass conservation)
+!                                          This variable is only used if
+!                                            fabm_calc = True
+! configuration_method                   [integer]
+!                                          type of fabm specifications file
+!                                          -1: first try fabm.yaml, then
+!                                            fabm.nml
+!                                          0: fabm.nml (containing Fortran
+!                                            namelists)
+!                                          1: fabm.yaml (containing YAML trees)
+!                                          This variable is only used if
+!                                            fabm_calc = True
 !-------------------------------------------------------------------------------
+
 &gotm_fabm_nml
    fabm_calc = .true.,
    cnpar = 1.0,
    w_adv_discr = 6,
-   ode_method = 3,
+   ode_method = 1,
    split_factor = 1,
    bioshade_feedback = .false.,
+   bioalbedo_feedback = .false.,
+   biodrag_feedback = .false.,
+   repair_state = .true.,
    salinity_relaxation_to_freshwater_flux = .false.,
-   repair_state=.true.
+   no_precipitation_dilution = .false.,
+   save_inputs = .false.,
+   no_surface = .false.,
+   configuration_method = -1,
 /
+

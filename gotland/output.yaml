@@ -1,6 +1,6 @@
 gotland:
-   time_unit: dt
-   time_step: 144
+   time_unit: day
+   time_step: 1
    sync_interval: 0
    variables:
       - source: *

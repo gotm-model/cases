@@ -6,10 +6,10 @@
 				Gotland Basin
 			</title>
 			<nlev>
-				100
+				200
 			</nlev>
 			<dt>
-				600.0
+				3600.0
 			</dt>
 			<cnpar>
 				1.0
@@ -40,7 +40,8 @@
 				800
 			</MaxN>
 			<start>
-				1980-01-01 00:00:00
+<!--				1980-01-01 00:00:00 -->
+				1990-01-01 00:00:00
 			</start>
 			<stop>
 				1991-01-01 00:00:00
@@ -167,6 +168,9 @@
 			<meteo_file>
 				meteo.dat
 			</meteo_file>
+			<wind_factor>
+				1.23
+			</wind_factor>
 			<hum_method>
 				3
 			</hum_method>
@@ -189,8 +193,11 @@
 			</const_swr>
 			<swr_file/>
 			<swr_factor>
-				1.0
+				0.83
 			</swr_factor>
+			<shf_factor>
+				0.82
+			</shf_factor>
 			<const_heat>
 				0.0
 			</const_heat>
@@ -300,7 +307,7 @@
 				0.0005
 			</const_nuh>
 			<k_min>
-				1e-06
+				1.23e-07
 			</k_min>
 			<eps_min>
 				1e-12
@@ -649,9 +656,12 @@
 		</int_pressure>
 		<extinct>
 			<extinct_method>
-				6
+				7
 			</extinct_method>
 			<extinct_file/>
+			<A>0.40</A>
+			<g1>3.0</g1>
+			<g2>15.7</g2>
 		</extinct>
 		<w_advspec>
 			<w_adv_method>

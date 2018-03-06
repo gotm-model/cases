@@ -3,7 +3,7 @@
 	<gotmrun>
 		<model_setup>
 			<title>Western Med Sea</title>
-			<nlev>200</nlev>
+			<nlev>400</nlev>
 			<dt>3600.0</dt>
 			<cnpar>1.0</cnpar>
 			<buoy_method>1</buoy_method>
@@ -12,7 +12,7 @@
 			<name>Western Med station</name>
 			<latitude>41.0</latitude>
 			<longitude>6.5</longitude>
-			<depth>200.0</depth>
+			<depth>400.0</depth>
 		</station>
 		<time>
 			<timefmt>2</timefmt>
@@ -48,7 +48,7 @@
 			<z0s_min>0.02</z0s_min>
 			<charnock>False</charnock>
 			<charnock_val>1400.0</charnock_val>
-			<ddu>0.0</ddu>
+			<ddu>1.0</ddu>
 			<ddl>0.0</ddl>
 			<grid_method>0</grid_method>
 			<c1ad>0.4</c1ad>
@@ -77,7 +77,7 @@
 			<fluxes_method>1</fluxes_method>
 			<back_radiation_method>1</back_radiation_method>
 			<meteo_file>meteo_west.dat</meteo_file>
-			<wind_factor>1.0</wind_factor>
+			<wind_factor>1.28</wind_factor>
 			<hum_method>3</hum_method>
 			<rain_impact>False</rain_impact>
 			<calc_evaporation>False</calc_evaporation>
@@ -87,7 +87,8 @@
 			<swr_method>3</swr_method>
 			<const_swr>0.0</const_swr>
 			<swr_file/>
-			<swr_factor>1.0</swr_factor>
+			<swr_factor>1.20</swr_factor>
+			<shf_factor>1.16</shf_factor>
 			<momentum_method>0</momentum_method>
 			<const_tx>0.0</const_tx>
 			<const_ty>0.0</const_ty>
@@ -130,7 +131,7 @@
 			<galp>0.53</galp>
 			<const_num>0.0005</const_num>
 			<const_nuh>0.0005</const_nuh>
-			<k_min>1e-06</k_min>
+			<k_min>6.01e-07</k_min>
 			<eps_min>1e-12</eps_min>
 			<kb_min>1e-10</kb_min>
 			<epsb_min>1e-14</epsb_min>
@@ -206,11 +207,11 @@
 			<s_2>15.0</s_2>
 			<s_obs_NN>0.000256</s_obs_NN>
 			<s_prof_file>Med_west_s_prof.dat</s_prof_file>
-			<SRelaxTauM>2592000.0</SRelaxTauM>
-			<SRelaxTauB>1.0</SRelaxTauB>
-			<SRelaxTauS>1.0</SRelaxTauS>
+			<SRelaxTauM>1e+15</SRelaxTauM>
+			<SRelaxTauB>1e+15</SRelaxTauB>
+			<SRelaxTauS>1e+15</SRelaxTauS>
 			<SRelaxBott>0.0</SRelaxBott>
-			<SRelaxSurf>300.0</SRelaxSurf>
+			<SRelaxSurf>0.0</SRelaxSurf>
 		</sprofile>
 		<tprofile>
 			<t_prof_method>2</t_prof_method>
@@ -221,11 +222,11 @@
 			<t_2>15.0</t_2>
 			<t_obs_NN>0.000256</t_obs_NN>
 			<t_prof_file>Med_west_t_prof.dat</t_prof_file>
-			<TRelaxTauM>2592000.0</TRelaxTauM>
-			<TRelaxTauB>1.0</TRelaxTauB>
-			<TRelaxTauS>1.0</TRelaxTauS>
+			<TRelaxTauM>1e+15</TRelaxTauM>
+			<TRelaxTauB>1e+15</TRelaxTauB>
+			<TRelaxTauS>1e+15</TRelaxTauS>
 			<TRelaxBott>0.0</TRelaxBott>
-			<TRelaxSurf>300.0</TRelaxSurf>
+			<TRelaxSurf>0.0</TRelaxSurf>
 		</tprofile>
 		<ext_pressure>
 			<ext_press_method>0</ext_press_method>
@@ -256,8 +257,11 @@
 			<t_adv>False</t_adv>
 		</int_pressure>
 		<extinct>
-			<extinct_method>5</extinct_method>
+			<extinct_method>7</extinct_method>
 			<extinct_file/>
+			<A>0.40</A>
+			<g1>1.85</g1>
+			<g2>31.0</g2>
 		</extinct>
 		<w_advspec>
 			<w_adv_method>0</w_adv_method>
@@ -315,7 +319,7 @@
 	</seagrass>
 	<gotm_fabm>
 		<gotm_fabm_nml>
-			<fabm_calc>True</fabm_calc>
+			<fabm_calc>False</fabm_calc>
 			<cnpar>1.</cnpar>
 			<w_adv_discr>6</w_adv_discr>
 			<ode_method>3</ode_method>
