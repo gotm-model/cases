@@ -9,12 +9,17 @@
 !                         2: Fairall et al. (1996)
 !                         This variable is only used if calc_fluxes = True
 ! back_radiation_method [integer]
-!                         calculation of long-wave back radiation according to
+!                         long-wave back radiation according to
+!                         0: reading from file
 !                         1: Clark et al. (1974)
 !                         2: Hastenrath and Lamb (1978)
 !                         3: Bignami et al. (1995)
 !                         4: Berliandand Berliand (1952)
 !                         This variable is only used if calc_fluxes = True
+! back_radiation_file   [file path]
+!                         custom long-wave back radiation
+!                         This variable is only used if back_radiation_method =
+!                           0
 ! meteo_file            [file path]
 !                         file with meteo data
 !                         This variable is only used if calc_fluxes = True
@@ -80,6 +85,10 @@
 !                           from one might be applied to convert from non-GOTM
 !                           units, or to test model sensitivity.
 !                         This variable is only used if swr_method = 2
+! shf_factor            [float]
+!                         Scale factor on surface heat fluxes. Adds a scaling to
+!                           the sum of latent, sensible and net long-wave
+!                           radiation.
 ! momentum_method       [integer]
 !                         type of momentum flux
 !                         0: none
@@ -140,6 +149,7 @@
    calc_fluxes = .false.,
    fluxes_method = 1,
    back_radiation_method = 1,
+   back_radiation_file = '',
    meteo_file = '',
    wind_factor = 1.0,
    hum_method = 1,
@@ -154,6 +164,7 @@
    const_swr = 0.0,
    swr_file = '',
    swr_factor = 1.0,
+   shf_factor = 1.0,
    momentum_method = 1,
    const_tx = 1.027,
    const_ty = 0.0,

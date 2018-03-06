@@ -4,10 +4,10 @@
 
 SHELL = /bin/bash
 
-ver=4.1.x
+ver=5.1
 
 ifndef GOTMDIR
-export GOTMDIR=$(HOME)/GOTM/gotm-git
+export GOTMDIR=$(HOME)/GOTM/code
 endif
 
 ifdef GOTM_PREFIX

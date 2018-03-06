@@ -7,7 +7,7 @@ ver=4.1.0
 ver=5.1
 
 ifndef GOTMDIR
-export GOTMDIR = $(HOME)/GOTM/code
+export GOTMDIR = $(HOME)/source/repos/GOTM/code
 endif
 
 SCHEMADIR = $(GOTMDIR)/schemas
