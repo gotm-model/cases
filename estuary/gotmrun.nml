@@ -1,30 +1,42 @@
 !-------------------------------------------------------------------------------
 ! general model setup
 !-------------------------------------------------------------------------------
-! title       [string]
-!               title of simulation
-! nlev        [integer, minimum = 1, maximum = 1000]
-!               Number of depth levels used to describe the water column
-! dt          [float, minimum = 0.001, maximum = 86400, unit = s]
-!               Time step for integration
-! cnpar       [float, minimum = 0, maximum = 1]
-!               Constant for the theta scheme used for time integration of
-!                 diffusion-reaction components. \theta=0.5 for Cranck-Nicholson
-!                 (second-order accurate), \theta=0 for Forward Euler (first-
-!                 order accurate), \theta=1 for Backward Euler (first-order
-!                 accurate). Note that only \theta=1 guarantees positive
-!                 solutions for positive definite systems.
-! buoy_method [integer]
-!               method to compute mean buoyancy
-!               1: from equation of state (i.e. from potential temperature and
-!                 salinity)
-!               2: from prognostic equation
+! title                          [string]
+!                                  title of simulation
+! nlev                           [integer, minimum = 1, maximum = 1000]
+!                                  Number of depth levels used to describe the
+!                                    water column
+! dt                             [float, minimum = 0.001, maximum = 86400,
+!                                    unit = s]
+!                                  Time step for integration
+! restart_offline                [bool]
+!                                  restart run - read start conditions from file
+! restart_allow_missing_variable [bool]
+!                                  Continue or break if variable not existing in
+!                                    NetCDF restart file
+! cnpar                          [float, minimum = 0, maximum = 1]
+!                                  Constant for the theta scheme used for time
+!                                    integration of diffusion-reaction
+!                                    components. \theta=0.5 for Cranck-Nicholson
+!                                    (second-order accurate), \theta=0 for
+!                                    Forward Euler (first-order accurate),
+!                                    \theta=1 for Backward Euler (first-order
+!                                    accurate). Note that only \theta=1
+!                                    guarantees positive solutions for positive
+!                                    definite systems.
+! buoy_method                    [integer]
+!                                  method to compute mean buoyancy
+!                                  1: from equation of state (i.e. from
+!                                    potential temperature and salinity)
+!                                  2: from prognostic equation
 !-------------------------------------------------------------------------------
 
 &model_setup
    title = 'estuarine circulation',
    nlev = 50,
    dt = 44.714,
+   restart_offline = .false.,
+   restart_allow_missing_variable = .false.,
    cnpar = 1.0,
    buoy_method = 1,
 /

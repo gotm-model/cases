@@ -115,7 +115,7 @@
 !-------------------------------------------------------------------------------
 
 &gotm_fabm_nml
-   fabm_calc = .true.,
+   fabm_calc = .false.,
    cnpar = 1.0,
    w_adv_discr = 6,
    ode_method = 1,
@@ -123,7 +123,7 @@
    bioshade_feedback = .false.,
    bioalbedo_feedback = .false.,
    biodrag_feedback = .false.,
-   repair_state = .true.,
+   repair_state = .false.,
    salinity_relaxation_to_freshwater_flux = .false.,
    no_precipitation_dilution = .false.,
    save_inputs = .false.,
