@@ -1,0 +1,58 @@
+&observations
+  variable='jrc_bsem_pl’
+  constant_value=0.045
+  index=1
+/
+&observations
+  variable='jrc_bsem_ps’
+  constant_value=0.045
+  index=2
+/
+&observations
+  variable='jrc_bsem_zs'
+  constant_value=0.025
+  index=3
+/
+&observations
+  variable='jrc_bsem_zl'
+  constant_value=0.025
+  index=4
+/
+&observations
+  variable='jrc_bsem_zn'
+  constant_value=0.025
+  index=5
+/
+&observations
+  variable='jrc_bsem_zg'
+  constant_value=0.025
+  index=6
+/
+&observations
+  variable='jrc_bsem_dn’
+  constant_value=0.07
+  index=7
+/
+&observations
+  variable='jrc_bsem_am'
+  constant_value=0.02
+  index=8 
+/
+&observations
+  variable='jrc_bsem_ni'
+  constant_value=0.5
+  index=9
+  relax_tau = 34560000.
+/
+&observations
+  variable='jrc_bsem_o2’
+  constant_value=300.
+  index=10
+  relax_tau = 34560000. !864000.
+/
+&observations
+  variable='jrc_bsem_hs’
+  constant_value=0.
+  index=11
+/
+
