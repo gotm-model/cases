@@ -3,11 +3,10 @@
 #
 
 # GOTM target version
-ver=4.1.0
-ver=5.1
+ver=5.2
 
 ifndef GOTMDIR
-export GOTMDIR = $(HOME)/source/repos/GOTM/code
+export GOTMDIR = $(HOME)/source/repos/GOTM/stable
 endif
 
 SCHEMADIR = $(GOTMDIR)/schemas

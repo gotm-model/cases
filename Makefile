@@ -4,7 +4,7 @@
 
 SHELL = /bin/bash
 
-ver=5.1
+ver=5.2
 
 ifndef GOTMDIR
 export GOTMDIR=$(HOME)/GOTM/code
