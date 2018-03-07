@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export GOTMDIR=~/source/repos/GOTM/code
-
 fabm_calc=True
 
 make namelist restart_offline=False fabm_calc=$fabm_calc
