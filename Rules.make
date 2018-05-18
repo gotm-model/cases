@@ -29,7 +29,8 @@ run:
 	@echo
 	@echo "running gotm"
 	@echo
-	../gotm 2> log.$(name)
+#	../gotm 2> log.$(name)
+	gotm 2> log.$(name)
 	@echo
 
 example:
