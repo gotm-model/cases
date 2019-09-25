@@ -165,7 +165,7 @@
 				1
 			</back_radiation_method>
 			<meteo_file>
-				meteo_file.dat
+				meteo.dat
 			</meteo_file>
 			<hum_method>
 				1
@@ -216,7 +216,7 @@
 				1.0
 			</precip_factor>
 			<sst_method>
-				2
+				0
 			</sst_method>
 			<sst_file>
 				sst.dat

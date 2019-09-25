@@ -1,40 +1,8 @@
-nns_annual:
-   time_unit: dt
-   time_step: 24
-   sync_interval: 0
+output:                                     # path of output file, excluding extension
+   format: netcdf                         # format [text, netcdf; default=netcdf]
+   time_unit: hour                        # time unit [second, hour, day, month, year, dt=model time step; default=day]
+   time_step: 1                           # number of time units between output [min=1; default=1]
+   time_method: point                     # treatment of time dimension [point=instantaneous, mean, integrated; default=point]
+   sync_interval: 0                       # number of output steps between sychronization to disk (<= 0: sync on close only) [default=1]
    variables:
-      - source: *
-
-nns_annual_monthly_mean:
-   time_unit: month
-   time_step: 1
-   sync_interval: 0
-   variables:
-      - source: temp
-      - source: salt
-        time_method: 2
-
-nns_annual_hourly_bottom_surface:
-   time_unit: second
-   time_step: 3600
-   sync_interval: 0
-   k_start: 1
-   k_stop: 110
-   k_stride: 109
-   variables:
-      - source: temp
-      - source: salt
-
-nns_annual_timestep:
-   time_unit: dt
-#   time_reference: 1998-01-01 00:00:00
-   time_start: 1998-06-01 00:00:00
-   time_stop: 1998-07-10 00:00:00
-   time_step: 1
-   sync_interval: 0
-   k_start: 110
-   k_stop: 110
-   variables:
-      - source: temp
-      - source: diagnostics/*
-
+   - source: *

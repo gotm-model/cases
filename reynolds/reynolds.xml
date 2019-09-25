@@ -164,7 +164,8 @@
 			<back_radiation_method>
 				1
 			</back_radiation_method>
-			<meteo_file/>
+			<meteo_file>
+			</meteo_file>
 			<hum_method>
 				1
 			</hum_method>
