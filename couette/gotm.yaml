@@ -44,17 +44,17 @@ surface:
    fluxes:                         # heat and momentum fluxes
       method: 0                    # method to calculate fluxes from meteorology [0=use prescribed fluxes, 1=Kondo (1975), 2=Fairall et al. (1996); default=0]
       heat:                        # prescribed total heat flux (sensible, latent and net back-radiation)
-         method: 1                 # method [0=constant, 2=from file; default=0]
+         method: 0                 # method [0=constant, 2=from file; default=0]
          constant_value: 0.0       # value to use throughout the simulation [W/m^2; default=0.0]
          file:                     # path to file with time series [default=]
          column: 1                 # index of column to read from [default=1]
       tx:                          # prescribed momentum flux in West-East direction
-         method: 1                 # method [0=constant, 2=from file; default=0]
+         method: 0                 # method [0=constant, 2=from file; default=0]
          constant_value: 1.027     # value to use throughout the simulation [Pa; default=0.0]
          file:                     # path to file with time series [default=]
          column: 1                 # index of column to read from [default=1]
       ty:                          # prescribed momentum flux in South-North direction
-         method: 1                 # method [0=constant, 2=from file; default=0]
+         method: 0                 # method [0=constant, 2=from file; default=0]
          constant_value: 0.0       # value to use throughout the simulation [Pa; default=0.0]
          file:                     # path to file with time series [default=]
          column: 1                 # index of column to read from [default=1]
@@ -92,7 +92,7 @@ surface:
          file:                     # path to file with time series [default=]
          column: 6                 # index of column to read from [default=1]
       swr:                         # shortwave radiation
-         method: 1                 # method [0=constant, 2=from file, 3=from time, location and cloud cover; default=0]
+         method: 0                 # method [0=constant, 2=from file, 3=from time, location and cloud cover; default=0]
          constant_value: 0.0       # value to use throughout the simulation [W/m^2; min=0.0; default=0.0]
          file:                     # path to file with time series [default=]
          column: 1                 # index of column to read from [default=1]

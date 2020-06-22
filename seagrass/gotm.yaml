@@ -49,12 +49,12 @@ surface:
          file:                                # path to file with time series [default=]
          column: 1                            # index of column to read from [default=1]
       tx:                                     # prescribed momentum flux in West-East direction
-         method: 1                            # method [0=constant, 2=from file; default=0]
+         method: 0                            # method [0=constant, 2=from file; default=0]
          constant_value: 0.0                  # value to use throughout the simulation [Pa; default=0.0]
          file:                                # path to file with time series [default=]
          column: 1                            # index of column to read from [default=1]
       ty:                                     # prescribed momentum flux in South-North direction
-         method: 1                            # method [0=constant, 2=from file; default=0]
+         method: 0                            # method [0=constant, 2=from file; default=0]
          constant_value: 0.0                  # value to use throughout the simulation [Pa; default=0.0]
          file:                                # path to file with time series [default=]
          column: 1                            # index of column to read from [default=1]
@@ -192,7 +192,7 @@ mimic_3d:                                     # effects of horizontal gradients
          AmpS: 0.0                            # amplitude of 2nd harmonic [dimensionless; default=0.0]
          PhaseS: 0.0                          # phase of 2nd harmonic [s; min=0.0; default=0.0]
       h:                                      # height above bed
-         method: 1                            # method [0=constant, 2=from file; default=0]
+         method: 0                            # method [0=constant, 2=from file; default=0]
          constant_value: 0.0                  # value to use throughout the simulation [m; min=0.0; default=0.0]
          file:                                # path to file with time series [default=]
          column: 1                            # index of column to read from [default=1]
