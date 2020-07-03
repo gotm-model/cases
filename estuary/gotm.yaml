@@ -167,6 +167,8 @@ turbulence:
       gen_alpha: -2.530                     # decay exponent alpha [dimensionless; default=-2.0]
       gen_l: 0.25                           # slope L of the length scale in shear-free turbulence [dimensionless; default=0.2]
    scnd:                                    # second-order model
+      method: 2                              # method [1=quasi-equilibrium, 2=weak equilibrium with algebraic buoyancy variance; default=2]
+      scnd_coeff: 7                          # coefficients of second-order model [0=custom, 1=Gibson and Launder (1978), 2=Mellor and Yamada (1982), 3=Kantha and Clayson (1994), 4=Luyten et al. (1996), 5=Canuto et al. (2001) (version A), 6=Canuto et al. (2001) (version B), 7=Cheng et al. (2002); default=5]
       cc1: 5.0                              # cc1 [dimensionless; default=3.6]
       cc3: 1.968                            # cc3 [dimensionless; default=1.2]
       cc4: 1.136                            # cc4 [dimensionless; default=1.2]
@@ -174,7 +176,7 @@ turbulence:
       ct1: 5.95                             # ct1 [dimensionless; default=3.28]
       ct2: 0.6                              # ct2 [dimensionless; default=0.4]
       ct3: 1.0                              # ct3 [dimensionless; default=0.4]
-      ct5: 3.33300000E-01                   # ct5 [dimensionless; default=0.4]
+      ct5: 0.3333                           # ct5 [dimensionless; default=0.4]
       ctt: 0.72                             # ctt [dimensionless; default=0.8]
 mimic_3d:                                   # effects of horizontal gradients
    ext_pressure:                            # external pressure
