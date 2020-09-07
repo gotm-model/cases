@@ -22,9 +22,9 @@ set( GOTM_EMBED_VERSION ON )
 
 add_subdirectory( ${GOTM_BASE} gotm )
 
-set( cases channel nns_annual entrainment )
+set( cases channel entrainment )
 foreach ( case ${cases} )
-   add_test( NAME ${case} COMMAND $<TARGET_FILE:gotm_exe> WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${case} )
+    add_subdirectory( ${case} )
 endforeach()
 
 

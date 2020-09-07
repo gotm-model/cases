@@ -1,0 +1,3 @@
+[submodule "extern/gotm"]
+	path = extern/gotm
+	url = ../code
