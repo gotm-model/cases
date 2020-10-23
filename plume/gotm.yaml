@@ -6,7 +6,7 @@ location:
    depth: 40.0                         # water depth [m; min=0.0; default=100.0]
 time:
    start: 2005-01-01 00:00:00          # start date and time [yyyy-mm-dd HH:MM:SS; default=2017-01-01 00:00:00]
-   stop: 2005-02-01 00:00:00           # stop date and time [yyyy-mm-dd HH:MM:SS; default=2018-01-01 00:00:00]
+   stop: 2005-01-11 00:00:00           # stop date and time [yyyy-mm-dd HH:MM:SS; default=2018-01-01 00:00:00]
    dt: 50.0                            # time step for integration [s; min=0.0; default=3600.0]
 grid:
    nlev: 400                           # number of layers [min=1; default=100]
@@ -33,9 +33,9 @@ salinity:                              # salinity profile used for initializatio
    column: 1                           # index of column to read from [default=1]
    analytical:
       method: 2                        # type of analytical initial salinity profile [1=constant, 2=two layers, 3=from temperature and buoyancy frequency; default=1]
-      z_s1: 10.0                       # upper layer thickness [m; min=0.0; default=0.0]
+      z_s1: 20.0                       # upper layer thickness [m; min=0.0; default=0.0]
       s_1: 20.0                        # upper layer salinity [psu; min=0.0; max=40.0; default=0.0]
-      z_s2: 10.0                       # lower layer thickness [m; min=0.0; default=0.0]
+      z_s2: 20.0                       # lower layer thickness [m; min=0.0; default=0.0]
       s_2: 35.0                        # lower layer salinity [psu; min=0.0; max=40.0; default=0.0]
       obs_NN: 2.56000000E-04           # constant buoyancy frequency [s^-2; min=0.0; default=0.0]
    relax:                              # relax model salinity to observed/prescribed value
@@ -325,7 +325,7 @@ output:
    plume:                              # path of output file, excluding extension
       format: netcdf                   # format [text, netcdf; default=netcdf]
       time_unit: dt                    # time unit [second, hour, day, month, year, dt=model time step; default=day]
-      time_step: 360                   # number of time units between output [min=1; default=1]
+      time_step: 36                    # number of time units between output [min=1; default=1]
       time_method: point               # treatment of time dimension [point=instantaneous, mean, integrated; default=point]
       variables:
       - source: *                      # variable name in model
