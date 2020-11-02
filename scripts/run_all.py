@@ -7,16 +7,14 @@ import tempfile
 import subprocess
 import shutil
 import sys
-import glob
 import timeit
 import errno
 import atexit
-import collections
-import yaml
 
 script_root = os.path.abspath(os.path.dirname(__file__))
 cases_dir = os.path.join(script_root, '..')
 
+skipdir = ('.git', 'extern', 'scripts')
 default_gotm_url = 'https://github.com/gotm-model/code.git'
 
 class TestPhase:
@@ -122,7 +120,7 @@ def test(work_root, cmake_path='cmake', cmake_arguments=[], gotm_base=None):
     phase = TestPhase('cases')
     for name in os.listdir(cases_dir):
         path = os.path.join(cases_dir, name)
-        if not os.path.isdir(path) or name in ('.git', 'extern', 'scripts'):
+        if not os.path.isdir(path) or name in skipdirs:
             continue
         current_phase = phase.start(name)
         gotm_setup_dir = os.path.join(work_root, name)
