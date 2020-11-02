@@ -14,7 +14,7 @@ import atexit
 script_root = os.path.abspath(os.path.dirname(__file__))
 cases_dir = os.path.join(script_root, '..')
 
-skipdir = ('.git', 'extern', 'scripts')
+skipdirs = ('.git', 'extern', 'scripts')
 default_gotm_url = 'https://github.com/gotm-model/code.git'
 
 class TestPhase:
