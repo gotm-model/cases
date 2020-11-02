@@ -150,16 +150,18 @@ def compare_netcdf(path, ref_path):
     nc_ref.close()
     return perfect
 
-def test(work_root, cmake_path='cmake', cmake_arguments=[], gotm_base=None, extra_info=''):
+def test(work_root, cmake_path='cmake', cmake_arguments=[], gotm_base=None, gotm_branch=None, extra_info=''):
     build_dir = os.path.join(work_root, 'build')
     with TestPhase() as root_phase:
         if gotm_base is None:
             # Get latest GOTM [public]
             gotm_base = os.path.join(work_root, 'code')
             with root_phase.child('git') as p:
-                git_clone(p, default_gotm_url, gotm_base)
+                git_clone(p, default_gotm_url, gotm_base, branch=gotm_branch)
         gotm_id, cases_id = git_get_commit(gotm_base), git_get_commit(cases_dir)
-        outpath = '%s-%s%s.log' % (gotm_id, cases_id, extra_info)
+        version = '%s-%s%s' % (gotm_id, cases_id, extra_info)
+        os.makedirs(version, exist_ok=True)
+        os.chdir(version)
 
         with root_phase.child('cmake') as p:
             cmake(p, build_dir, gotm_base, cmake_path, cmake_arguments=cmake_arguments)
@@ -178,6 +180,8 @@ def test(work_root, cmake_path='cmake', cmake_arguments=[], gotm_base=None, extr
     if files:
         print('Please review the following log files:\n%s' % '\n'.join(files))
 
+    os.chdir('..')
+    outpath = '%s.log' % version
     print('Saving result to %s' % outpath)
     with open(outpath, 'w') as f:
         info = root_phase.to_yaml()
@@ -195,6 +199,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='This script runs all GOTM testcases.')
     parser.add_argument('--work_root', help='Path to use for code, testcases, results.', default=None)
     parser.add_argument('--gotm_base', help='Path to GOTM source code. If not provided this script will check out the latest verison of the master branch', default=None)
+    parser.add_argument('--gotm_branch', help='GOTM branch to check out', default=None)
     parser.add_argument('--cmake', help='path to cmake executable', default='cmake')
     parser.add_argument('--compiler', help='Fortran compiler executable')
     parser.add_argument('--extra_info', help='Extra identifying string for result file', default='')
@@ -202,6 +207,7 @@ if __name__ == '__main__':
     args, cmake_arguments = parser.parse_known_args()
     if args.compiler is not None:
         cmake_arguments.append('-DCMAKE_Fortran_COMPILER=%s' % args.compiler)
+    assert args.gotm_branch is None or args.gotm_base is None, 'If you specify a local directory with GOTM source code (--gotm_base), you cannot also specify a GOTM branch to check out (--gotm_branch)'
 
     tmp = args.work_root is None
     if tmp:
@@ -210,6 +216,6 @@ if __name__ == '__main__':
     args.work_root = os.path.abspath(args.work_root)
     print('Root of test directory: %s' % args.work_root)
 
-    test(args.work_root, cmake_path=args.cmake, cmake_arguments=cmake_arguments, gotm_base=args.gotm_base, extra_info=args.extra_info)
+    test(args.work_root, cmake_path=args.cmake, cmake_arguments=cmake_arguments, gotm_base=args.gotm_base, gotm_branch=args.gotm_branch, extra_info=args.extra_info)
 
 
