@@ -54,11 +54,12 @@ with open(args.out, 'w') as f_html:
             for c in result['children']:
                 rownames.add(c['name'])
             results.append(result)
-    for label, key in [('GOTM version', 'gotm_commit'), ('Cases version', 'cases_commit'), ('Extra ID', 'extra_info'), ('Date and time', 'datetime')]:
+    for label, key in [('GOTM version', 'gotm_commit'), ('Cases version', 'cases_commit'), ('Extra ID', 'extra_info'), ('Date and time', 'datetime'), ('Compiler', 'compiler'), ('Platform', 'platform')]:
         f_html.write('      <tr>\n')
         f_html.write('        <th>%s</th>\n' % label)
         for result in results:
-            f_html.write('        <th>%s</th>\n' % result[key])
+            value = result.get(key)
+            f_html.write('        <th>%s</th>\n' % ('' if value is None else value))
         f_html.write('      </tr>\n')
     for name in ['git', 'cmake'] + sorted([n for n in rownames if n not in ('git', 'cmake')]):
         f_html.write('      <tr>\n')

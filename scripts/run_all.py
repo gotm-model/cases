@@ -11,6 +11,7 @@ import timeit
 import errno
 import atexit
 import datetime
+import platform
 
 import yaml
 
@@ -29,6 +30,7 @@ class TestPhase:
         self.path = path
         self.children = []
         self.error = None
+        self.error_detail = None
         self.files = []
 
     def child(self, name):
@@ -38,8 +40,9 @@ class TestPhase:
         self.children.append(child)
         return child
 
-    def set_error(self, error):
+    def set_error(self, error, detail=None):
         self.error = error
+        self.error_detail = detail
 
     def __enter__(self):
         self.start_time = timeit.default_timer()
@@ -65,10 +68,10 @@ class TestPhase:
 
     def to_yaml(self):
         info = dict(name=self.name, duration=self.duration)
-        if self.error:
-            info['error'] = self.error
-        if self.files:
-            info['files'] = self.files
+        for att in ['error', 'error_detail', 'files', 'children']:
+            value = getattr(self, att, None)
+            if value:
+                info[att] = value
         if self.children:
             info['children'] = [c.to_yaml() for c in self.children]
         return info
@@ -82,7 +85,8 @@ def run(phase, args, verbose=False, **kwargs):
             with open(log_path, 'w') as f:
                 f.write(stdoutdata)
             phase.files.append(log_path)
-            phase.set_error('return code %i' % (proc.returncode,))
+            lines = stdoutdata.rsplit('\n', 5)[-5:]
+            phase.set_error('return code %i' % (proc.returncode,), detail='\n'.join(lines))
     if verbose:
         print('Output:\n%s\n%s\n%s' % (80 * '-', stdoutdata, 80 * '-'))
     return proc.returncode
@@ -166,6 +170,14 @@ def test(work_root, cmake_path='cmake', cmake_arguments=[], gotm_base=None, gotm
         with root_phase.child('cmake') as p:
             cmake(p, build_dir, gotm_base, cmake_path, cmake_arguments=cmake_arguments)
         exe = os.path.join(build_dir, 'Debug/gotm.exe' if os.name == 'nt' else 'gotm')
+
+        # Detect compiler version
+        proc = subprocess.Popen([exe, '--version'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+        compiler = None
+        for l in proc.stdout:
+            if l.lstrip().startswith('Compiler: '):
+                compiler = l[11:].strip()
+
         for name in sorted(os.listdir(cases_dir)):
             path = os.path.join(cases_dir, name)
             if not os.path.isdir(path) or name in skipdirs:
@@ -189,6 +201,8 @@ def test(work_root, cmake_path='cmake', cmake_arguments=[], gotm_base=None, gotm
         info['gotm_commit'] = gotm_id
         info['cases_commit'] = cases_id
         info['extra_info'] = extra_info
+        info['compiler'] = compiler
+        info['platform'] = platform.platform()
         yaml.dump(info, f)
 
 def clean(workdir):
