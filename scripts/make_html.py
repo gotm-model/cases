@@ -1,5 +1,6 @@
 import argparse
 import yaml
+import html
 
 parser = argparse.ArgumentParser()
 parser.add_argument('out')
@@ -9,7 +10,7 @@ args = parser.parse_args()
 def get_error(task):
     errors = []
     if task.get('error') is not None:
-        errors.append(task['error'])
+        errors.append(task.get('error_detail') or task['error'])
     else:
         for subtask in task.get('children', []):
             suberr = get_error(subtask)
@@ -23,7 +24,7 @@ def write_result(f, result, task_name):
             errors = get_error(task)
             success = not errors
             classname = 'success' if success else 'failed'
-            f.write('        <td class="%s"%s>%s</td>\n' % (classname, (' title="%s"' % '\n'.join(errors)) if errors else '', 'SUCCESS' if success else 'FAILED'))
+            f.write('        <td class="%s"%s>%s</td>\n' % (classname, (' title="%s"' % html.escape('\n'.join(errors))) if errors else '', 'SUCCESS' if success else 'FAILED'))
 
 with open(args.out, 'w') as f_html:
     f_html.write("""<!DOCTYPE html>
