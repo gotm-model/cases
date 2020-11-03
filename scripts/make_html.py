@@ -45,6 +45,7 @@ def write_result(f, result, task_name):
                 nfailed += 1
             classname = 'success' if success else 'failed'
             f.write('        <td class="%s"%s>%s</td>\n' % (classname, (' title="%s"' % html.escape('\n'.join(errors))) if errors else '', 'SUCCESS' if success else 'FAILED'))
+            break
     else:
         f.write('        <td>&nbsp;</td>')
 
