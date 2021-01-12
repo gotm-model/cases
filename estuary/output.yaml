@@ -1,5 +1,0 @@
-estuary:
-   time_unit: dt
-   time_step: 100
-   variables:
-      - source: *

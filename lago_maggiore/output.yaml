@@ -1,5 +1,0 @@
-lago_maggiore:
-   time_unit: dt
-   time_step: 180
-   variables:
-      - source: *
