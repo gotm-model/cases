@@ -24,8 +24,6 @@ endif
 ifndef FABM_PREFIX
 ifdef FABMDIR
 FABM_ARG="-DFABM_BASE=$(FABMDIR)"
-else
-FABM_ARG="-DGOTM_USE_FABM=OFF"
 endif
 endif
 
