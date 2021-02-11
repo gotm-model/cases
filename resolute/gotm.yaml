@@ -325,20 +325,16 @@ restart:
    load: false                          # initialize simulation with state stored in restart.nc [default=false]
 output:
    all:                                 # path of output file, excluding extension
-      format: netcdf                    # format [text, netcdf; default=netcdf]
       time_unit: hour                   # time unit [second, hour, day, month, year, dt=model time step; default=day]
       time_step: 1                      # number of time units between output [min=1; default=1]
       time_method: point                # treatment of time dimension [point=instantaneous, mean, integrated; default=point]
-      sync_interval: 0                  # number of output steps between sychronization to disk (<= 0: sync on close only) [default=1]
       variables:
       - source: *                       # variable name in model
    ice:                                 # path of output file, excluding extension
       is_active: false                  # write output to this file [default=true]
-      format: netcdf                    # format [text, netcdf; default=netcdf]
       time_unit: hour                   # time unit [second, hour, day, month, year, dt=model time step; default=day]
       time_step: 1                      # number of time units between output [min=1; default=1]
       time_method: point                # treatment of time dimension [point=instantaneous, mean, integrated; default=point]
-      sync_interval: 0                  # number of output steps between sychronization to disk (<= 0: sync on close only) [default=1]
       variables:
       - source: I_0                     # variable name in model
       - source: airt                    # variable name in model
