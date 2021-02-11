@@ -286,6 +286,5 @@ output:
       time_unit: hour                        # time unit [second, hour, day, month, year, dt=model time step; default=day]
       time_step: 1                           # number of time units between output [min=1; default=1]
       time_method: point                     # treatment of time dimension [point=instantaneous, mean, integrated; default=point]
-      sync_interval: 0                       # number of output steps between sychronization to disk (<= 0: sync on close only) [default=1]
       variables:
       - source: *                            # variable name in model
