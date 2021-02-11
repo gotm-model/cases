@@ -154,7 +154,7 @@ def compare_netcdf(path, ref_path):
     nc_ref.close()
     return perfect
 
-def test(work_root, cmake_path='cmake', cmake_arguments=[], gotm_base=None, gotm_branch=None, extra_info=''):
+def test(work_root, cmake_path='cmake', cmake_arguments=[], gotm_base=None, gotm_branch=None, extra_info='', show_logs=False):
     build_dir = os.path.join(work_root, 'build')
     with TestPhase() as root_phase:
         if gotm_base is None:
@@ -191,6 +191,15 @@ def test(work_root, cmake_path='cmake', cmake_arguments=[], gotm_base=None, gotm
     files = root_phase.get_files()
     if files:
         print('Please review the following log files:\n%s' % '\n'.join(files))
+        if show_logs:
+            print()
+            for path in files:
+                print('=' * 80)
+                print(path)
+                print('=' * 80)
+                with open(path) as f:
+                    print(f.read())
+                print()
 
     os.chdir('..')
     outpath = '%s.log' % version
@@ -205,6 +214,8 @@ def test(work_root, cmake_path='cmake', cmake_arguments=[], gotm_base=None, gotm
         info['platform'] = platform.platform()
         yaml.dump(info, f)
 
+    return not files
+
 def clean(workdir):
     print('Clean-up: deleting %s' % workdir)
     shutil.rmtree(workdir, ignore_errors=True)
@@ -217,7 +228,8 @@ if __name__ == '__main__':
     parser.add_argument('--cmake', help='path to cmake executable', default='cmake')
     parser.add_argument('--compiler', help='Fortran compiler executable')
     parser.add_argument('--extra_info', help='Extra identifying string for result file', default='')
-    parser.add_argument('-v', '--verbose', help='Enable more detailed output')
+    parser.add_argument('-v', '--verbose', action='store_true', help='Enable more detailed output')
+    parser.add_argument('--show_logs', action='store_true', help='Show contents of log files at end of run')
     args, cmake_arguments = parser.parse_known_args()
     if args.compiler is not None:
         cmake_arguments.append('-DCMAKE_Fortran_COMPILER=%s' % args.compiler)
@@ -230,6 +242,7 @@ if __name__ == '__main__':
     args.work_root = os.path.abspath(args.work_root)
     print('Root of test directory: %s' % args.work_root)
 
-    test(args.work_root, cmake_path=args.cmake, cmake_arguments=cmake_arguments, gotm_base=args.gotm_base, gotm_branch=args.gotm_branch, extra_info=args.extra_info)
+    if not test(args.work_root, cmake_path=args.cmake, cmake_arguments=cmake_arguments, gotm_base=args.gotm_base, gotm_branch=args.gotm_branch, extra_info=args.extra_info, show_logs=args.show_logs):
+        sys.exit(1)
 
 
