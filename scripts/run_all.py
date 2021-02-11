@@ -18,7 +18,7 @@ import yaml
 script_root = os.path.abspath(os.path.dirname(__file__))
 cases_dir = os.path.join(script_root, '..')
 
-skipdirs = ('.git', 'extern', 'scripts', 'build')
+skipdirs = ['.git', 'extern', 'scripts', 'build']
 default_gotm_url = 'https://github.com/gotm-model/code.git'
 
 class TestPhase:
@@ -154,7 +154,7 @@ def compare_netcdf(path, ref_path):
     nc_ref.close()
     return perfect
 
-def test(work_root, cmake_path='cmake', cmake_arguments=[], gotm_base=None, gotm_branch=None, extra_info='', show_logs=False):
+def test(work_root, cmake_path='cmake', cmake_arguments=[], gotm_base=None, gotm_branch=None, extra_info='', show_logs=False, exclude=()):
     build_dir = os.path.join(work_root, 'build')
     with TestPhase() as root_phase:
         if gotm_base is None:
@@ -182,7 +182,7 @@ def test(work_root, cmake_path='cmake', cmake_arguments=[], gotm_base=None, gotm
 
             for name in sorted(os.listdir(cases_dir)):
                 path = os.path.join(cases_dir, name)
-                if not os.path.isdir(path) or name in skipdirs:
+                if not os.path.isdir(path) or name in exclude:
                     continue
                 with root_phase.child(name) as current_phase:
                     gotm_setup_dir = os.path.join(work_root, name)
@@ -232,6 +232,7 @@ if __name__ == '__main__':
     parser.add_argument('--extra_info', help='Extra identifying string for result file', default='')
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable more detailed output')
     parser.add_argument('--show_logs', action='store_true', help='Show contents of log files at end of run')
+    parser.add_argument('--exclude', action='append', help='Test case to exclude')
     args, cmake_arguments = parser.parse_known_args()
     if args.compiler is not None:
         cmake_arguments.append('-DCMAKE_Fortran_COMPILER=%s' % args.compiler)
@@ -244,7 +245,7 @@ if __name__ == '__main__':
     args.work_root = os.path.abspath(args.work_root)
     print('Root of test directory: %s' % args.work_root)
 
-    if not test(args.work_root, cmake_path=args.cmake, cmake_arguments=cmake_arguments, gotm_base=args.gotm_base, gotm_branch=args.gotm_branch, extra_info=args.extra_info, show_logs=args.show_logs):
+    if not test(args.work_root, cmake_path=args.cmake, cmake_arguments=cmake_arguments, gotm_base=args.gotm_base, gotm_branch=args.gotm_branch, extra_info=args.extra_info, show_logs=args.show_logs, exclude=args.exclude + skipdirs):
         sys.exit(1)
 
 
