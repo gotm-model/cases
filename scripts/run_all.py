@@ -166,6 +166,7 @@ def test(work_root, cmake_path='cmake', cmake_arguments=[], gotm_base=None, gotm
         version = '%s-%s%s' % (gotm_id, cases_id, extra_info)
         compiler = 'unknown'
         os.makedirs(version, exist_ok=True)
+        gotm_base = os.path.abspath(gotm_base)
         os.chdir(version)
 
         with root_phase.child('cmake') as p:
