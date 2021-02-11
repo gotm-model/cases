@@ -164,29 +164,30 @@ def test(work_root, cmake_path='cmake', cmake_arguments=[], gotm_base=None, gotm
                 git_clone(p, default_gotm_url, gotm_base, branch=gotm_branch)
         gotm_id, cases_id = git_get_commit(gotm_base), git_get_commit(cases_dir)
         version = '%s-%s%s' % (gotm_id, cases_id, extra_info)
+        compiler = 'unknown'
         os.makedirs(version, exist_ok=True)
         os.chdir(version)
 
         with root_phase.child('cmake') as p:
             cmake(p, build_dir, gotm_base, cmake_path, cmake_arguments=cmake_arguments)
         exe = os.path.join(build_dir, 'Debug/gotm.exe' if os.name == 'nt' else 'gotm')
+        if os.path.isfile(exe):
+            # Detect compiler version
+            proc = subprocess.Popen([exe, '--version'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+            compiler = None
+            for l in proc.stdout:
+                if l.lstrip().startswith('Compiler: '):
+                    compiler = l[11:].strip()
 
-        # Detect compiler version
-        proc = subprocess.Popen([exe, '--version'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
-        compiler = None
-        for l in proc.stdout:
-            if l.lstrip().startswith('Compiler: '):
-                compiler = l[11:].strip()
-
-        for name in sorted(os.listdir(cases_dir)):
-            path = os.path.join(cases_dir, name)
-            if not os.path.isdir(path) or name in skipdirs:
-                continue
-            with root_phase.child(name) as current_phase:
-                gotm_setup_dir = os.path.join(work_root, name)
-                with current_phase.child('copy'):
-                    shutil.copytree(path, gotm_setup_dir)
-                run(current_phase.child('run'), [exe], cwd=gotm_setup_dir)
+            for name in sorted(os.listdir(cases_dir)):
+                path = os.path.join(cases_dir, name)
+                if not os.path.isdir(path) or name in skipdirs:
+                    continue
+                with root_phase.child(name) as current_phase:
+                    gotm_setup_dir = os.path.join(work_root, name)
+                    with current_phase.child('copy'):
+                        shutil.copytree(path, gotm_setup_dir)
+                    run(current_phase.child('run'), [exe], cwd=gotm_setup_dir)
 
     files = root_phase.get_files()
     if files:
