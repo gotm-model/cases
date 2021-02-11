@@ -166,10 +166,11 @@ def test(work_root, cmake_path='cmake', cmake_arguments=[], gotm_base=None, gotm
         version = '%s-%s%s' % (gotm_id, cases_id, extra_info)
         compiler = 'unknown'
         os.makedirs(version, exist_ok=True)
+        gotm_base = os.path.abspath(gotm_base)
         os.chdir(version)
 
         with root_phase.child('cmake') as p:
-            cmake(p, build_dir, os.path.abspath(gotm_base), cmake_path, cmake_arguments=cmake_arguments)
+            cmake(p, build_dir, gotm_base, cmake_path, cmake_arguments=cmake_arguments)
         exe = os.path.join(build_dir, 'Debug/gotm.exe' if os.name == 'nt' else 'gotm')
         if os.path.isfile(exe):
             # Detect compiler version
