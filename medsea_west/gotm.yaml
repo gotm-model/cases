@@ -258,7 +258,7 @@ mimic_3d:                           # effects of horizontal gradients
 o2:                                 # oxygen
    scale_factor: 44.661             # scale factor to be applied to values read from file [default=1.0]
 fabm:                               # Framework for Aquatic Biogeochemical Models
-   use: false                       # enable FABM [default=false]
+   use: true                        # enable FABM [default=false]
    freshwater_impact: true          # enable dilution/concentration by precipitation/evaporation [default=true]
    feedbacks:                       # feedbacks to physics
       shade: false                  # interior light absorption [default=false]
