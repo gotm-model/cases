@@ -232,7 +232,7 @@ if __name__ == '__main__':
     parser.add_argument('--extra_info', help='Extra identifying string for result file', default='')
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable more detailed output')
     parser.add_argument('--show_logs', action='store_true', help='Show contents of log files at end of run')
-    parser.add_argument('--exclude', action='append', help='Test case to exclude')
+    parser.add_argument('--exclude', action='append', help='Test case to exclude', default=[])
     args, cmake_arguments = parser.parse_known_args()
     if args.compiler is not None:
         cmake_arguments.append('-DCMAKE_Fortran_COMPILER=%s' % args.compiler)
