@@ -14,13 +14,16 @@ ifdef GOTM_PREFIX
 external_GOTM_PREFIX=$(GOTM_PREFIX)
 else
 GOTM_PREFIX=$(CURDIR)/build
+ifneq ($(wildcard $(GOTMDIR)/CMakeLists.txt),)
+GOTM_CMAKE_SRC=$(GOTMDIR)
+else
+GOTM_CMAKE_SRC=$(GOTMDIR)/src
+endif
 endif
 
 ifndef FABM_PREFIX
 ifdef FABMDIR
 FABM_ARG="-DFABM_BASE=$(FABMDIR)"
-else
-FABM_ARG="-DGOTM_USE_FABM=OFF"
 endif
 endif
 
@@ -32,7 +35,7 @@ all: link
 gotm-exe:
 ifndef external_GOTM_PREFIX
 	@mkdir -p build
-	@(cd build ; cmake $(GOTMDIR)/src -DCMAKE_INSTALL_PREFIX=`pwd` -DCMAKE_Fortran_FLAGS="$(EXTRA_FFLAGS)" $(FABM_ARG) || false)
+	@(cd build ; cmake $(GOTM_CMAKE_SRC) -DCMAKE_INSTALL_PREFIX=`pwd` -DCMAKE_Fortran_FLAGS="$(EXTRA_FFLAGS)" $(FABM_ARG) || false)
 	@(cd build ; make -s install)
 endif
 

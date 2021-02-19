@@ -1,5 +1,0 @@
-reynolds:
-   time_unit: dt
-   time_step: 60
-   variables:
-      - source: *

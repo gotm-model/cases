@@ -1,5 +1,0 @@
-seagrass:
-   time_unit: dt
-   time_step: 10
-   variables:
-      - source: *

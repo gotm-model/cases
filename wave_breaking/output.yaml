@@ -1,5 +1,0 @@
-wave_breaking:
-   time_unit: dt
-   time_step: 86400
-   variables:
-      - source: *
