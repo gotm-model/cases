@@ -1,7 +1,7 @@
 # This file was created with only commonly used settings, plus those that differ from the default specified by GOTM.
 # You can generate a configuration with every possible setting with: gotm --write_yaml <OUTFILE> --detail full
 # To see only the settings that differ from the default, use: gotm --write_yaml <OUTFILE> --detail minimal
-version: 6                           # version of configuration file [default=6]
+version: 7                           # version of configuration file [default=6]
 title: plume under shelf ice         # simulation title used in output [default=GOTM simulation]
 location:
    name: equator                     # station name used in output [default=GOTM site]
