@@ -1,7 +1,7 @@
 # This file was created with only commonly used settings, plus those that differ from the default specified by GOTM.
 # You can generate a configuration with every possible setting with: gotm --write_yaml <OUTFILE> --detail full
 # To see only the settings that differ from the default, use: gotm --write_yaml <OUTFILE> --detail minimal
-version: 6                                    # version of configuration file [default=6]
+version: 7                                    # version of configuration file [default=7]
 title: GOTM Simulation                        # simulation title used in output [default=GOTM simulation]
 location:
    name: Seagrass canopy under swell waves    # station name used in output [default=GOTM site]
@@ -114,6 +114,9 @@ surface:
    albedo:
       method: constant                        # method to compute albedo [constant, payne=Payne (1972), cogley=Cogley (1979); default=payne]
       constant_value: 0.0                     # constant value to use throughout the simulation [fraction; min=0.0; max=1.0; default=0.0]
+   ice:
+      model: none                             # model [none, lebedev=Lebedev (1938), mylake, winton; default=none]
+      H: 0.0                                  # initial ice thickness [m; default=0.0]
    roughness:
       charnock: false                         # use Charnock (1955) roughness adaptation [default=false]
       charnock_val: 1400.0                    # empirical constant for roughness adaptation [dimensionless; min=0.0; default=1400.0]
@@ -203,27 +206,33 @@ mimic_3d:                                     # effects of horizontal gradients
          column: 1                            # index of column to read from [default=1]
       period_1: -15.0                         # period of 1st tidal harmonic (eg. M2-tide) [s; default=44714.0]
       period_2: 43200.0                       # period of 2nd tidal harmonic (eg. S2-tide) [s; default=43200.0]
-   int_press:                                 # internal pressure
-      dtdx:                                   # temperature gradient in West-East direction [Celsius/m]
-         method: off                          # method [off, constant, file=from file; default=off]
-         constant_value: 0.0                  # value to use throughout the simulation [Celsius/m; default=0.0]
-         file:                                # path to file with series of profiles [default=]
-         column: 1                            # index of column to read from [default=1]
-      dtdy:                                   # temperature gradient in South-North direction [Celsius/m]
-         method: off                          # method [off, constant, file=from file; default=off]
-         constant_value: 0.0                  # value to use throughout the simulation [Celsius/m; default=0.0]
-         file:                                # path to file with series of profiles [default=]
-         column: 1                            # index of column to read from [default=1]
-      dsdx:                                   # salinity gradient in West-East direction [psu/m]
-         method: off                          # method [off, constant, file=from file; default=off]
-         constant_value: 0.0                  # value to use throughout the simulation [psu/m; default=0.0]
-         file:                                # path to file with series of profiles [default=]
-         column: 1                            # index of column to read from [default=1]
-      dsdy:                                   # salinity gradient in South-North direction [psu/m]
-         method: off                          # method [off, constant, file=from file; default=off]
-         constant_value: 0.0                  # value to use throughout the simulation [psu/m; default=0.0]
-         file:                                # path to file with series of profiles [default=]
-         column: 1                            # index of column to read from [default=1]
+   int_pressure:                              # internal pressure
+      type: none                              # method [none, gradients=prescribed horiztonal gradients of T and S, plume=surface or bottom plume; default=none]
+      gradients:                              # horizontal salinity and temperature gradients
+         dtdx:                                # temperature gradient in West-East direction [Celsius/m]
+            method: off                       # method [off, constant, file=from file; default=off]
+            constant_value: 0.0               # value to use throughout the simulation [Celsius/m; default=0.0]
+            file:                             # path to file with series of profiles [default=]
+            column: 1                         # index of column to read from [default=1]
+         dtdy:                                # temperature gradient in South-North direction [Celsius/m]
+            method: off                       # method [off, constant, file=from file; default=off]
+            constant_value: 0.0               # value to use throughout the simulation [Celsius/m; default=0.0]
+            file:                             # path to file with series of profiles [default=]
+            column: 1                         # index of column to read from [default=1]
+         dsdx:                                # salinity gradient in West-East direction [psu/m]
+            method: off                       # method [off, constant, file=from file; default=off]
+            constant_value: 0.0               # value to use throughout the simulation [psu/m; default=0.0]
+            file:                             # path to file with series of profiles [default=]
+            column: 1                         # index of column to read from [default=1]
+         dsdy:                                # salinity gradient in South-North direction [psu/m]
+            method: off                       # method [off, constant, file=from file; default=off]
+            constant_value: 0.0               # value to use throughout the simulation [psu/m; default=0.0]
+            file:                             # path to file with series of profiles [default=]
+            column: 1                         # index of column to read from [default=1]
+      plume:                                  # surface or bottom plume
+         type: bottom                         # plume type [surface=buoyant surface-attached, bottom=dense bottom-attached; default=bottom]
+         x_slope: 0.0                         # plume slope in West-East direction [dimensionless; default=0.0]
+         y_slope: 0.0                         # plume slope in South-North direction [dimensionless; default=0.0]
       t_adv: false                            # horizontally advect temperature [default=false]
       s_adv: false                            # horizontally advect salinity [default=false]
    zeta:                                      # surface elevation [m]
@@ -252,6 +261,47 @@ mimic_3d:                                     # effects of horizontal gradients
       adv_discr: p2_pdm                       # vertical advection scheme [upstream=first-order upstream, p2=third-order upstream-biased polynomial, superbee=third-order TVD with Superbee limiter, muscl=third-order TVD with MUSCL limiter, p2_pdm=third-order TVD with ULTIMATE QUICKEST limiter; default=p2_pdm]
 o2:                                           # oxygen
    scale_factor: 31.25                        # scale factor to be applied to values read from file [default=1.0]
+cvmix:
+   surface_layer:                             # surface layer mixing
+      use: true                               # compute surface layer mixing coefficients [default=true]
+      kpp:                                    # K-Profile Parameterization
+         use: true                            # use the K-Profile Parameterization [default=true]
+         langmuir_method: none                # method of Langmuir turbulence pararmeterization [none, lwf16=Li et al. (2016), lf17=Li and Fox-Kemper (2017), rwh16=Reichl et al. (2016); default=none]
+         surface_layer_extent: 0.1            # extent of surface layer in fraction of the boundary layer [dimensionless; min=0.0; max=1.0; default=0.1]
+         Ri_c: 0.3                            # critical Richardson number [dimensionless; min=0.0; default=0.3]
+         check_Ekman_length: false            # limit the OBL by the Ekman depth [default=false]
+         check_MonOb_length: false            # limit the OBL by the Monin-Obukhov depth [default=false]
+         use_enhanced_diff: true              # enhance diffusivity at OBL [default=true]
+         use_noDGat1: true                    # zero gradient of the shape function at OBL [default=true]
+         match_technique: simple              # matching technique of shape functions with the ocean interior [simple=simple shapes, gradient=gradient term, both=both gradient and nonlocal terms, parabolic=parabolic nonlocal term; default=simple]
+         bulk_Ri_interp_type: quadratic       # interpolation type for the bulk Richardson number [linear, quadratic, cubic; default=quadratic]
+         OBL_interp_type: lmd94               # interpolation type for diffusivity and viscosity at OBL [linear, quadratic, cubic, lmd94=Large et al. (1994); default=lmd94]
+   interior:                                  # interior mixing
+      use: false                              # compute interior mixing coefficients [default=false]
+      background:
+         use: false                           # use interior background mixing coefficients [default=false]
+         diffusivity: 1.00000000E-05          # background diffusivity [m^2/s; default=1.00000000E-05]
+         viscosity: 1.00000000E-04            # background viscosity [m^2/s; default=1.00000000E-04]
+      shear:
+         use: false                           # compute interior shear mixing coefficients [default=false]
+         num_smooth_Ri: 1                     # number of iterations to smooth the gradient Richardson number [default=1]
+         mix_scheme: kpp                      # shear mixing scheme [pp=Pacanowski and Philander (1981), kpp=Large et al. (1994); default=kpp]
+         PP_nu_zero: 0.005                    # numerator in viscosity term in PP [m^2/s; default=0.005]
+         PP_alpha: 5.0                        # coefficient of Ri in denominator of visc / diff terms [dimensionless; default=5.0]
+         PP_exp: 2.0                          # exponent of denominator in viscosity term [dimensionless; default=2.0]
+         KPP_nu_zero: 0.005                   # leading coefficient of the KPP shear mixing formula [m^2/s; default=0.005]
+         KPP_Ri_zero: 0.7                     # critical Richardson number for KPP shear mixing [dimensionless; default=0.7]
+         KPP_exp: 3.0                         # exponent of unitless factor of diffusivity [dimensionless; default=3.0]
+      convection:
+         use: false                           # compute interior convective mixing coefficients [default=false]
+         diffusivity: 1.0                     # convective diffusivity [m^2/s; default=1.0]
+         viscosity: 1.0                       # convective viscosity [m^2/s; default=1.0]
+         basedOnBVF: true                     # triger convection based on the squared Brunt-Vaisala frequency [default=true]
+         triggerBVF: 0.0                      # threshold of squared Brunt-Vaisala frequency [1/s^2; default=0.0]
+      tidal_mixing:
+         use: false                           # compute interior tidal mixing coefficients [default=false]
+      double_diffusion:
+         use: false                           # compute interior double diffusion mixing coefficients [default=false]
 fabm:                                         # Framework for Aquatic Biogeochemical Models
    use: false                                 # enable FABM [default=false]
    freshwater_impact: true                    # enable dilution/concentration by precipitation/evaporation [default=true]
