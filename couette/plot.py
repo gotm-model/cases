@@ -71,7 +71,7 @@ ax2.tick_params(labelsize=14)
 
 
 ax3.plot(1000*taux[iPlt, :], zi[iPlt, :])
-ax3.set_xlabel(r'$\tau_x/\rho_0$ [m$^2$ s$^{-1}$]',fontsize=14)
+ax3.set_xlabel(r'$\tau_x/\rho_0$ [m$^2$ s$^{-2}$]',fontsize=14)
 ax3.set_ylabel('z [m]',fontsize=14)
 ax3.set_xlim([1.1*np.max(1000*taux[iPlt, :]),0])
 ax3.set_ylim([-H, 0])
@@ -123,7 +123,7 @@ levels = MaxNLocator(nbins=20).tick_values(taux.min(), taux.max())
 CS3 = ax3.contourf(t/hour, zi1D, taux.T, levels=levels)
 ax3.text(0.03, 0.94, 'C',verticalalignment='top',horizontalalignment='left',
          backgroundcolor='w',transform=ax3.transAxes,fontsize=14,bbox=bprops)
-ax3.text(0.03, 0.03,r'$\tau_x/\rho_0$ [m$^2$ s$^{-1}$]',verticalalignment='bottom',horizontalalignment='left',
+ax3.text(0.03, 0.03,r'$\tau_x/\rho_0$ [m$^2$ s$^{-2}$]',verticalalignment='bottom',horizontalalignment='left',
          backgroundcolor='w',transform=ax3.transAxes,fontsize=14,bbox=bprops)
 ax3.set_xlabel('$t$ [hours]',fontsize=14)
 ax3.set_ylabel('z [m]',fontsize=14)
