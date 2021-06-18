@@ -117,7 +117,7 @@ surface:
       method: payne                        # method to compute albedo [constant, payne=Payne (1972), cogley=Cogley (1979); default=payne]
       constant_value: 0.0                  # constant value to use throughout the simulation [fraction; min=0.0; max=1.0; default=0.0]
    ice:
-      model: 4                       # model [none, lebedev=Lebedev (1938), mylake, winton, flato; default=none]
+      model: 4                              # model [none, lebedev=Lebedev (1938), mylake, winton, flato; default=none]
       H: 1.0                               # initial ice thickness [m; default=0.0]
       ocean_ice_flux: 10.0                 # ocean->ice heat flux [W/m^2; default=0.0]
       
