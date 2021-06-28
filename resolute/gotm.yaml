@@ -121,6 +121,7 @@ surface:
       H: 1.0                               # initial ice thickness [m; default=0.0]
       ocean_ice_flux: 10.0                 # ocean->ice heat flux [W/m^2; default=0.0]
       
+      runwintonflato: 1                    # run the winton model inside of flato 0:off, 1:on
       nilay: 10                            # number of ice layers
       sfall_method: 2                      # 1:constant snow fall 2:calculate snowfall from precipitation
       const_sfall: 0.0017D+00              # constant snow fall rate [m d^-1]   
