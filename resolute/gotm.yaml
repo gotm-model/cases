@@ -121,35 +121,35 @@ surface:
       H: 1.0                               # initial ice thickness [m; default=0.0]
       ocean_ice_flux: 10.0                 # ocean->ice heat flux [W/m^2; default=0.0]
       
-      runwintonflato: 0                  # run the winton model inside of flato 0:off, 1:on
+      #runwintonflato: 0                 # run the winton model inside of flato 0:off, 1:on
       nilay: 10                            # number of ice layers
       sfall_method: 2                      # 1:constant snow fall 2:calculate snowfall from precipitation
-      const_sfall: 0.0017D+00              # constant snow fall rate [m d^-1]   
+      const_sfall: 0.0000D+00 #0.0017D+00              # constant snow fall rate [m d^-1]   
       dfact: 1.0                           # prescribed mixed layer depth for open_water calculation. If set to zero top layer thickness is used.   
       depmix: 25.0D+00                     # prescribed mixed layer depth for open_water calculation. If set to zero top layer thickness is used.
       sice_method: 2                       # 1: constant ice salinity 2: Simple ice salinity profile (Vancoppenolle et al. 2009?)
       const_Sice: 6.0D+00                  # prescribed sea ice salinity (ppt)
       snow_dist: true                      # if true a snow distribution function will be applied if false a uniform snow thickness will be applied
-      distr_type: 0                        # -1: no specific distribution chosen 0: Weibull distribution 1: Reighleigh distribution
-      meltpond: true                       # If true meltponds are included If false only bare ice is included 
-      Ameltmax: 0.5D+00                    # Maximum meltpond area fraction allowed
+      distr_type: 1 #0                        # -1: no specific distribution chosen 0: Weibull distribution 1: Reighleigh distribution
+      meltpond: false #true                       # If true meltponds are included If false only bare ice is included 
+      Ameltmax: 0.3D+00 #0.5D+00                    # Maximum meltpond area fraction allowed
       drainrate: 0.0175D+00                # Melt pond drainage rate in [m/d]
       hh0: 0.10D+00                        # initial thickness for S calculation
-      ice_hi_i: 0.75D+00                   # initial ice thickness
-      ice_hs_i: 0.1D+00                    # initial snow thickness
-      albice_method: 2                     # 1:constant albedo (albice_f and albsnow_f) 2:albice dependent on ice thickness - attempt to capture the evolution of melt ponds (Flato&Brown 1996) albsnow is set to albsnow_f (constant) 3:albice and albsnow based on eq12&13 of Flato&Brown1996 4:albice and albsnow dependent on temperature (same as transs/transi formulation)
+      ice_hi_i: 0.55 #0.75D+00                   # initial ice thickness
+      ice_hs_i: 0.05 #0.1D+00                    # initial snow thickness
+      albice_method: 4   #2                     # 1:constant albedo (albice_f and albsnow_f) 2:albice dependent on ice thickness - attempt to capture the evolution of melt ponds (Flato&Brown 1996) albsnow is set to albsnow_f (constant) 3:albice and albsnow based on eq12&13 of Flato&Brown1996 4:albice and albsnow dependent on temperature (same as transs/transi formulation)
       ## albice=0.5D+00                    # reference value from flato & brown
-      albice_f: 0.40D+00                   # freezing ice albedo
+      albice_f: 0.60D+00 #0.40D+00                   # freezing ice albedo
       ##albmelt=0.3D+00                    # reference value from flato & brown
-      albmelt: 0.15D+00                    # melt pond albedo
-      albsnow_f: 0.8D+00                   # freezing snow albedo
-      albice_m: 0.75D+00                   # melting ice albedo
-      albsnow_m: 0.55D+00                  # melting snow albedo 
-      transsf: 0.05D+00                    # freezing snow transmission coefficient
-      transsm: 0.08D+00                    # melting snow transmission coefficient
+      albmelt: 0.30D+00 #0.15D+00                    # melt pond albedo
+      albsnow_f: 0.80D+00 #0.8D+00                   # freezing snow albedo
+      albice_m: 0.50D+00 #0.75D+00                   # melting ice albedo
+      albsnow_m: 0.70D+00 #0.55D+00                  # melting snow albedo 
+      transsf: 0.15D+00 #0.05D+00                    # freezing snow transmission coefficient
+      transsm: 0.15D+00 #0.08D+00                    # melting snow transmission coefficient
       transif: 0.5D+00                     # freezing ice transmission coefficient
       transim: 0.5D+00                     # melting ice transmission coefficient
-      transm: 0.8D+00                      # melt pond transmision coefficient
+      transm: 0.5D+00 #0.8D+00                      # melt pond transmision coefficient
       swkappasm: 7.5D+00                   # melting snow extinction coefficient
       swkappasf: 14.0D+00                  # freezing snow extinction coefficient
       swkappaim: 0.8D+00                   # melting ice extinction coefficient
