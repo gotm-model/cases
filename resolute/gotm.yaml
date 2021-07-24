@@ -105,7 +105,7 @@ surface:
       flux_impact: false                   # include effect on fluxes of sensible heat and momentum [default=false]
    calc_evaporation: false                 # calculate evaporation from meteorological conditions [default=false]
    swr:                                    # shortwave radiation [W/m^2]
-      method: constant                     # method [constant, file=from file, calculate=from time, location and cloud cover; default=constant]
+      method: calculate                     # method [constant, file=from file, calculate=from time, location and cloud cover; default=constant]
       constant_value: 0.0                  # value to use throughout the simulation [W/m^2; min=0.0; default=0.0]
       file:                                # path to file with time series [default=]
       column: 1                            # index of column to read from [default=1]
