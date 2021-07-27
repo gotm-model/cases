@@ -46,6 +46,20 @@ salinity:                                  # salinity profile used for initializ
       tau: 86400.0                         # time scale for interior layer [s; min=0.0; default=1.00000000E+15]
       tau_s: 86400.0                       # time scale for surface layer [s; min=0.0; default=1.00000000E+15]
       tau_b: 86400.0                       # time scale for bottom layer [s; min=0.0; default=1.00000000E+15]
+velocities:
+   u:
+      method: file                      # method [constant, file=from file; default=constant]
+      constant_value: 0.0               # value to use throughout the simulation [m/s; default=0.0]
+      file: v_prof_Res_XM_02_13.dat     # path to file with time series [default=]
+      column: 1                         # index of column to read from [default=1]
+   v:
+      method: file                      # method [constant, file=from file; default=constant]
+      constant_value: 0.0               # value to use throughout the simulation [m/s; default=0.0]
+      file: v_prof_Res_XM_02_13.dat     # path to file with time series [default=]
+      column: 2                         # index of column to read from [default=1]
+   relax:
+      tau: 600.0                         # [default=1.e15]
+      ramp: 1.00000000E+15               # [default=1.e15]
 surface:
    fluxes:                                 # heat and momentum fluxes
       method: kondo                        # method to calculate fluxes from meteorological conditions [off=use prescribed fluxes, kondo=Kondo (1975), fairall=Fairall et al. (1996); default=off]
