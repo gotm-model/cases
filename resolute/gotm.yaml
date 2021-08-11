@@ -5,15 +5,15 @@ version: 7                                 # version of configuration file [defa
 title: GOTM Simulation                     # simulation title used in output [default=GOTM simulation]
 location:
    name: Resolute                          # station name used in output [default=GOTM site]
-   latitude: 75.0                          # latitude [degrees North; min=-90.0; max=90.0; default=0.0]
-   longitude: -95.0                        # longitude [degrees East; min=-360.0; max=360.0; default=0.0]
+   latitude: 74.71                         # latitude [degrees North; min=-90.0; max=90.0; default=0.0]
+   longitude: -95.25                       # longitude [degrees East; min=-360.0; max=360.0; default=0.0]
    depth: 100.0                            # water depth [m; min=0.0; default=100.0]
 time:
-   start: 1990-01-01 00:00:00              # start date and time [yyyy-mm-dd HH:MM:SS; default=2017-01-01 00:00:00]
-   stop: 1991-01-01 00:00:00               # stop date and time [yyyy-mm-dd HH:MM:SS; default=2018-01-01 00:00:00]
-   dt: 3600.0                              # time step for integration [s; min=0.0; default=3600.0]
+   start: 2010-02-01 00:00:00 #1990-01-01 00:00:00              # start date and time [yyyy-mm-dd HH:MM:SS; default=2017-01-01 00:00:00]
+   stop: 2010-09-30 23:00:00  #1991-01-01 00:00:00               # stop date and time [yyyy-mm-dd HH:MM:SS; default=2018-01-01 00:00:00]
+   dt: 600.0                               # time step for integration [s; min=0.0; default=3600.0]
 grid:
-   nlev: 110                               # number of layers [min=1; default=100]
+   nlev: 100 #110                               # number of layers [min=1; default=100]
    method: analytical                      # layer thickness specification [analytical=equal by default with optional zooming, file_sigma=prescribed relative fractions, file_h=prescribed thicknesses; default=analytical]
    ddu: 0.0                                # surface zooming [dimensionless; min=0.0; default=0.0]
    ddl: 0.0                                # bottom zooming [dimensionless; min=0.0; default=0.0]
@@ -21,7 +21,7 @@ grid:
 temperature:                               # temperature profile used for initialization and optionally relaxation [Celsius]
    method: file                            # method [off, file=from file, constant, two_layer=two layers with linear gradient in between, buoyancy=from salinity and buoyancy frequency; default=off]
    constant_value: 0.0                     # value to use throughout the simulation [Celsius; default=0.0]
-   file: t_prof_file.dat                   # path to file with series of profiles [default=]
+   file: T_prof_Res_XM_02_13.dat #t_prof_file.dat                   # path to file with series of profiles [default=]
    column: 1                               # index of column to read from [default=1]
    two_layer:
       z_s: 30.0                            # depth where upper layer ends [m; min=0.0; default=0.0]
@@ -30,11 +30,11 @@ temperature:                               # temperature profile used for initia
       t_b: 15.0                            # lower layer temperature [Celsius; min=0.0; max=40.0; default=0.0]
    NN: 2.56000000E-04                      # square of buoyancy frequency [s^-2; min=0.0; default=0.0]
    relax:                                  # relax model temperature to observed/prescribed value
-      tau: 1.00000000E+15                  # time scale for interior layer [s; min=0.0; default=1.00000000E+15]
+      tau: 86400.0 # 1.00000000E+15 pfnote > 86400 in obs.nml             # time scale for interior layer [s; min=0.0; default=1.00000000E+15]
 salinity:                                  # salinity profile used for initialization and optionally relaxation [psu]
    method: file                            # method [off, file=from file, constant, two_layer=two layers with linear gradient in between, buoyancy=from temperature and buoyancy frequency; default=off]
    constant_value: 0.0                     # value to use throughout the simulation [psu; min=0.0; default=0.0]
-   file: s_prof_file.dat                   # path to file with series of profiles [default=]
+   file: S_prof_Res_XM_02_13.dat   #s_prof_file.dat                   # path to file with series of profiles [default=]
    column: 1                               # index of column to read from [default=1]
    two_layer:
       z_s: 30.0                            # depth where upper layer ends [m; min=0.0; default=0.0]
@@ -46,6 +46,20 @@ salinity:                                  # salinity profile used for initializ
       tau: 86400.0                         # time scale for interior layer [s; min=0.0; default=1.00000000E+15]
       tau_s: 86400.0                       # time scale for surface layer [s; min=0.0; default=1.00000000E+15]
       tau_b: 86400.0                       # time scale for bottom layer [s; min=0.0; default=1.00000000E+15]
+velocities:
+   u:
+      method: file                      # method [constant, file=from file; default=constant]
+      constant_value: 0.0               # value to use throughout the simulation [m/s; default=0.0]
+      file: v_prof_Res_XM_02_13.dat     # path to file with time series [default=]
+      column: 1                         # index of column to read from [default=1]
+   v:
+      method: file                      # method [constant, file=from file; default=constant]
+      constant_value: 0.0               # value to use throughout the simulation [m/s; default=0.0]
+      file: v_prof_Res_XM_02_13.dat     # path to file with time series [default=]
+      column: 2                         # index of column to read from [default=1]
+   relax:
+      tau: 600.0                         # [default=1.e15]
+      ramp: 1.00000000E+15               # [default=1.e15]
 surface:
    fluxes:                                 # heat and momentum fluxes
       method: kondo                        # method to calculate fluxes from meteorological conditions [off=use prescribed fluxes, kondo=Kondo (1975), fairall=Fairall et al. (1996); default=off]
@@ -67,40 +81,40 @@ surface:
    u10:                                    # wind speed in West-East direction @ 10 m [m/s]
       method: file                         # method [constant, file=from file; default=constant]
       constant_value: 0.0                  # value to use throughout the simulation [m/s; default=0.0]
-      file: meteo.dat                      # path to file with time series [default=]
+      file: meteo_EC.dat                      # path to file with time series [default=]
       column: 1                            # index of column to read from [default=1]
    v10:                                    # wind speed in South-North direction @ 10 m [m/s]
       method: file                         # method [constant, file=from file; default=constant]
       constant_value: 0.0                  # value to use throughout the simulation [m/s; default=0.0]
-      file: meteo.dat                      # path to file with time series [default=]
+      file: meteo_EC.dat                      # path to file with time series [default=]
       column: 2                            # index of column to read from [default=1]
    ssuv_method: absolute                   # wind treatment [absolute=use absolute wind speed, relative=use wind speed relative to current velocity; default=relative]
    airp:                                   # air pressure [Pa]
       method: file                         # method [constant, file=from file; default=constant]
       constant_value: 0.0                  # value to use throughout the simulation [Pa; default=0.0]
-      file: meteo.dat                      # path to file with time series [default=]
+      file: meteo_EC.dat                      # path to file with time series [default=]
       column: 3                            # index of column to read from [default=1]
       scale_factor: 100.0                  # scale factor to be applied to values read from file [default=1.0]
    airt:                                   # air temperature @ 2 m [Celsius or K]
       method: file                         # method [constant, file=from file; default=constant]
       constant_value: 0.0                  # value to use throughout the simulation [Celsius or K; default=0.0]
-      file: meteo.dat                      # path to file with time series [default=]
+      file: meteo_EC.dat                      # path to file with time series [default=]
       column: 4                            # index of column to read from [default=1]
    hum:                                    # humidity @ 2 m
       method: file                         # method [constant, file=from file; default=constant]
       constant_value: 0.0                  # value to use throughout the simulation [default=0.0]
-      file: meteo.dat                      # path to file with time series [default=]
+      file: meteo_EC.dat                      # path to file with time series [default=]
       column: 5                            # index of column to read from [default=1]
       type: relative                       # humidity metric [relative=relative humidity (%), wet_bulb=wet-bulb temperature, dew_point=dew point temperature, specific=specific humidity (kg/kg); default=relative]
    cloud:                                  # cloud cover [1]
       method: file                         # method [constant, file=from file; default=constant]
       constant_value: 0.0                  # value to use throughout the simulation [fraction; min=0.0; max=1.0; default=0.0]
-      file: meteo.dat                      # path to file with time series [default=]
+      file: meteo_EC.dat                      # path to file with time series [default=]
       column: 6                            # index of column to read from [default=1]
    precip:                                 # precipitation [m/s]
-      method: constant                     # method [constant, file=from file; default=constant]
+      method: file                         # method [constant, file=from file; default=constant]
       constant_value: 0.0                  # value to use throughout the simulation [m/s; default=0.0]
-      file:                                # path to file with time series [default=]
+      file: precip_EC.dat                  # path to file with time series [default=]
       column: 1                            # index of column to read from [default=1]
       flux_impact: false                   # include effect on fluxes of sensible heat and momentum [default=false]
    calc_evaporation: false                 # calculate evaporation from meteorological conditions [default=false]
@@ -117,9 +131,44 @@ surface:
       method: payne                        # method to compute albedo [constant, payne=Payne (1972), cogley=Cogley (1979); default=payne]
       constant_value: 0.0                  # constant value to use throughout the simulation [fraction; min=0.0; max=1.0; default=0.0]
    ice:
-      model: winton                        # model [none, lebedev=Lebedev (1938), mylake, winton; default=none]
+      model: 4                             # model [none, lebedev=Lebedev (1938), mylake, winton, flato; default=none]
       H: 1.0                               # initial ice thickness [m; default=0.0]
       ocean_ice_flux: 10.0                 # ocean->ice heat flux [W/m^2; default=0.0]
+      
+      nilay: 10                            # number of ice layers
+      sfall_method: 2                      # 1:constant snow fall 2:calculate snowfall from precipitation
+      const_sfall: 0.0000D+00 #0.0017D+00              # constant snow fall rate [m d^-1]   
+      dfact: 1.0                           # prescribed mixed layer depth for open_water calculation. If set to zero top layer thickness is used.   
+      depmix: 25.0D+00                     # prescribed mixed layer depth for open_water calculation. If set to zero top layer thickness is used.
+      sice_method: 2                       # 1: constant ice salinity 2: Simple ice salinity profile (Vancoppenolle et al. 2009?)
+      const_Sice: 6.0D+00                  # prescribed sea ice salinity (ppt)
+      snow_dist: true                      # if true a snow distribution function will be applied if false a uniform snow thickness will be applied
+      distr_type: 1 #0                        # -1: no specific distribution chosen 0: Weibull distribution 1: Reighleigh distribution
+      meltpond: false #true                       # If true meltponds are included If false only bare ice is included 
+      Ameltmax: 0.3D+00 #0.5D+00                    # Maximum meltpond area fraction allowed
+      drainrate: 0.0175D+00                # Melt pond drainage rate in [m/d]
+      hh0: 0.10D+00                        # initial thickness for S calculation
+      ice_hi_i: 0.55 #0.75D+00                   # initial ice thickness
+      ice_hs_i: 0.05 #0.1D+00                    # initial snow thickness
+      albice_method: 4   #2                     # 1:constant albedo (albice_f and albsnow_f) 2:albice dependent on ice thickness - attempt to capture the evolution of melt ponds (Flato&Brown 1996) albsnow is set to albsnow_f (constant) 3:albice and albsnow based on eq12&13 of Flato&Brown1996 4:albice and albsnow dependent on temperature (same as transs/transi formulation)
+      ## albice=0.5D+00                    # reference value from flato & brown
+      albice_f: 0.60D+00 #0.40D+00                   # freezing ice albedo
+      ##albmelt=0.3D+00                    # reference value from flato & brown
+      albmelt: 0.30D+00 #0.15D+00                    # melt pond albedo
+      albsnow_f: 0.80D+00 #0.8D+00                   # freezing snow albedo
+      albice_m: 0.50D+00 #0.75D+00                   # melting ice albedo
+      albsnow_m: 0.70D+00 #0.55D+00                  # melting snow albedo 
+      transsf: 0.15D+00 #0.05D+00                    # freezing snow transmission coefficient
+      transsm: 0.15D+00 #0.08D+00                    # melting snow transmission coefficient
+      transif: 0.5D+00                     # freezing ice transmission coefficient
+      transim: 0.5D+00                     # melting ice transmission coefficient
+      transm: 0.5D+00 #0.8D+00                      # melt pond transmision coefficient
+      swkappasm: 7.5D+00                   # melting snow extinction coefficient
+      swkappasf: 14.0D+00                  # freezing snow extinction coefficient
+      swkappaim: 0.8D+00                   # melting ice extinction coefficient
+      swkappaif: 1.2D+00                   # freezing ice extinction
+
+
    roughness:
       charnock: true                       # use Charnock (1955) roughness adaptation [default=false]
       charnock_val: 1400.0                 # empirical constant for roughness adaptation [dimensionless; min=0.0; default=1400.0]
