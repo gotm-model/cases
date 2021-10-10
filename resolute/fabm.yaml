@@ -1,0 +1,285 @@
+#jpnote: created new fabm.yaml inside resolute test case with 
+#vars from mortenson fabm.nml 
+
+require_initialization: true
+instances:  
+  uvic_eco:  # University of Victoria Ecosystem model
+    #long_name: ecosystem
+    use: true 
+    model: uvic/uvic_eco
+    
+    parameters:
+      #use_icealgae: true #if use_icealgae is true -- load vars in eco model 
+     # models:  uvic_eco , uvic_icealgae , uvic_eco , uvic_icealgae , uvic_dic    #,'uvic_dms','uvic_icedms'
+      use_icealgae: true               #use icealgae vars #jpnote 
+      ac : 0.03       # light attenuation coefficient [m-1]
+      f_seed: 0.1                          # fraction of ice algal fux as ph2 seeding [-]
+     # ph1_0 : 0.01 #de:0.01                # ph1 initial value [umol/L]
+     # ph2_0 : 0.01 #de:0.01                # ph2 initial value [umol/L]
+     # zo1_0 : 0.01                         # zo1 initial value [umol/L]
+     # zo2_0 : 0.01                         # zo2 initial value [umol/L]
+     # nh4_0 : 0.01                         # nh4 initial value [umol/L]
+     # no3_0 : 7.2                          # no3 initial value [umol/L]
+     # de1_0 : 0.01                         # de1 initial value [umol/L]
+     # de2_0 : 0.01                         # de2 initial value [umol/L]
+     # bsi_0 : 0.01                         # bsi initial value [umol/L]
+     # sil_0 : 14.7                         # sil initial value [umol/L] 
+      w1    : -1 #L09                      # de1 sinking rate [m/d]
+      w2    : -50 #L09 6Steiner 2006       # de2 sinking rate [m/d]
+      mu1   : 0.5 #de:0.5 #0.341 Paranjape 1987   # ph1 maximum growth rate [1/d]
+      mu2   : 2.0 #de:2.0 #steiner061.5dupont (eppley at 10deg.~1.6) #0.567 #Fig.3: Suzuki and Takahashi 1995  #ph2 maximum growth rate [1/d]
+      kn    : 1 #L09                       # no3 & nh4 half saturation constant [umol/L]
+      #al1  :                               # initial slope of P-I curve [m2/W/time] ([time] is same unit as pmax)
+      # al2  :                               # initial slope of P-I curve [m2/W/time] ([time] is same unit as pmax)
+      rpp1  : 0.3 #0.07125 Cota & Smith 1991   # maximum photosynthetic rate [1/time] ([time] is same unit as alpha)
+      rpp2  : 0.3 #0.045 Lavoie 2009       # maximum photosynthetic rate [1/time] ([time] is same unit as alpha)
+      mp1   : 0.03 # L09                   # ph1 excretion rate [1/d]
+      mp2   : 0.03 # L09                   # ph2 excretion rate [1/d]
+      mz1   : 0.03 #0.377 #Forest 2011     # zo1 excretion rate [1/d]
+      mz2   : 0.03 #L09                    # zo2 excretion rate [1/d]
+      gz1   : 1   #1.3#steiner06 #paranjape 1987     # zo1 maximum grazing rate [1/d]
+      gz2   : 1   #0.8#steiner06 #0.5 L09  # zo2 maximum grazing rate [1/d]
+      kz1   : 1   #0.6#1 #same as below    # zo1 grazing half saturation constant [umol/L]
+      kz2   : 1   #0.75#1 #L09             # zo2 grazing half saturation constant [umol/L]
+      az1   : 0.7 #L09                     # zo1 assimilation fraction [-]
+      az2   : 0.7 #same as above           # zo2 assimilation fraction [-]
+      rc    : 0.1                          # closure mortality rate [1/d]
+      #htlnh4  :                            # closure loss fraction to nh4 [-]
+      #htldet  :                            # closure loss fraction to det [-]
+      pp1   : 1                            # ph1 fraction as food for zo1 [-]
+      pp2   : 1                            # ph2 fraction as food for zo2 [-]
+      pd1   : 0.5                          # de1 fraction as food for zo1 [-]
+      pd2   : 0.5 #L09                     # de2 fraction as food for zo2 [-]
+      pz1   : 0.5                          # zo1 fraction as food for zo2 [-]
+      rd1   : 0.03                         # de1 remineralization rate [1/d]
+      rd2   : 0.3 #L09                     # de2 remineralization rate [1/d]
+      rd3   : 0.01                         # bsi remineralization rate [1/d]
+      rpf   : 0.2 #steiner06               # scale factor for nitrogen preference function [-]
+      rn0   : 0.03 #0.01 steiner06 0.03 Kawamiya     # nitrification rate at 0 deg.C [1/d]
+      knt   : 0.0693 #Kawamiya             # nitrification temperature coefficient [1/deg.C]
+      qp    : 1.55   # Table 2 Suzuki and Takahashi 1995       #ph1 & ph2 Q10 factor [-]
+      qz    : 2.14 #PISCES                 # zo1 & zo2 Q10 factor [-]
+      qb    : 1.9 #PISCES                  # bacteria Q10 factor [-]
+      agg   : 0.05   #steiner06            # ph2 aggregation rate [1/d]
+      rsin  : 1.7 # L09                    # ph2 Si:N ratio [mol-Si/mol-N]
+      ks    : 4 #L09                       # si half saturation constant [umol/L]
+      pmin  : 0.01 #def:0.01               # background plankton concentration [umol-N/L]
+
+#ice algae vars that need to be read in in the eco model 
+     # r_pond   : 0.0175                   # melt pond drainage rate [m d-1]
+     # fmethod  : 0   
+     # fflush   : 0                      
+     # # fmethod:                         # method for ice-ocean flux (0 for diffusion; 1 for ice growth/melting; 2 for both diffusion and growth/melting)                   
+     #     #method: 0                                      
+     # #fflush:                            # method for flushing (0 for no flushing; 1 for surface flushing; 2 for surface+internal flushing)
+     # #   method: 0 
+     # drag     : 0.0054                   # drag coefficient at the ice-water interface [-]
+     # f_graze  : 0.0 #L2005               # fraction of ice algal growth lost due to grazing [-]
+      zia      : 0.03                     # ice algal layer thickness [m]
+      ac_ia    : 0.017  #mcdonald2015     # specific light attenuation coefficient for ice algae
+     # rnit     : 0.01                     # nitrification rate [per day]
+     # ia_0     : 1.0 #1.0#321.0 # ca. 900 mg-chl m-3     # ia initial value [mmol-N/m3]
+     # ia_b     : 1.0 #1.0#0.03-0.16 based on Michel's reply.   #ia background value [mmol-N/m3]
+     # skno3_0  : 7.2                      # no3 initial value [mmol/m3]
+     # sknh4_0  : 0.01                     # nh4 initial value [mmol/m3]
+     # sksil_0  : 14.7                     # sil initial value [mmol/m3]
+     # ks_no3   : 1.0                      # no3 half-saturation value [mmol/m3]
+     # ks_sil   : 4.0                      # sil half-saturation value [mmol/m3]
+     # maxg     : 0.85                     # maximum specific growth rate [d-1]
+     # mort     : 0.03                     # linear mortality rate [d-1]
+     # mort2    : 0.00015                  # quadratic mortality rate [d-1]
+     # crit_melt: 0.015                    # critical melt rate [m d-1]
+     # lcompp   : 0.0 # 1.0 #mock&gradinger99   # compensation intensity [umol m-2 s-1]
+     # rpp      : 2.0                      # ratio of photosynthetic parameters (alpha and pbm) [W m-2]-1
+     # # rpi       :                          # ratio of photoinhibition parameters (beta and pbm)
+     # t_sens   : 0.0633                   # temperature sensitivity [deg.C-1]
+     # nu       : 1.85e-6                  # kinematic viscosity?
+     # md_no3   : 0.47e-9                  # molecular diffusion coefficient for nitrate
+     # md_sil   : 0.47e-9                  # molecular diffusion coefficient for dissolved silica
+     # chl2n    : 3.533  #Lavoie 2.80134   # chl to nitrogen ratio
+     # sil2n    : 1.7                      # silicon to nitrogen ratio  
+
+    initialization: 
+      ph1 : 0.01 #de:0.01                # ph1 initial value [umol/L]
+      ph2 : 0.01 #de:0.01                # ph2 initial value [umol/L]
+      zo1 : 0.01                         # zo1 initial value [umol/L]
+      zo2 : 0.01                         # zo2 initial value [umol/L]
+      no3 : 7.2                          # no3 initial value [umol/L]
+      nh4 : 0.01                         # nh4 initial value [umol/L]
+      de1 : 0.01                         # de1 initial value [umol/L]
+      de2 : 0.01                         # de2 initial value [umol/L]
+      bsi : 0.01                         # bsi initial value [umol/L]
+      sil : 14.7                         # sil initial value [umol/L]
+  
+  uvic_icealgae: #University of Victoria Ice Algae model
+    #long_name: icealgae
+    use: true
+    model: uvic/uvic_icealgae
+   
+    parameters:
+      r_pond   : 0.0175                   # melt pond drainage rate [m d-1]
+      fmethod  : 0  
+      fflush   : 0                      
+       #fmethod:                         # method for ice-ocean flux (0 for diffusion; 1 for ice growth/melting; 2 for both diffusion and growth/melting)                   
+        #method: 0                                      
+      #fflush:                            # method for flushing (0 for no flushing; 1 for surface flushing; 2 for surface+internal flushing)
+      #   method: 0 
+      drag     : 0.0054                   # drag coefficient at the ice-water interface [-]
+      f_graze  : 0.0 #L2005               # fraction of ice algal growth lost due to grazing [-]
+      zia      : 0.03                     # ice algal layer thickness [m]
+      ac_ia    : 0.017  #mcdonald2015     # specific light attenuation coefficient for ice algae
+      rnit     : 0.01                     # nitrification rate [per day]
+      #ia_0     : 1.0 #1.0#321.0 # ca. 900 mg-chl m-3     # ia initial value [mmol-N/m3]
+      ia_b     : 1.0 #1.0#0.03-0.16 based on Michel's reply.   #ia background value [mmol-N/m3]
+      #skno3_0  : 7.2                      # no3 initial value [mmol/m3]
+     # sknh4_0  : 0.01                     # nh4 initial value [mmol/m3]
+     # sksil_0  : 14.7                     # sil initial value [mmol/m3]
+      ks_no3   : 1.0                      # no3 half-saturation value [mmol/m3]
+      ks_sil   : 4.0                      # sil half-saturation value [mmol/m3]
+      maxg     : 0.85                     # maximum specific growth rate [d-1]
+      mort     : 0.03                     # linear mortality rate [d-1]
+      mort2    : 0.00015                  # quadratic mortality rate [d-1]
+      crit_melt: 0.015                    # critical melt rate [m d-1]
+      lcompp   : 0.0 # 1.0 #mock&gradinger99   # compensation intensity [umol m-2 s-1]
+      rpp      : 2.0                      # ratio of photosynthetic parameters (alpha and pbm) [W m-2]-1
+     # rpi       :                          # ratio of photoinhibition parameters (beta and pbm)
+      t_sens   : 0.0633                   # temperature sensitivity [deg.C-1]
+      nu       : 1.85e-6                  # kinematic viscosity?
+      md_no3   : 0.47e-9                  # molecular diffusion coefficient for nitrate
+      md_sil   : 0.47e-9                  # molecular diffusion coefficient for dissolved silica
+      chl2n    : 3.533  #Lavoie 2.80134   # chl to nitrogen ratio
+      sil2n    : 1.7                      # silicon to nitrogen ratio
+  
+    initialization:
+      ia  : 1.0 #1.0#321.0 # ca. 900 mg-chl m-3     # ia initial value [mmol-N/m3]
+      #ia_b     : 1.0 #1.0#0.03-0.16 based on Michel's reply.   #ia background value [mmol-N/m3]
+      no3  : 7.2                      # no3 initial value [mmol/m3]
+      nh4 : 0.01                     # nh4 initial value [mmol/m3]
+      sil  : 14.7 
+     # no3_0: 7.2
+     # sil_0: 14.7 
+     # ia_0: 0.017 
+     # nh4_0: 0.01 
+
+  
+  uvic_dic: #University of Victoria Ice DIC model
+    use: false
+    model: uvic/uvic_dic
+    parameters:  
+      dic_0 : 2200.0 # default: 2200.0    # initial DIC in water column [mmol/m3]
+                  # dic0 SA range: +50, +10, +5, SR, -5, -10, -50 #BUT can also be manipulated in profile.dat read by fabm_input.nml
+      alk_0 : 2285.0 # default: 2285.0    # initial TA in water column [mmol/m3]
+                      #ta0 SA range: +50, +10, +5, SR, -5, -10, -50   (2365.0 2325.0 SR 2305.0 2265.0)                                
+      dic_sw : 2100.0 # def :2100.0  
+      alk_sw  : 2200.0 # def :2200.0   
+      dic_ice : 400.0 #def :400.0 #NEW range: -50 +450   # [DIC] for ice [mmol/m3]
+      alk_ice : 500.0 #def :500.0  #NEW range: -50 +450     # [TA] for growing ice [mmol/m3]
+      ik_diff : 50.0  #def :50.0  #NEW range: -40 +450 (0 500)    # difference (in melting ice) in [DIC] and 2*[TA] for ice with ikaite precipitaion
+     # difference (in melting ice) in [DIC] and 2*[TA] for ice with ikaite precipitaion
+      ik_on   : 1                       # turn on/off ikaite precipitation pump   #(0 or 1), turns off ikaite pump
+      ice_on  : 1                       # turn on/off ice pump  #(0 or 1), turns off ice carbon pump
+      IA_on   : 1                       # turn on/off ice algae pump   #(0 or 1), turns off ice algae carbon pump (not used now, bc can do same by ia_0:ia_b:0 in uvic_icealgae)
+      tplv    : 30.0  #def :30.0          # top of brine-associated DIC depth (m)
+      btlv    : 40.0  #def :40.0          # bottom of brine-associated DIC depth (m)
+      prop2sw : 0.99  #def:0.99           # proportion of DIC rejected that is released into the ocean (the remainder presumably into the atmosphere)
+    #initialization: 
+
+
+
+
+  uvic_dms:  # University of Victoria DMS(P) model
+    use: false
+    model: uvic/uvic_dms
+    parameters:
+      use_icedms: false            #use icealgae vars #jpnote 
+      f_ow     : 0.0                #fraction of open water during ice melting (e.g. leads)
+    #  dms_0    : 0.1                #dms initial value [nmol/L]
+     # dmspd_0  : 0.1                #dmspd initial value [nmol/L]
+      q1       : 100 #0.15, !Stefels 2007   #S:N ratio for ph1 [mol-S:mol-N]
+      q2       : 9.5  #6 !0.015 Galindo 2014   #S:N ratio for ph2 [mol-S:mol-N]
+      yield    : 0.20 #Galindo 2015  #bacterial lyase rate constant [per day]
+               #f_slop1 :    #fraction
+               #f_slop2 :
+      k_ly1    : 0.03               #
+      k_ly2    : 0.03               #
+      f_sl1    : 0.3                #
+      f_sl2    : 0.3                #
+      f_ex1    : 0.05               #
+      f_ex2    : 0.05               #
+      k_enz    : 0.02               #rate constant for enzymatic cleavage (free lyase) [d-1]
+      k_in1    : 0                  #
+      k_in2    : 0                  #
+      h_dmspd  : 0                  #half-saturation constant for bacterial dmspd uptake
+      h_dms    : 0                  #half-saturation constant for bacterial dms uptake
+      k_dmspd  : 5                  #
+      k_dms    : 0.5                #
+      k_pho    : 0.1                #
+      flux     : 0                  #air-sea gas transfer velocity parameterization (0=Nightingale et al, 2000; 1=Liss and Merlivat, 1986+bubble from Woolf 1997)
+
+    initialization: 
+      dms    : 0.1                #dms initial value [nmol/L]
+      dmspd  : 0.1  
+          ## # s_dmspd : dmspd sloppy fraction [-]
+          ## e_dmspd : dmspd excrete fraction [-]
+          ## y_dms   : bacterial dms yield [-]
+         ## b_dmspd : bacterial dmspd consumption rate [1/d]
+         ## l_dmspd : dmspd lysis rate [1/d]
+         ## s_dms   : dms sloppy fraction [-]
+         ## e_dms   : dms excrete fraction [-]
+         ## b_dms   : bacterial dms consumption rate [1/d]
+         ## ddp     : photolysis rate [1/d]
+     
+
+  uvic_icedms:
+    use: false
+    model: uvic/uvic_icedms
+    parameters: 
+
+      r_pond   : 0.0175                   # melt pond drainage rate [m d-1]
+      fmethod  : 0   
+      fflush   : 0                      
+            # # fmethod:                         # method for ice-ocean flux (0 for diffusion; 1 for ice growth/melting; 2 for both diffusion and growth/melting)                   
+           #    #method: 0                                      
+           # #fflush:                            # method for flushing (0 for no flushing; 1 for surface flushing; 2 for surface+internal flushing)
+           ##   method: 0 
+      drag     : 0.0054                   # drag coefficient at the ice-water interface [-]
+      f_graze  : 0.0 #L2005               # fraction of ice algal growth lost due to grazing [-]
+      zia      : 0.03                     # ice algal layer thickness [m]
+      ac_ia    : 0.017  #mcdonald2015     # specific light attenuation coefficient for ice algae
+      rnit     : 0.01                     # nitrification rate [per day]
+      ia_0     : 1.0 #1.0#321.0 # ca. 900 mg-chl m-3     # ia initial value [mmol-N/m3]
+      ia_b     : 1.0 #1.0#0.03-0.16 based on Michel's reply.   #ia background value [mmol-N/m3]
+      skno3_0  : 7.2                      # no3 initial value [mmol/m3]
+      sknh4_0  : 0.01                     # nh4 initial value [mmol/m3]
+      sksil_0  : 14.7                     # sil initial value [mmol/m3]
+      ks_no3   : 1.0                      # no3 half-saturation value [mmol/m3]
+      ks_sil   : 4.0                      # sil half-saturation value [mmol/m3]
+      maxg     : 0.85                     # maximum specific growth rate [d-1]
+      mort     : 0.03                     # linear mortality rate [d-1]
+      mort2    : 0.00015                  # quadratic mortality rate [d-1]
+      crit_melt: 0.015                    # critical melt rate [m d-1]
+      lcompp   : 0.0 # 1.0 #mock&gradinger99   # compensation intensity [umol m-2 s-1]
+      rpp      : 2.0                      # ratio of photosynthetic parameters (alpha and pbm) [W m-2]-1
+             ## rpi       :                          # ratio of photoinhibition parameters (beta and pbm)
+      t_sens   : 0.0633                   # temperature sensitivity [deg.C-1]
+      nu       : 1.85e-6                  # kinematic viscosity?
+      md_no3   : 0.47e-9                  # molecular diffusion coefficient for nitrate
+      md_sil   : 0.47e-9                  # molecular diffusion coefficient for dissolved silica
+      chl2n    : 3.533  #Lavoie 2.80134   # chl to nitrogen ratio
+      sil2n    : 1.7                      # silicon to nitrogen ratio  
+      dmsi_0   : 0.1                #dms initial value [nmol/L]
+      dmspdi_0 : 0.1                #dmspd initial value [nmol/L]
+      qi  : 9.5 #Galindo 2014       #DMSPp:Chl-a ratio for ice algae [nmol-S:ug-chla]
+      h_dmspdi : 0                  #half-saturation constant for bacterial dmspd uptake
+      h_dmsi   : 0                  #half-saturation constant for bacterial dms uptake
+      k_dmspdi : 1 #Galindo 2015    #dmspd loss rate constant [per day]
+      k_dmsi   : 0.2                #dms loss rate constant [per day]
+      yieldi   : 0.2 #Galindo 2015  #dms yield [-]
+      f_exi    : 0.05               #fraction of exludation/cell lysis
+      k_lyi    : 0.03               #fraction of sloppy feeding
+      k_exi    : 0.02               #extracellular lyase rate constant [per day]
+      k_ini    : 0                  #intracellular lyase rate constant [per day]
+      k_phoi   : 0.1 # Taalba 2012  #photolysis rate constant [per day]
+   # initialization: 
+   #   dms   : 0.1           
+   #   dmspd : 0.1    
