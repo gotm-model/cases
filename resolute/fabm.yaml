@@ -14,16 +14,18 @@ instances:
       use_icealgae: true               #use icealgae vars #jpnote 
       ac : 0.03       # light attenuation coefficient [m-1]
       f_seed: 0.1                          # fraction of ice algal fux as ph2 seeding [-]
+    
      # ph1_0 : 0.01 #de:0.01                # ph1 initial value [umol/L]
      # ph2_0 : 0.01 #de:0.01                # ph2 initial value [umol/L]
      # zo1_0 : 0.01                         # zo1 initial value [umol/L]
      # zo2_0 : 0.01                         # zo2 initial value [umol/L]
      # nh4_0 : 0.01                         # nh4 initial value [umol/L]
-     # no3_0 : 7.2                          # no3 initial value [umol/L]
+     #no3_0 : 7.2                          # no3 initial value [umol/L]
      # de1_0 : 0.01                         # de1 initial value [umol/L]
      # de2_0 : 0.01                         # de2 initial value [umol/L]
      # bsi_0 : 0.01                         # bsi initial value [umol/L]
      # sil_0 : 14.7                         # sil initial value [umol/L] 
+     
       w1    : -1 #L09                      # de1 sinking rate [m/d]
       w2    : -50 #L09 6Steiner 2006       # de2 sinking rate [m/d]
       mu1   : 0.5 #de:0.5 #0.341 Paranjape 1987   # ph1 maximum growth rate [1/d]
@@ -44,8 +46,8 @@ instances:
       az1   : 0.7 #L09                     # zo1 assimilation fraction [-]
       az2   : 0.7 #same as above           # zo2 assimilation fraction [-]
       rc    : 0.1                          # closure mortality rate [1/d]
-      #htlnh4  :                            # closure loss fraction to nh4 [-]
-      #htldet  :                            # closure loss fraction to det [-]
+    # # #htlnh4  :                            # closure loss fraction to nh4 [-]
+    # # #htldet  :                            # closure loss fraction to det [-]
       pp1   : 1                            # ph1 fraction as food for zo1 [-]
       pp2   : 1                            # ph2 fraction as food for zo2 [-]
       pd1   : 0.5                          # de1 fraction as food for zo1 [-]
@@ -166,26 +168,24 @@ instances:
     use: false
     model: uvic/uvic_dic
     parameters:  
-      dic_0 : 2200.0 # default: 2200.0    # initial DIC in water column [mmol/m3]
-                  # dic0 SA range: +50, +10, +5, SR, -5, -10, -50 #BUT can also be manipulated in profile.dat read by fabm_input.nml
-      alk_0 : 2285.0 # default: 2285.0    # initial TA in water column [mmol/m3]
-                      #ta0 SA range: +50, +10, +5, SR, -5, -10, -50   (2365.0 2325.0 SR 2305.0 2265.0)                                
-      dic_sw : 2100.0 # def :2100.0  
-      alk_sw  : 2200.0 # def :2200.0   
-      dic_ice : 400.0 #def :400.0 #NEW range: -50 +450   # [DIC] for ice [mmol/m3]
-      alk_ice : 500.0 #def :500.0  #NEW range: -50 +450     # [TA] for growing ice [mmol/m3]
-      ik_diff : 50.0  #def :50.0  #NEW range: -40 +450 (0 500)    # difference (in melting ice) in [DIC] and 2*[TA] for ice with ikaite precipitaion
-     # difference (in melting ice) in [DIC] and 2*[TA] for ice with ikaite precipitaion
-      ik_on   : 1                       # turn on/off ikaite precipitation pump   #(0 or 1), turns off ikaite pump
-      ice_on  : 1                       # turn on/off ice pump  #(0 or 1), turns off ice carbon pump
-      IA_on   : 1                       # turn on/off ice algae pump   #(0 or 1), turns off ice algae carbon pump (not used now, bc can do same by ia_0:ia_b:0 in uvic_icealgae)
-      tplv    : 30.0  #def :30.0          # top of brine-associated DIC depth (m)
-      btlv    : 40.0  #def :40.0          # bottom of brine-associated DIC depth (m)
-      prop2sw : 0.99  #def:0.99           # proportion of DIC rejected that is released into the ocean (the remainder presumably into the atmosphere)
-    #initialization: 
+      dic_0: 2200.0 # default: 2200.0,
+      # dic0 SA range: +50, +10, +5, SR, -5, -10, -50 !BUT can also be manipulated in profile.dat read by fabm_input.nml
+      alk_0: 2285.0 # default: 2285.0, 
+          #ta0 SA range: +50, +10, +5, SR, -5, -10, -50   (2365.0, 2325.0, SR, 2305.0, 2265.0)                                
+      dic_sw: 2100.0 # def = 2100.0  
+      alk_sw: 2200.0 # def = 2200.0 
+      dic_ice: 400.0 #def = 400.0, !NEW range: -50, +450 
+      alk_ice: 500.0 #def = 500.0  !NEW range: -50, +450
+      ik_diff: 50.0  #def = 50.0,  !NEW range: -40 +450 (0, 500) 
+      # difference (in melting ice) in [DIC] and 2*[TA] for ice with ikaite precipitaion
+      ik_on: 1.0   #turn on/off ikaite precipitation pump
+      ice_on: 1.0   #turn on/off ice pump
+      IA_on: 1.0   #turn on/off ice algae pump
+      tplv: 30.0  #def = 30.0   !top of brine-associated DIC depth (m)
+      btlv: 40.0  #def = 40.0   !bot of brine-associated DIC depth (m)
+      prop2sw: 0.99  #def=0.99
 
-
-
+ 
 
   uvic_dms:  # University of Victoria DMS(P) model
     use: false
