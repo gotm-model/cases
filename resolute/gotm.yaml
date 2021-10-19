@@ -119,7 +119,7 @@ surface:
       flux_impact: false                   # include effect on fluxes of sensible heat and momentum [default=false]
    calc_evaporation: false                 # calculate evaporation from meteorological conditions [default=false]
    swr:                                    # shortwave radiation [W/m^2]
-      method: calculate                    # method [constant, file=from file, calculate=from time, location and cloud cover; default=constant]
+      method: calculate                     # method [constant, file=from file, calculate=from time, location and cloud cover; default=constant]
       constant_value: 0.0                  # value to use throughout the simulation [W/m^2; min=0.0; default=0.0]
       file:                                # path to file with time series [default=]
       column: 1                            # index of column to read from [default=1]
@@ -357,14 +357,19 @@ cvmix:
       double_diffusion:
          use: false                        # compute interior double diffusion mixing coefficients [default=false]
 fabm:                                      # Framework for Aquatic Biogeochemical Models
-   use: false                              # enable FABM [default=false]
+   use: true                             # enable FABM [default=false]
    freshwater_impact: true                 # enable dilution/concentration by precipitation/evaporation [default=true]
    feedbacks:                              # feedbacks to physics
-      shade: false                         # interior light absorption [default=false]
-      albedo: false                        # surface albedo [default=false]
-      surface_drag: false                  # surface drag [default=false]
+      shade: true #false                         # interior light absorption [default=false]
+      albedo: true #false                        # surface albedo [default=false]
+      surface_drag: true #false                  # surface drag [default=false]
    repair_state: false                     # clip state to minimum/maximum boundaries [default=false]
    input:
+   numerics: 
+      ode_method: 3
+      split_factor: 1
+      w_adv_discr: 6
+      cnpar: 1
 buoyancy:
    NN_ini: 1.00000000E-04                  # initial buoyancy gradient (squared buoyancy frequency) [s^-2; default=0.0]
 eq_state:                                  # equation of state
