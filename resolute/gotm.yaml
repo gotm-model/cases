@@ -364,7 +364,7 @@ fabm:                                      # Framework for Aquatic Biogeochemica
       shade: true #false                         # interior light absorption [default=false]
       albedo: true #false                        # surface albedo [default=false]
       surface_drag: true #false                  # surface drag [default=false]
-   repair_state: false                     # clip state to minimum/maximum boundaries [default=false]
+   repair_state: true                     # clip state to minimum/maximum boundaries [default=false]
    input:
    numerics: 
       ode_method: 3
