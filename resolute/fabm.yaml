@@ -165,7 +165,7 @@ instances:
 
   
   uvic_dic: #University of Victoria Ice DIC model
-    use: false
+    use: true
     model: uvic/uvic_dic
     parameters:  
       dic_0: 2200.0 # default: 2200.0,

@@ -107,10 +107,10 @@ surface:
       column: 5                            # index of column to read from [default=1]
       type: relative                       # humidity metric [relative=relative humidity (%), wet_bulb=wet-bulb temperature, dew_point=dew point temperature, specific=specific humidity (kg/kg); default=relative]
    cloud:                                  # cloud cover [1]
-      method: file                         # method [constant, file=from file; default=constant]
+      method: constant                     # method [constant, file=from file; default=constant]
       constant_value: 0.0                  # value to use throughout the simulation [fraction; min=0.0; max=1.0; default=0.0]
-      file: meteo_EC.dat                      # path to file with time series [default=]
-      column: 6                            # index of column to read from [default=1]
+      file:                                # path to file with time series [default=]
+      column: 1                            # index of column to read from [default=1]
    precip:                                 # precipitation [m/s]
       method: file                         # method [constant, file=from file; default=constant]
       constant_value: 0.0                  # value to use throughout the simulation [m/s; default=0.0]
@@ -119,21 +119,22 @@ surface:
       flux_impact: false                   # include effect on fluxes of sensible heat and momentum [default=false]
    calc_evaporation: false                 # calculate evaporation from meteorological conditions [default=false]
    swr:                                    # shortwave radiation [W/m^2]
-      method: calculate                     # method [constant, file=from file, calculate=from time, location and cloud cover; default=constant]
+      method: file                         # method [constant, file=from file, calculate=from time, location and cloud cover; default=constant]
       constant_value: 0.0                  # value to use throughout the simulation [W/m^2; min=0.0; default=0.0]
-      file:                                # path to file with time series [default=]
-      column: 1                            # index of column to read from [default=1]
+      file: meteo.dat                      # path to file with time series [default=]
+      column: 6                            # index of column to read from [default=1]
    longwave_radiation:                     # net longwave radiation [W/m^2]
-      method: clark                        # method [file=from file, clark=Clark et al. (1974), hastenrath_lamb=Hastenrath and Lamb (1978), bignami=Bignami et al. (1995), berliand_berliand=Berliand and Berliand (1952), josey1=Josey et al. (2003) - 1, josey2=Josey et al. (2003) - 2; default=clark]
-      file:                                # path to file with time series [default=]
-      column: 1                            # index of column to read from [default=1]
+      type: 2                              # type [1='net longwave radiation', 2='incoming longwave radiation'), default=1]
+      method: file                         # method [file=from file, clark=Clark et al. (1974), hastenrath_lamb=Hastenrath and Lamb (1978), bignami=Bignami et al. (1995), berliand_berliand=Berliand and Berliand (1952), josey1=Josey et al. (2003) - 1, josey2=Josey et al. (2003) - 2; default=clark]
+      file: meteo.dat                      # path to file with time series [default=]
+      column: 7                            # index of column to read from [default=1]
    albedo:
       method: payne                        # method to compute albedo [constant, payne=Payne (1972), cogley=Cogley (1979); default=payne]
       constant_value: 0.0                  # constant value to use throughout the simulation [fraction; min=0.0; max=1.0; default=0.0]
    ice:
       model: 4                             # model [none, lebedev=Lebedev (1938), mylake, winton, flato; default=none]
-      H: 1.0                               # initial ice thickness [m; default=0.0]
-      ocean_ice_flux: 10.0                 # ocean->ice heat flux [W/m^2; default=0.0]
+      H: 0.0                               # initial ice thickness [m; default=0.0]
+      ocean_ice_flux: 0.0                 # ocean->ice heat flux [W/m^2; default=0.0]
       
       nilay: 10                            # number of ice layers
       sfall_method: 2                      # 1:constant snow fall 2:calculate snowfall from precipitation
@@ -144,12 +145,12 @@ surface:
       const_Sice: 6.0D+00                  # prescribed sea ice salinity (ppt)
       snow_dist: true                      # if true a snow distribution function will be applied if false a uniform snow thickness will be applied
       distr_type: 1 #0                        # -1: no specific distribution chosen 0: Weibull distribution 1: Reighleigh distribution
-      meltpond: false #true                       # If true meltponds are included If false only bare ice is included 
+      meltpond: true #true                       # If true meltponds are included If false only bare ice is included 
       Ameltmax: 0.3D+00 #0.5D+00                    # Maximum meltpond area fraction allowed
       drainrate: 0.0175D+00                # Melt pond drainage rate in [m/d]
       hh0: 0.10D+00                        # initial thickness for S calculation
-      ice_hi_i: 0.55 #0.75D+00                   # initial ice thickness
-      ice_hs_i: 0.05 #0.1D+00                    # initial snow thickness
+      ice_hi_i: 0.55D+00  #0.75D+00                   # initial ice thickness
+      ice_hs_i: 0.05D+00  #0.1D+00                    # initial snow thickness
       albice_method: 4   #2                     # 1:constant albedo (albice_f and albsnow_f) 2:albice dependent on ice thickness - attempt to capture the evolution of melt ponds (Flato&Brown 1996) albsnow is set to albsnow_f (constant) 3:albice and albsnow based on eq12&13 of Flato&Brown1996 4:albice and albsnow dependent on temperature (same as transs/transi formulation)
       ## albice=0.5D+00                    # reference value from flato & brown
       albice_f: 0.60D+00 #0.40D+00                   # freezing ice albedo
@@ -357,7 +358,7 @@ cvmix:
       double_diffusion:
          use: false                        # compute interior double diffusion mixing coefficients [default=false]
 fabm:                                      # Framework for Aquatic Biogeochemical Models
-   use: true                             # enable FABM [default=false]
+   use: false                             # enable FABM [default=false]
    freshwater_impact: true                 # enable dilution/concentration by precipitation/evaporation [default=true]
    feedbacks:                              # feedbacks to physics
       shade: true #false                         # interior light absorption [default=false]
