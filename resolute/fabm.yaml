@@ -118,8 +118,6 @@ instances:
       btlv: 40.0  #def = 40.0   !bot of brine-associated DIC depth (m)
       prop2sw: 0.99  #def=0.99
 
-
-  #unfinished --> jpnote
   uvic_dms:  # University of Victoria DMS(P) model
     use: true
     model: uvic/uvic_dms
@@ -166,12 +164,10 @@ instances:
     use: true
     model: uvic/uvic_icedms
     parameters: 
-     ## dmsi_0: 0.1
-     ## dmspdi_0: 0.1
       qi: 9.5       #Galindo 2014
       h_dmspdi: 0
       h_dmsi: 0
-      k_dmspdi: 0   #Galindo 2015
+      k_dmspdi: 1   #Galindo 2015
       k_dmsi: 0.2
       yieldi: 0.2   #Galindo 2015
       f_exi: 0.05
@@ -179,39 +175,7 @@ instances:
       k_exi: 0.02
       k_ini: 0
       k_phoi: 0.1 # Taalba 2012 
-    
-  
-     #no icealgae vars are actually used 
-
-
-      #r_pond: 0.0175                # melt pond drainage rate [m d-1]
-      #fmethod: 0                    # method for ice-ocean flux (0 for diffusion; 1 for ice growth/melting; 2 for both diffusion and growth/melting) 
-      #fflush: 0                     # method for flushing (0 for no flushing; 1 for surface flushing; 2 for surface+internal flushing)                  
-      #drag: 0.0054                   # drag coefficient at the ice-water interface [-]
-      #f_graze: 0.0 #L2005           # fraction of ice algal growth lost due to grazing [-]
-      zia: 0.03                     # ice algal layer thickness [m]
-      #ac_ia: 0.017  #mcdonald2015   # specific light attenuation coefficient for ice algae
-      #rnit: 0.01                    # nitrification rate [per day]
-      #ia_0: 1.0 #1.0#321.0 # ca. 900 mg-chl m-3     # ia initial value [mmol-N/m3]
-      #ia_b: 1.0 #1.0#0.03-0.16 based on Michel's reply.   #ia background value [mmol-N/m3]
-      #skno3_0: 7.2                  # no3 initial value [mmol/m3]
-      #sknh4_0: 0.01                 # nh4 initial value [mmol/m3]
-      #sksil_0: 14.7                 # sil initial value [mmol/m3]
-      #ks_no3: 1.0                   # no3 half-saturation value [mmol/m3]
-      #ks_sil: 4.0                   # sil half-saturation value [mmol/m3]
-      #maxg: 0.85                    # maximum specific growth rate [d-1]
-      #mort: 0.03                    # linear mortality rate [d-1]
-      #mort2: 0.00015                # quadratic mortality rate [d-1]
-      #crit_melt: 0.015              # critical melt rate [m d-1]
-      #lcompp: 0.0 # 1.0 #mock&gradinger99   # compensation intensity [umol m-2 s-1]
-      #rpp: 2.0                      # ratio of photosynthetic parameters (alpha and pbm) [W m-2]-1
-             ## rpi       :                          # ratio of photoinhibition parameters (beta and pbm)
-      #t_sens: 0.0633                # temperature sensitivity [deg.C-1]
-      #nu: 1.85e-6                   # kinematic viscosity?
-      #md_no3: 0.47e-9               # molecular diffusion coefficient for nitrate
-      #md_sil: 0.47e-9                  # molecular diffusion coefficient for dissolved silica
-      #chl2n: 3.533  #Lavoie 2.80134   # chl to nitrogen ratio
-      #sil2n: 1.7                      # silicon to nitrogen ratio   initialization: 
+      zia: 0.03                   # ice algal layer thickness [m]
     initialization:
       dms   : 0.1           
       dmspd : 0.1 
