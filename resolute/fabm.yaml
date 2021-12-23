@@ -98,7 +98,7 @@ instances:
       nh4 : 0.01                          # nh4 initial value [mmol/m3]
     
   uvic_dic: #University of Victoria Ice DIC model
-    use: true
+    use: false
     model: uvic/uvic_dic
     parameters:  
       dic_0: 2200.0 # default: 2200.0,
@@ -179,3 +179,4 @@ instances:
     initialization:
       dms   : 0.1           
       dmspd : 0.1 
+      
