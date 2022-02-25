@@ -25,9 +25,9 @@ temperature:                                 # temperature profile used for init
    column: 1                                 # index of column to read from [default=1]
    two_layer:
       z_s: 30.0                              # depth where upper layer ends [m; min=0.0; default=0.0]
-      t_s: 20.0                              # upper layer temperature [Celsius; min=0.0; max=40.0; default=0.0]
+      t_s: 20.0                              # upper layer temperature [Celsius; min=-2.0; max=40.0; default=0.0]
       z_b: 40.0                              # depth where lower layer begins [m; min=0.0; default=0.0]
-      t_b: 15.0                              # lower layer temperature [Celsius; min=0.0; max=40.0; default=0.0]
+      t_b: 15.0                              # lower layer temperature [Celsius; min=-2.0; max=40.0; default=0.0]
    NN: 2.56000000E-04                        # square of buoyancy frequency [s^-2; min=0.0; default=0.0]
    relax:                                    # relax model temperature to observed/prescribed value
       tau: 1.00000000E+15                    # time scale for interior layer [s; min=0.0; default=1.00000000E+15]
@@ -120,7 +120,7 @@ surface:
       method: file                           # method [constant, file=from file; default=constant]
       file: sst_file.dat                     # path to file with time series [default=]
    ice:
-      model: none                            # model [none, lebedev=Lebedev (1938), mylake, winton; default=none]
+      model: no_ice                          # model [no_ice=no ice model, simple=freezing temperature, basal_melt=Basal Melt , lebedev=Lebedev (1938), mylake=Saloranta and Andersen (2007), winton=Michael Winton (2000); default=simple]
       H: 0.0                                 # initial ice thickness [m; default=0.0]
    roughness:
       charnock: true                         # use Charnock (1955) roughness adaptation [default=false]
@@ -311,6 +311,7 @@ cvmix:
          use: false                          # compute interior double diffusion mixing coefficients [default=false]
 fabm:                                        # Framework for Aquatic Biogeochemical Models
    use: false                                # enable FABM [default=false]
+   yaml_file: fabm.yaml                      # FABM configuration file [default=fabm.yaml]
    freshwater_impact: true                   # enable dilution/concentration by precipitation/evaporation [default=true]
    feedbacks:                                # feedbacks to physics
       shade: false                           # interior light absorption [default=false]
@@ -336,5 +337,6 @@ output:
       time_unit: hour                        # time unit [second, hour, day, month, year, dt=model time step; default=day]
       time_step: 1                           # number of time units between output [min=1; default=1]
       time_method: point                     # treatment of time dimension [point=instantaneous, mean, integrated; default=point]
+      xtype: double                          # data type [default, single=32-bit float, double=64-bit double; default=default]
       variables:
       - source: *                            # variable name in model
