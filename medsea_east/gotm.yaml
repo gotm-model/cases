@@ -309,7 +309,7 @@ cvmix:
          use: false                        # compute interior double diffusion mixing coefficients [default=false]
 fabm:                                      # Framework for Aquatic Biogeochemical Models
    use: true                               # enable FABM [default=false]
-   yaml_file: egon.yaml                    # FABM configuration file [default=fabm.yaml]
+   yaml_file: fabm.yaml                    # FABM configuration file [default=fabm.yaml]
    freshwater_impact: true                 # enable dilution/concentration by precipitation/evaporation [default=true]
    feedbacks:                              # feedbacks to physics
       shade: false                         # interior light absorption [default=false]
