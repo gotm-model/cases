@@ -1,0 +1,8 @@
+instances:
+  sed:
+    model: bb/passive
+    long_name: sediment
+    parameters:
+      vertical_velocity: -86.4          # vertical velocity (negative for settling, positive for rising) (m d-1), default = 0.0
+    initialization:
+      c: 1.0                            # concentration (mol m-3)
