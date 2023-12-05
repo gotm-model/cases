@@ -316,14 +316,14 @@ fabm:                                      # Framework for Aquatic Biogeochemica
 buoyancy:
    NN_ini: 1.00000000E-04                  # initial buoyancy gradient (squared buoyancy frequency) [s^-2; default=0.0]
 equation_of_state:                         # equation of state
-   method: full_teos-10                    # density formulation [full_teos-10=TEOS-10, linear_teos-10=linearized at T0, S0, p0 (rho0 is calculated), linear_custom=linearized at T0, S0, rho0, dtr0, dsr0; default=full_teos-10]
+   method: full_teos-10                    # density formulation [full_teos-10=TEOS-10, linear_teos-10=linearized at T0, S0, p0 (rho0 is calculated), linear_custom=linearized at T0, S0, rho0, alpha, beta; default=full_teos-10]
    rho0: 1027.0                            # reference density [kg/m3; default=1027.0]
    linear:
       T0: 10.0                             # reference temperature [Celsius; min=-2.0; default=10.0]
       S0: 35.0                             # reference salinity [psu; min=0.0; default=35.0]
       p0: 0.0                              # reference pressure [Pa; default=0.0]
-      dtr0: -0.17                          # thermal expansion coefficient [kg/m^3/K; default=-0.17]
-      dsr0: 0.78                           # saline expansion coefficient [kg/m^3/psu; default=0.78]
+      alpha: -0.17                         # thermal expansion coefficient [kg/m^3/K; default=-0.17]
+      beta: 0.78                           # saline expansion coefficient [kg/m^3/psu; default=0.78]
 restart:
    load: false                             # initialize simulation with state stored in restart.nc [default=false]
 output:
