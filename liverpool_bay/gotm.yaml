@@ -23,11 +23,12 @@ temperature:                                   # temperature profile used for in
    constant_value: 20.0                        # value to use throughout the simulation [Celsius; default=0.0]
    file: t_prof_file.dat                       # path to file with series of profiles [default=]
    column: 1                                   # index of column to read from [default=1]
+   type: in-situ                               # temperature measure [in-situ, potential, conservative; default=in-situ]
    two_layer:
       z_s: 30.0                                # depth where upper layer ends [m; min=0.0; default=0.0]
-      t_s: 20.0                                # upper layer temperature [Celsius; min=0.0; max=40.0; default=0.0]
+      t_s: 20.0                                # upper layer temperature [Celsius; min=-2.0; max=40.0; default=0.0]
       z_b: 40.0                                # depth where lower layer begins [m; min=0.0; default=0.0]
-      t_b: 15.0                                # lower layer temperature [Celsius; min=0.0; max=40.0; default=0.0]
+      t_b: 15.0                                # lower layer temperature [Celsius; min=-2.0; max=40.0; default=0.0]
    NN: 2.56000000E-04                          # square of buoyancy frequency [s^-2; min=0.0; default=0.0]
    relax:                                      # relax model temperature to observed/prescribed value
       tau: 10800.0                             # time scale for interior layer [s; min=0.0; default=1.00000000E+15]
@@ -38,6 +39,7 @@ salinity:                                      # salinity profile used for initi
    constant_value: 20.0                        # value to use throughout the simulation [psu; min=0.0; default=0.0]
    file: s_prof_file.dat                       # path to file with series of profiles [default=]
    column: 1                                   # index of column to read from [default=1]
+   type: practical                             # salinity measure [practical, absolute; default=practical]
    two_layer:
       z_s: 30.0                                # depth where upper layer ends [m; min=0.0; default=0.0]
       s_s: 20.0                                # upper layer salinity [psu; min=0.0; max=40.0; default=0.0]
@@ -119,7 +121,7 @@ surface:
       method: constant                         # method to compute albedo [constant, payne=Payne (1972), cogley=Cogley (1979); default=payne]
       constant_value: 0.0                      # constant value to use throughout the simulation [fraction; min=0.0; max=1.0; default=0.0]
    ice:
-      model: none                              # model [none, lebedev=Lebedev (1938), mylake, winton; default=none]
+      model: no_ice                            # model [no_ice=no ice model, simple=freezing temperature, basal_melt=Basal Melt , lebedev=Lebedev (1938), mylake=Saloranta and Andersen (2007), winton=Michael Winton (2000); default=simple]
       H: 0.0                                   # initial ice thickness [m; default=0.0]
    roughness:
       charnock: true                           # use Charnock (1955) roughness adaptation [default=false]
@@ -330,9 +332,9 @@ fabm:                                          # Framework for Aquatic Biogeoche
    input:
 buoyancy:
    NN_ini: 1.00000000E-04                      # initial buoyancy gradient (squared buoyancy frequency) [s^-2; default=0.0]
-eq_state:                                      # equation of state
-   method: unesco                              # method [unesco, jackett=Jackett et al. (2005); default=jackett]
-   form: full                                  # formulation [full, full-pot=full with buoyancy frequency based on surface pressure, linear=linearized at T0,S0,p0, linear_custom=linearized at T0,S0,p0,dtr0,dsr0; default=full]
+equation_of_state:                             # equation of state
+   method: full_teos-10                        # density formulation [full_teos-10=TEOS-10, linear_teos-10=linearized at T0, S0, p0 (rho0 is calculated), linear_custom=linearized at T0, S0, rho0, dtr0, dsr0; default=full_teos-10]
+   rho0: 1027.0                                # reference density [kg/m3; default=1027.0]
    linear:
       T0: 10.0                                 # reference temperature [Celsius; min=-2.0; default=10.0]
       S0: 35.0                                 # reference salinity [psu; min=0.0; default=35.0]
@@ -347,4 +349,4 @@ output:
       time_step: 6                             # number of time units between output [min=1; default=1]
       time_method: point                       # treatment of time dimension [point=instantaneous, mean, integrated; default=point]
       variables:
-      - source: *                              # variable name in model
+      - source: /*                             # variable name in model
