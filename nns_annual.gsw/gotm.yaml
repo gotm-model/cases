@@ -23,7 +23,6 @@ temperature:                                 # temperature profile used for init
    constant_value: 20.0                      # value to use throughout the simulation [Celsius; default=0.0]
    file: t_prof_file.dat                     # path to file with series of profiles [default=]
    column: 1                                 # index of column to read from [default=1]
-   type: in-situ                             # temperature measure [in-situ, potential, conservative; default=in-situ]
    two_layer:
       z_s: 30.0                              # depth where upper layer ends [m; min=0.0; default=0.0]
       t_s: 20.0                              # upper layer temperature [Celsius; min=-2.0; max=40.0; default=0.0]
@@ -37,7 +36,6 @@ salinity:                                    # salinity profile used for initial
    constant_value: 20.0                      # value to use throughout the simulation [psu; min=0.0; default=0.0]
    file: s_prof_file.dat                     # path to file with series of profiles [default=]
    column: 1                                 # index of column to read from [default=1]
-   type: practical                           # salinity measure [practical, absolute; default=practical]
    two_layer:
       z_s: 30.0                              # depth where upper layer ends [m; min=0.0; default=0.0]
       s_s: 20.0                              # upper layer salinity [psu; min=0.0; max=40.0; default=0.0]
@@ -322,9 +320,9 @@ fabm:                                        # Framework for Aquatic Biogeochemi
    input:
 buoyancy:
    NN_ini: 1.00000000E-04                    # initial buoyancy gradient (squared buoyancy frequency) [s^-2; default=0.0]
-equation_of_state:                           # equation of state
-   method: full_teos-10                      # density formulation [full_teos-10=TEOS-10, linear_teos-10=linearized at T0, S0, p0 (rho0 is calculated), linear_custom=linearized at T0, S0, rho0, alpha, beta; default=full_teos-10]
-   rho0: 1027.0                              # reference density [kg/m3; default=1027.0]
+eq_state:                                    # equation of state
+   method: unesco                            # method [unesco, jackett=Jackett et al. (2005); default=jackett]
+   form: full                                # formulation [full, full-pot=full with buoyancy frequency based on surface pressure, linear=linearized at T0,S0,p0, linear_custom=linearized at T0,S0,p0,alpha,beta; default=full]
    linear:
       T0: 10.0                               # reference temperature [Celsius; min=-2.0; default=10.0]
       S0: 35.0                               # reference salinity [psu; min=0.0; default=35.0]
@@ -339,4 +337,4 @@ output:
       time_step: 1                           # number of time units between output [min=1; default=1]
       time_method: point                     # treatment of time dimension [point=instantaneous, mean, integrated; default=point]
       variables:
-      - source: /*                           # variable name in model
+      - source: *                            # variable name in model
