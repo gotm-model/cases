@@ -1,32 +1,24 @@
 #!/usr/bin/bash
 
-x=`cat kurt`
+setups="estuary"
+setups="black_sea"
+setups="channel"
+setups="nns_annual"
+setups="blacksea channel couette entrainment estuary flex gotland lago_maggiore liverpool_bay medsea_east medsea_west nns_annual nns_seasonal ows_papa plume resolute reynolds rouse seagrass wave_breaking"
 
-gotm=~/local/intel/19.2/gotm/5.3/bin/gotm
 
-for y in $x; do
-
-  echo
-  echo "$y: "
-  if [ -d $y ]; then
-    cd $y
-    make namelist >& /dev/null
-    if [ $? -eq 0 ]; then
-      echo 'namelists generated'
-      $gotm --read_nml --write_yaml gotm.yaml >& /dev/null
-      if [ $? -eq 0 ]; then
-        echo 'gotm.yaml generated'
-#        $gotm >& gotm.log
-      else
-        echo "failed to generate gotm.yaml"
-      fi
-      git rm -f --ignore-unmatch  *.nml
-    else
-      echo "failed to generate namelists"
-    fi
-    rm *.nml
-    cd ..
-  else
-    echo "setup has been moved"
-  fi
+for s in $setups; do
+   echo "SETUP: "$s
+   cd $s
+   git checkout gotm.yaml
+   sed -i -e "s/-0.17         /2.00000000E-04/g" -e "s/0.78         /7.50000000E-04/g" gotm.yaml
+   cp gotm.yaml gotm.yaml.org
+   #python ~/source/repos/GOTM/code/scripts/python/update_setup.py --gotm ~/local/gcc/9/gotm/6/bin/gotm --detail default gotm.yaml
+   /home/kb/local/gcc/12/gotm/7/bin/gotm gotm.yaml.org --ignore_unknown_config --write_yaml gotm.yaml
+   cd ..
 done
+
+
+
+
+
