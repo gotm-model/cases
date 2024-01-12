@@ -318,8 +318,6 @@ fabm:                                      # Framework for Aquatic Biogeochemica
       surface_drag: false                  # surface drag [default=false]
    repair_state: false                     # clip state to minimum/maximum boundaries [default=false]
    input:
-buoyancy:
-   NN_ini: 1.00000000E-04                  # initial buoyancy gradient (squared buoyancy frequency) [s^-2; default=0.0]
 equation_of_state:                         # equation of state
    method: full_teos-10                    # density formulation [full_teos-10=TEOS-10, linear_teos-10=linearized at T0, S0, p0 (rho0 is calculated), linear_custom=linearized at T0, S0, rho0, alpha, beta; default=full_teos-10]
    rho0: 1027.0                            # reference density [kg/m3; default=1027.0]
