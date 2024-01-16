@@ -1,6 +1,10 @@
 *.nc
 *.swp
 *.log
+log.*
+gotm.yaml.*
+gmon.out
 timestamp
-acpy/
+update.sh
+runall.sh
 
