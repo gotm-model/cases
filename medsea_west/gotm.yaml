@@ -40,9 +40,9 @@ salinity:                                  # salinity profile used for initializ
    type: practical                         # salinity measure [practical, absolute; default=practical]
    two_layer:
       z_s: 30.0                            # depth where upper layer ends [m; min=0.0; default=0.0]
-      s_s: 20.0                            # upper layer salinity [psu; min=0.0; max=40.0; default=0.0]
+      s_s: 20.0                            # upper layer salinity [g/kg; min=0.0; max=40.0; default=0.0]
       z_b: 40.0                            # depth where lower layer begins [m; min=0.0; default=0.0]
-      s_b: 15.0                            # lower layer salinity [psu; min=0.0; max=40.0; default=0.0]
+      s_b: 15.0                            # lower layer salinity [g/kg; min=0.0; max=40.0; default=0.0]
    NN: 2.56000000E-04                      # square of buoyancy frequency [s^-2; min=0.0; default=0.0]
    relax:                                  # relax model salinity to observed/prescribed value
       tau: 1.00000000E+15                  # time scale for interior layer [s; min=0.0; default=1.00000000E+15]
@@ -147,7 +147,7 @@ light_extinction:
       file:                                # path to file with time series [default=]
       column: 1                            # index of column to read from [default=1]
 turbulence:
-   turb_method: second_order               # turbulence closure [convective=convective adjustment, first_order=first-order, second_order=second-order, cvmix; default=second_order]
+   turb_method: second_order               # turbulence closure [first_order=first-order, second_order=second-order, cvmix; default=second_order]
    tke_method: tke                         # turbulent kinetic energy equation [local_eq=algebraic length scale equation, tke=differential equation for tke (k-epsilon style), mellor_yamada=differential equation for q^2/2 (Mellor-Yamada style); default=tke]
    len_scale_method: dissipation           # dissipative length scale [parabolic, triangular, xing_davies=Xing and Davies (1995), robert_ouellet=Robert and Ouellet (1987), blackadar=Blackadar (two boundaries) (1962), bougeault_andre=Bougeault and Andre (1986), eifler_schrimpf=Eifler and Schrimpf (ISPRAMIX) (1992), dissipation=dynamic dissipation rate equation, mellor_yamada=dynamic Mellor-Yamada q^2 l-equation, gls=generic length scale (GLS); default=dissipation]
    stab_method: schumann_gerz              # stability functions [constant, munk_anderson=Munk and Anderson (1954), schumann_gerz=Schumann and Gerz (1995), eifler_schrimpf=Eifler and Schrimpf (1992); default=constant]
@@ -322,11 +322,11 @@ equation_of_state:                         # equation of state
    method: full_teos-10                    # density formulation [full_teos-10=TEOS-10, linear_teos-10=linearized at T0, S0, p0 (rho0 is calculated), linear_custom=linearized at T0, S0, rho0, alpha, beta; default=full_teos-10]
    rho0: 1027.0                            # reference density [kg/m3; default=1027.0]
    linear:
-      T0: 10.0                             # reference temperature [Celsius; min=-2.0; default=10.0]
-      S0: 35.0                             # reference salinity [psu; min=0.0; default=35.0]
-      p0: 0.0                              # reference pressure [Pa; default=0.0]
-      alpha: 2.00000000E-04                # thermal expansion coefficient [kg/m^3/K; default=-0.17]
-      beta: 7.50000000E-04                  # saline expansion coefficient [kg/m^3/psu; default=0.78]
+      T0: 10.0                             # reference temperature [Celsius; min=-2.0; default=15.0]
+      S0: 35.0                             # reference salinity [g/kg; min=0.0; default=35.0]
+      p0: 0.0                              # reference pressure [dbar; min=0.0; default=0.0]
+      alpha: 2.00000000E-04                # thermal expansion coefficient [1/K; default=2.00000000E-04]
+      beta: 7.50000000E-04                 # saline contraction coefficient [kg/g; default=7.50000000E-04]
 restart:
    load: false                             # initialize simulation with state stored in restart.nc [default=false]
 output:
