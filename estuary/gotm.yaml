@@ -215,7 +215,7 @@ mimic_3d:                                      # effects of horizontal gradients
       period_1: 44714.0                        # period of 1st tidal harmonic (eg. M2-tide) [s; default=44714.0]
       period_2: 43200.0                        # period of 2nd tidal harmonic (eg. S2-tide) [s; default=43200.0]
    int_pressure:                               # internal pressure
-      type: none                               # method [none, gradients=prescribed horiztonal gradients of T and S, plume=surface or bottom plume; default=none]
+      type: gradients                          # method [none, gradients=prescribed horiztonal gradients of T and S, plume=surface or bottom plume; default=none]
       gradients:                               # horizontal salinity and temperature gradients
          dtdx:                                 # temperature gradient in West-East direction [Celsius/m]
             method: constant                   # method [off, constant, file=from file; default=off]
