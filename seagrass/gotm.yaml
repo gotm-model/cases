@@ -146,7 +146,7 @@ turbulence:
    turb_method: first_order                   # turbulence closure [first_order=first-order, second_order=second-order, cvmix; default=second_order]
    tke_method: tke                            # turbulent kinetic energy equation [local_eq=algebraic length scale equation, tke=differential equation for tke (k-epsilon style), mellor_yamada=differential equation for q^2/2 (Mellor-Yamada style); default=tke]
    len_scale_method: dissipation              # dissipative length scale [parabolic, triangular, xing_davies=Xing and Davies (1995), robert_ouellet=Robert and Ouellet (1987), blackadar=Blackadar (two boundaries) (1962), bougeault_andre=Bougeault and Andre (1986), eifler_schrimpf=Eifler and Schrimpf (ISPRAMIX) (1992), dissipation=dynamic dissipation rate equation, mellor_yamada=dynamic Mellor-Yamada q^2 l-equation, gls=generic length scale (GLS); default=dissipation]
-   stab_method: eifler_schrimpf               # stability functions [constant, munk_anderson=Munk and Anderson (1954), schumann_gerz=Schumann and Gerz (1995), eifler_schrimpf=Eifler and Schrimpf (1992); default=constant]
+   stab_method: munk_anderson                 # stability functions [constant, munk_anderson=Munk and Anderson (1954), schumann_gerz=Schumann and Gerz (1995), eifler_schrimpf=Eifler and Schrimpf (1992); default=constant]
    turb_param:
       cm0_fix: 5.47700000E-01                 # value of the stability function in the log-law [dimensionless; min=0.0; default=5.47700000E-01]
       Prandtl0_fix: 0.74                      # turbulent Prandtl-number [dimensionless; min=0.0; default=0.74]
