@@ -1,0 +1,38 @@
+name: Bug Report
+description: Report a bug in one of the GOTM standard cases
+
+body:
+  - type: dropdown
+    id: version
+    attributes:
+      label: Stable or devel version?
+      options:
+        - stable
+        - devel
+      multiple: true
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Which platform?
+      options:
+        - Conda
+        - Linux
+        - Mac
+        - Windows
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+    validations:
+      required: true
+
+  - type: textarea
+    id: other
+    attributes:
+      label: Anything else?

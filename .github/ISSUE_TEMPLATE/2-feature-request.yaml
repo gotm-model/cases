@@ -1,0 +1,10 @@
+name: 'Feature Request'
+description: Suggest a new example to be included as a standard case
+
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the case and what it covers that is not already covered.
+    validations:
+      required: true
