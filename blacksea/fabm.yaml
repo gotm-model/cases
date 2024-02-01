@@ -1,91 +1,80 @@
 require_initialization: true
 instances:
-  jrc_bsem:                   #BS biogeochecmial model as in Oguz et al., 2002
+  bsem:
+    model: jrc/bsem
     parameters:
-      fluff:  false             #  (Decide whether to calculate fluff layer), default = false 
-      sfl_ni: 	 0.0        #'mmol n/m2/d', 'constant surface nitrate flux', default=0.083_rk
-      sfl_am:  	 0.0        #'mmol n/m3','mmolminimum phyto small concentration??',  default=0.0225_rk
-      pl0:       0.0225		#'mmol n/m3','minimum phyto large concentration ',  default=0.0225_rk
-      ps0:       0.0225 	#'mmol n/m3','minimum phyto small concentration ',  default=0.0225_rk
-      zs0: 	 0.0225 	#'mmol n/m3','minimum zoo small concentration', default=0.0225_rk
-      zl0:  	 0.0225 	#'mmol n/m3','minimum zoo large concentration',   default=0.0225_rk
-      zn0: 	 0.0225 	#'mmol n/m3','minimum zoo notiluca concentration ',  default=0.0225_rk
-      zg0: 	 0.0225		#''mmol n/m3',minimum zoo gelatinous concentration',   default=0.0225_rk
-      alpha_l:   0.1           #'initial slope of P-I curve for large phyto', default=0.8_rk
-      alpha_s: 	 0.1 		#'initial slope of P-I curve for small phyto', default=0.35_rk
-      sigma_l: 	 1.2 		#'1/d', 'maximum growth rate large phyto', default=1.2_rk)!set to=1 in CORDEX_MEDAR_GRDC_200
-      sigma_s:   1.0 		#'1/d', 'maximum growth rate small phyto', default=1.0_rk)
-      beta_l: 	 0.00		#'initial slope of P-I curve for large phyto', default=0.0015_rk)
-      beta_s:    0.0            #'initial slope of P-I curve for small phyto', default=0.35_rk)!changed to 0 in 11.1983
-      kb: 	 0.01 		# 'shelf shading attenuation', default=0.01_rk)!changed in 11.1983
-      ka_l: 	 0.3 		# 'half-saturation for amm uptake large phyto', default=0.3_rk)
-      ka_s: 	 0.2 		# 'half-saturation for amm uptake small phyto', default=0.2_rk)
-      kn_l: 	 0.5 		# 'half-saturation for ni uptake large phyto', default=0.5_rk)
-      kn_s:  	 0.3  		# 'half-saturation for ni uptake small phyto', default=0.3_rk)
-      mpl:    	 0.05		# '1/d', 'mortality rate for large phyto', default=0.005_rk)
-      mps:     	 0.06		#'1/d', 'mortality rate for small phyto', default=0.006_rk)
-      Q10l: 	 2.0		# 'temperature control of large phyto', default=2.0_rk)
-      Q10s: 	 1.5		# 'temperature control of small phyto', default=2.0_rk)
-      phyZ:      0.7		# default=0.7_rk
-      g_zs:   	 0.8   		#'1/d', 'maximum grazing rate of zoo small', default=0.8_rk)
-      g_zl:   	 0.5  		#'1/d', 'maximum grazing rate of zoo large', default=0.5_rk)
-      g_zn:   	 0.5   		#'1/d', 'maximum grazing rate of noctiluca', default=0.5_rk)
-      g_zg:  	 0.15   	#'1/d', 'maximum grazing rate of gelatinous zoo', default=0.15_rk)
-      k_zs: 	 0.4 		# 'half-sat cte for zoo small grazing', default=0.4_rk)
-      k_zl: 	 0.5 		# 'half-sat cte for zoo large grazing', default=0.5_rk)
-      k_zn: 	 0.4 		# 'half-sat cte for zoo noctiuca grazing', default=0.4_rk)
-      kn_zg: 	 0.25 		# 'half-sat cte for zoo gelatinous grazing', default=0.25_rk)
-      mzs:  	 0.1   		#'1/d', 'mortality rate of zoo small', default=0.1_rk)
-      mzl0: 	 0.25   	#'1/d', 'default mortality rate of zoo large', default=0.25_rk)
-      mzn:  	 0.15    	#'1/d', 'mortality rate of noctiluca', default=0.15_rk)
-      mnzg:  	 0.02    	#'1/d', 'mortality rate of gelatinous', default=0.02_rk)
-      mpzg0:  	 0.1    	# '1/d', 'default predation mortality rate of zoo gelatinous', default=0.1_rk)
-      mu_zs:  	 0.06    	#'1/d', 'excretion rate of zoo small', default=0.06_rk)
-      mu_zl:  	 0.05    	#'1/d', 'excretion rate of zoo large', default=0.05_rk)
-      mu_zn:  	 0.06    	#'1/d', 'excretion rate of zoo noctiluca', default=0.06_rk)
-      mu_zg:  	 0.08    	#'1/d', 'excretion rate of zoo gelatinous', default=0.08_rk) 
-      omega: 	 0.2 		# 'fraction of zoo mortality loss to HTL', default=0.2_rk)
-      epsilon_n0:  0.1          #'1/d', 'default remineralisation rate of dn', default=0.05_rk)
-      R0:      150.0            # 'half-sat value for dn remineralisation', default=150._rk)
-      w_dn: 	 5.		#'m/d', 'Detritus sedimentation rate', default=5._rk)
-      r_n0:  	 0.1		#'1/d', 'default nitrification rate', default=0.1_rk)
-      r_a0:  	 0.01		#'1/d', 'Amm oxid rate by nit', default=0.1_rk)
-      r_x0: 	 0.0		#'1/d', 'Nitrate oxid on the upper nitracline', default=0._rk)
-      r_s: 	 0.001 		#'1/d', 'HS oxid rate by nit', default=0.1_rk)
-      r_o: 	 0.1 		#'1/d', ' HS oxid rate by oxyg ', default=0.1_rk)
-      r_u: 	 0.000  	#'1/d', 'HS oxid rate by other procc', default=0.1_rk)
-      pvel: 	 5.0		#'m/d', 'piston velocity', default=5._rk)
-      sr:   	 0.0625 	# 'redfield ratio(p/n)', default=0.0625_rk)
-      s1: 	 5.3		# 'reduced nitrate/oxidized detritus ', default=5.3_rk)
-      s2: 	 6.625		# 'oxygen production/recycled nitrogen', default=6.625_rk)
-      s3:  	 8.625		# 'oyxgen production related to n', default=6.625_rk)
-      s4: 	 2.0		# 'nitrification', default=6.625_rk)
-      a0: 	 31.25 		#'mmol /m3','osat Parameter ',  default=31.25_rk)
-      a1:  	 14.603		#'osat Parameter ',  default=14.603_rk)
-      a2:  	 0.4025		#'1 /deg C','osat Parameter ',  default=0.4025_rk)
-      lds:       3.5            #'m/d', 'rate of detritus sinking into sediment', default=3.5_rk)
-      lsd: 	 25.		#'1/d', 'rate of sediment resuspension', default=25._rk)
-      tau_crit:  0.07		#'N /m2','critical bottom stress ',  default=0.07_rk)
-      lsa: 	 0.001 		#'1/d', 'rate of sediment mineralisation', default=0.001_rk)
-      bsa: 	 0.15 		#'1 /deg C','temperature control of sediment mineralisation  ',  default=0.15_rk)
-      ph1: 	 0.15		# 'release of phosphate ', default=0.15_rk)
-      ph2: 	 0.1		# 'release of phosphate ', default=0.1_rk)
-      sig_l:    14.2		# 'lower sigma density limit ', default=14.2_rk)
-      sig_u:    15.2		# 'upper sigma density limit ', default=15.2_rk)
-      ox_l:     10.0		# 'mmol o2/m**3', 'lower oxygen limit for H2S oxidation ', default=10.0_rk)
-      sig_nit:  0.08		# 'kg/m**3', 'sigma density limit for ammonium nitrification', default=16.0_rk)
-      pvel_c:    4.5		# '-', 'a constant to improve oxygen flux', default=3.5_rk)
- 
+      fluff: false             # include fluff layer (-), default = false
+      sfl_ni: 0.0              # constant surface nitrate flux (mmol N/m2/d), default = 0.0
+      sfl_am: 0.0              # mmolminimum phyto small concentration?? (mmol N/m3), default = 0.0
+      pl0: 0.0225              # minimum phyto large concentration (mmol N/m3), default = 0.0225
+      ps0: 0.0225              # minimum phyto small concentration (mmol N/m3), default = 0.0225
+      alpha_l: 0.8             # initial slope of P-I curve for large phyto (-), default = 0.8
+      alpha_s: 0.35            # initial slope of P-I curve for small phyto (-), default = 0.35
+      sigma_l: 1.2             # maximum growth rate large phyto (1/d), default = 1.2
+      sigma_s: 1.0             # maximum growth rate small phyto (1/d), default = 1.0
+      beta_l: 0.0015           # initial slope of P-I curve for large phyto (-), default = 0.0015
+      beta_s: 0.35             # initial slope of P-I curve for small phyto (-), default = 0.35
+      kb: 0.01                 # shelf shading attenuation (-), default = 0.01
+      ka_l: 0.3                # half-saturation for amm uptake large phyto (-), default = 0.3
+      ka_s: 0.2                # half-saturation for amm uptake small phyto (-), default = 0.2
+      kn_l: 0.5                # half-saturation for ni uptake large phyto (-), default = 0.5
+      kn_s: 0.3                # half-saturation for ni uptake small phyto (-), default = 0.3
+      mpl: 0.05                # mortality rate for large phyto (1/d), default = 0.005
+      mps: 0.06                # mortality rate for small phyto (1/d), default = 0.006
+      Q10: 2.0                 # temperature control of large phytoplankton growth (-), default = 2.0
+      phyZ: 0.7                # Phytoplankton assimilation efficiency (-), default = 0.7
+      g_zs: 0.8                # maximum grazing rate of zoo small (1/d), default = 0.8
+      g_zl: 0.5                # maximum grazing rate of zoo large (1/d), default = 0.5
+      g_zn: 0.5                # maximum grazing rate of noctiluca (1/d), default = 0.5
+      g_zg: 0.15               # maximum grazing rate of gelatinous zoo (1/d), default = 0.15
+      k_zs: 0.4                # half-sat cte for zoo small grazing (-), default = 0.4
+      k_zl: 0.5                # half-sat cte for zoo large grazing (-), default = 0.5
+      k_zn: 0.4                # half-sat cte for zoo noctiuca grazing (-), default = 0.4
+      kn_zg: 0.25              # half-sat cte for zoo gelatinous grazing (-), default = 0.25
+      mzs: 0.1                 # mortality rate of zoo small (1/d), default = 0.1
+      mzl0: 0.25               # default mortality rate of zoo large (1/d), default = 0.25
+      mzn: 0.15                # mortality rate of noctiluca (1/d), default = 0.15
+      mnzg: 0.02               # mortality rate of gelatinous (1/d), default = 0.02
+      mpzg0: 0.1               # default predation mortality rate of zoo gelatinous (1/d), default = 0.1
+      mu_zs: 0.06              # excretion rate of zoo small (1/d), default = 0.06
+      mu_zl: 0.05              # excretion rate of zoo large (1/d), default = 0.05
+      mu_zn: 0.06              # excretion rate of zoo noctiluca (1/d), default = 0.06
+      mu_zg: 0.08              # excretion rate of zoo gelatinous (1/d), default = 0.08
+      epsilon_n0: 0.05         # default remineralisation rate of dn (1/d), default = 0.05
+      R0: 150.0                # half-sat value for dn remineralisation (-), default = 150.0
+      w_dn: 5.0                # Detritus sedimentation rate (m/d), default = 5.0
+      r_n0: 0.1                # default nitrification rate (1/d), default = 0.1
+      r_a0: 0.01               # Amm oxid rate by nit (1/d), default = 0.1
+      r_s: 0.001               # HS oxid rate by nit (1/d), default = 0.1
+      r_o: 0.1                 # HS oxid rate by oxyg (1/d), default = 0.1
+      r_u: 0.0                 # HS oxid rate by other procc (1/d), default = 0.1
+      s1: 5.3                  # reduced nitrate/oxidized detritus (-), default = 5.3
+      s2: 6.625                # oxygen production/recycled nitrogen (-), default = 6.625
+      s4: 2.0                  # nitrification (-), default = 6.625
+      lds: 3.5                 # rate of detritus sinking into sediment (m/d), default = 3.5
+      lsd: 25.0                # rate of sediment resuspension (1/d), default = 25.0
+      tau_crit: 0.07           # critical bottom stress (N /m2), default = 0.07
+      lsa: 0.001               # rate of sediment mineralisation (1/d), default = 0.001
+      bsa: 0.15                # temperature control of sediment mineralisation (1/deg C), default = 0.15
+      pvel_c: 4.5              # A constant for adjusting oxygen flux (-), default = 3.5
+      temp_bio_high: 25.0      # Upper temperature control of biological reactions (deg C), default = 20.0
+      temp_bio_low: 5.0        # Lower temperature control of biological reactions (deg C), default = 5.0
+      par_lim: 75.0            # PAR limitation for photo inhibition (W/m**2), default = 75.0
+      temp_zg_lim: 16.0        # Gelationous zooplankton critical temperature (deg C), default = 16.0
+      ox_zoop_grazing: 200.0   # Oxygen control for zooplankton grazing (mmol O2/m3), default = 200.0
+      ox_min: 0.05             # Oxygen minimum allowed value (mmol O2/m3), default = 0.05
+      ox_lim_exc: 300.0        # Oxygen control for zooplankton excretion (mmol O2/m3), default = 300.0
+      ox_suboxic: 10.0         # Oxygen control for suboxic conditions (mmol O2/m3), default = 10.0
+      zl_pred_lost: 1.0        # Fraction of Zl lost by predation (-), default = 0.5
     initialization:
-      pl: 0.0045               # large phyto  (mmol n/m**3)
-      ps: 0.0045               # small phyto  (mmol n/m**3)
-      zs: 0.0025               # small zoo (mmol n/m**3)
-      zl: 0.0025               # large zoo (mmol n/m**3)
-      zn: 0.0025               # noctiluca zoo (mmol n/m**3)
-      zg: 0.0025               # gelatinous zoo (mmol n/m**3)
-      dn: 0.07                 # detritus (mmol n/m**3)
-      am: 0.07                 # ammonium (mmol p/m**3)
-      ni: 4.5                  # nitrate (mmol o2/m**3)
-      o2: 350.0                 # oxygen (mmol n/m**2)
-      hs: 4.5                  # HS (mmol p/m**2)
-      #fl: 0.0                 # fluff (mmol p/m**3)
+      pl: 0.0045               # PhytoLarge (mmol N/m**3)
+      ps: 0.0045               # PhytoSmall (mmol N/m**3)
+      zs: 0.0025               # MicroZoo (mmol N/m**3)
+      zl: 0.0025               # MesoZoo (mmol N/m**3)
+      zn: 0.0025               # Noctiluca (mmol N/m**3)
+      zg: 0.0025               # Mnemiopsis (mmol N/m**3)
+      dn: 0.07                 # detritus (mmol N/m**3)
+      am: 0.07                 # ammonium (mmol N/m**3)
+      ni: 4.5                  # nitrate (mmol N/m**3)
+      o2: 350.0                # oxygen (mmol O2/m**3)
+      hs: 4.5                  # hydrogen sulfide (mmol HS/m**3)

@@ -311,7 +311,7 @@ cvmix:
       double_diffusion:
          use: false                        # compute interior double diffusion mixing coefficients [default=false]
 fabm:                                      # Framework for Aquatic Biogeochemical Models
-   use: false                              # enable FABM [default=false]
+   use: true                               # enable FABM [default=false]
    freshwater_impact: true                 # enable dilution/concentration by precipitation/evaporation [default=true]
    feedbacks:                              # feedbacks to physics
       shade: false                         # interior light absorption [default=false]
