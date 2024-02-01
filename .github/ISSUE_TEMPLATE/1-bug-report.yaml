@@ -18,17 +18,27 @@ body:
     attributes:
       label: Which platform?
       options:
-        - Conda
         - Linux
         - Mac
         - Windows
     validations:
       required: true
 
+  - type: dropdown
+    id: binary
+    attributes:
+      label: How did you get the binary?
+      options:
+        - Conda
+        - Self compiled
+        - Other
+    validations:
+      required: true
+
   - type: textarea
     id: description
     attributes:
-      label: Description
+      label: Description - please include pictures
     validations:
       required: true
 
