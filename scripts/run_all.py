@@ -18,7 +18,7 @@ import yaml
 script_root = os.path.abspath(os.path.dirname(__file__))
 cases_dir = os.path.join(script_root, '..')
 
-skipdirs = ['.git', 'extern', 'scripts', 'build']
+skipdirs = ['.git', '.github', 'extern', 'scripts', 'build']
 default_gotm_url = 'https://github.com/gotm-model/code.git'
 
 class TestPhase:
