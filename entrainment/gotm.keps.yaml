@@ -2,16 +2,16 @@
 # You can generate a configuration with every possible setting with: gotm --write_yaml <OUTFILE> --detail full
 # To see only the settings that differ from the default, use: gotm --write_yaml <OUTFILE> --detail minimal
 version: 7                                 # version of configuration file [default=7]
-title: couette flow                        # simulation title used in output [default=GOTM simulation]
+title: shear-driven entrainment            # simulation title used in output [default=GOTM simulation]
 location:
    name: equator                           # station name used in output [default=GOTM site]
    latitude: 0.0                           # latitude [degrees North; min=-90.0; max=90.0; default=0.0]
    longitude: 0.0                          # longitude [degrees East; min=-360.0; max=360.0; default=0.0]
-   depth: 10.0                             # water depth [m; min=0.0; default=100.0]
+   depth: 50.0                             # water depth [m; min=0.0; default=100.0]
 time:
    start: 2005-01-01 00:00:00              # start date and time [yyyy-mm-dd HH:MM:SS; default=2017-01-01 00:00:00]
    stop: 2005-01-02 00:00:00               # stop date and time [yyyy-mm-dd HH:MM:SS; default=2018-01-01 00:00:00]
-   dt: 10.0                                # time step for integration [s; min=0.0; default=3600.0]
+   dt: 60.0                                # time step for integration [s; min=0.0; default=3600.0]
 grid:
    nlev: 100                               # number of layers [min=1; default=100]
    method: analytical                      # layer thickness specification [analytical=equal by default with optional zooming, file_sigma=prescribed relative fractions, file_h=prescribed thicknesses; default=analytical]
@@ -19,7 +19,7 @@ grid:
    ddl: 0.0                                # bottom zooming [dimensionless; min=0.0; default=0.0]
    file:                                   # path to file with layer thicknesses [default=]
 temperature:                               # temperature profile used for initialization and optionally relaxation [Celsius]
-   method: off                             # method [off, file=from file, constant, two_layer=two layers with linear gradient in between, buoyancy=from salinity and buoyancy frequency; default=off]
+   method: buoyancy                        # method [off, file=from file, constant, two_layer=two layers with linear gradient in between, buoyancy=from salinity and buoyancy frequency; default=off]
    constant_value: 20.0                    # value to use throughout the simulation [Celsius; default=0.0]
    file:                                   # path to file with series of profiles [default=]
    column: 1                               # index of column to read from [default=1]
@@ -33,17 +33,17 @@ temperature:                               # temperature profile used for initia
    relax:                                  # relax model temperature to observed/prescribed value
       tau: 1.00000000E+15                  # time scale for interior layer [s; min=0.0; default=1.00000000E+15]
 salinity:                                  # salinity profile used for initialization and optionally relaxation [psu]
-   method: off                             # method [off, file=from file, constant, two_layer=two layers with linear gradient in between, buoyancy=from temperature and buoyancy frequency; default=off]
-   constant_value: 20.0                    # value to use throughout the simulation [psu; min=0.0; default=0.0]
+   method: constant                        # method [off, file=from file, constant, two_layer=two layers with linear gradient in between, buoyancy=from temperature and buoyancy frequency; default=off]
+   constant_value: 35.0                    # value to use throughout the simulation [psu; min=0.0; default=0.0]
    file:                                   # path to file with series of profiles [default=]
    column: 1                               # index of column to read from [default=1]
    type: absolute                          # salinity measure [practical, absolute; default=practical]
    two_layer:
       z_s: 30.0                            # depth where upper layer ends [m; min=0.0; default=0.0]
-      s_s: 20.0                            # upper layer salinity [g/kg; min=0.0; max=40.0; default=0.0]
+      s_s: 30.0                            # upper layer salinity [g/kg; min=0.0; max=40.0; default=0.0]
       z_b: 40.0                            # depth where lower layer begins [m; min=0.0; default=0.0]
-      s_b: 15.0                            # lower layer salinity [g/kg; min=0.0; max=40.0; default=0.0]
-   NN: 2.56000000E-04                      # square of buoyancy frequency [s^-2; min=0.0; default=0.0]
+      s_b: 35.0                            # lower layer salinity [g/kg; min=0.0; max=40.0; default=0.0]
+   NN: 1.00000000E-04                      # square of buoyancy frequency [s^-2; min=0.0; default=0.0]
    relax:                                  # relax model salinity to observed/prescribed value
       tau: 1.00000000E+15                  # time scale for interior layer [s; min=0.0; default=1.00000000E+15]
 surface:
@@ -56,7 +56,7 @@ surface:
          column: 1                         # index of column to read from [default=1]
       tx:                                  # prescribed momentum flux in West-East direction [Pa]
          method: constant                  # method [constant, file=from file; default=constant]
-         constant_value: 1.027             # value to use throughout the simulation [Pa; default=0.0]
+         constant_value: 1.02700000E-01    # value to use throughout the simulation [Pa; default=0.0]
          file:                             # path to file with time series [default=]
          column: 1                         # index of column to read from [default=1]
       ty:                                  # prescribed momentum flux in South-North direction [Pa]
@@ -117,14 +117,14 @@ surface:
       method: constant                     # method to compute albedo [constant, payne=Payne (1972), cogley=Cogley (1979); default=payne]
       constant_value: 0.0                  # constant value to use throughout the simulation [fraction; min=0.0; max=1.0; default=0.0]
    ice:
-      model: no_ice                        # model [no_ice=no ice model, simple=freezing temperature, basal_melt=Basal Melt , lebedev=Lebedev (1938), mylake=Saloranta and Andersen (2007), winton=Michael Winton (2000); default=simple]
+      model: simple                        # model [no_ice=no ice model, simple=freezing temperature, basal_melt=Basal Melt , lebedev=Lebedev (1938), mylake=Saloranta and Andersen (2007), winton=Michael Winton (2000); default=simple]
       H: 0.0                               # initial ice thickness [m; default=0.0]
    roughness:
       charnock: false                      # use Charnock (1955) roughness adaptation [default=false]
       charnock_val: 1400.0                 # empirical constant for roughness adaptation [dimensionless; min=0.0; default=1400.0]
-      z0s_min: 0.003                       # hydrodynamic roughness (minimum value if Charnock adaptation is used) [m; min=0.0; default=0.02]
+      z0s_min: 0.02                        # hydrodynamic roughness (minimum value if Charnock adaptation is used) [m; min=0.0; default=0.02]
 bottom:
-   h0b: 0.1                                # physical bottom roughness [m; min=0.0; default=0.05]
+   h0b: 0.05                               # physical bottom roughness [m; min=0.0; default=0.05]
 light_extinction:
    method: jerlov-i                        # water type [jerlov-i=Jerlov type I, jerlov-1-50m=Jerlov type 1 (upper 50 m), jerlov-ia=Jerlov type IA, jerlov-ib=Jerlov type IB, jerlov-ii=Jerlov type II, jerlov-iii=Jerlov type III, custom; default=jerlov-i]
    A:                                      # non-visible fraction of shortwave radiation [1]
@@ -145,7 +145,7 @@ light_extinction:
 turbulence:
    turb_method: second_order               # turbulence closure [first_order=first-order, second_order=second-order, cvmix; default=second_order]
    tke_method: tke                         # turbulent kinetic energy equation [local_eq=algebraic length scale equation, tke=differential equation for tke (k-eps or k-w style), mellor_yamada=differential equation for q^2/2 (Mellor-Yamada style); default=tke]
-   len_scale_method: omega                 # dissipative length scale [parabolic, triangular, xing_davies=Xing and Davies (1995), robert_ouellet=Robert and Ouellet (1987), blackadar=Blackadar (two boundaries) (1962), bougeault_andre=Bougeault and Andre (1986), dissipation=dynamic dissipation rate equation, omega=dynamic omega equation, mellor_yamada=dynamic Mellor-Yamada q^2 l-equation, gls=generic length scale (GLS); default=dissipation]
+   len_scale_method: dissipation           # dissipative length scale [parabolic, triangular, xing_davies=Xing and Davies (1995), robert_ouellet=Robert and Ouellet (1987), blackadar=Blackadar (two boundaries) (1962), bougeault_andre=Bougeault and Andre (1986), dissipation=dynamic dissipation rate equation, omega=dynamic omega equation, mellor_yamada=dynamic Mellor-Yamada q^2 l-equation, gls=generic length scale (GLS); default=dissipation]
    stab_method: constant                   # stability functions [constant, munk_anderson=Munk and Anderson (1954), schumann_gerz=Schumann and Gerz (1995); default=constant]
    bc:                                     # boundary conditions
       k_ubc: neumann                       # upper boundary condition for k-equation [dirichlet, neumann; default=neumann]
@@ -361,9 +361,9 @@ equation_of_state:                         # equation of state
 restart:
    load: false                             # initialize simulation with state stored in restart.nc [default=false]
 output:
-   couette:                                # path of output file, excluding extension
+   entrainment.keps:                       # path of output file, excluding extension
       time_unit: dt                        # time unit [second, hour, day, month, year, dt=model time step; default=day]
-      time_step: 360                       # number of time units between output [min=1; default=1]
+      time_step: 60                        # number of time units between output [min=1; default=1]
       time_method: point                   # treatment of time dimension [point=instantaneous, mean, integrated; default=point]
       variables:
       - source: /*                         # variable name in model
