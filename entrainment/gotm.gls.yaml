@@ -143,9 +143,9 @@ light_extinction:
       file:                                # path to file with time series [default=]
       column: 1                            # index of column to read from [default=1]
 turbulence:
-   turb_method: cvmix                      # turbulence closure [no_model=constant nuh and num, first_order=first-order, second_order=second-order, cvmix; default=second_order]
+   turb_method: second_order               # turbulence closure [no_model=constant nuh and num, first_order=first-order, second_order=second-order, cvmix; default=second_order]
    tke_method: tke                         # turbulent kinetic energy equation [local_eq=algebraic length scale equation, tke=differential equation for tke (k-eps or k-w style), mellor_yamada=differential equation for q^2/2 (Mellor-Yamada style); default=tke]
-   len_scale_method: omega                 # dissipative length scale [parabolic, triangular, xing_davies=Xing and Davies (1995), robert_ouellet=Robert and Ouellet (1987), blackadar=Blackadar (two boundaries) (1962), bougeault_andre=Bougeault and Andre (1986), dissipation=dynamic dissipation rate equation, mellor_yamada=dynamic Mellor-Yamada q^2 l-equation, gls=generic length scale (GLS), omega=dynamic omega equation; default=dissipation]
+   len_scale_method: gls                   # dissipative length scale [parabolic, triangular, xing_davies=Xing and Davies (1995), robert_ouellet=Robert and Ouellet (1987), blackadar=Blackadar (two boundaries) (1962), bougeault_andre=Bougeault and Andre (1986), dissipation=dynamic dissipation rate equation, mellor_yamada=dynamic Mellor-Yamada q^2 l-equation, gls=generic length scale (GLS), omega=dynamic omega equation; default=dissipation]
    stab_method: constant                   # stability functions [constant, munk_anderson=Munk and Anderson (1954), schumann_gerz=Schumann and Gerz (1995); default=constant]
    bc:                                     # boundary conditions
       k_ubc: neumann                       # upper boundary condition for k-equation [dirichlet, neumann; default=neumann]
@@ -171,14 +171,14 @@ turbulence:
       kb_min: 1.00000000E-10               # minimum buoyancy variance [m^2/s^4; min=0.0; default=1.00000000E-10]
       epsb_min: 1.00000000E-14             # minimum buoyancy variance destruction rate [m^2/s^5; min=0.0; default=1.00000000E-14]
    generic:                                # generic length scale (GLS) model
-      compute_param: false                 # compute the model parameters [default=false]
+      compute_param: true                  # compute the model parameters [default=false]
       gen_m: 1.5                           # exponent for k [dimensionless; default=1.5]
       gen_n: -1.0                          # exponent for l [dimensionless; default=-1.0]
       gen_p: 3.0                           # exponent for cm0 [dimensionless; default=3.0]
       cpsi1: 1.44                          # empirical coefficient cpsi1 in psi equation [dimensionless; default=1.44]
       cpsi2: 1.92                          # empirical coefficient cpsi2 in psi equation [dimensionless; default=1.92]
       cpsi3minus: 0.0                      # cpsi3 for stable stratification [dimensionless; default=0.0]
-      cpsi3plus: 1.0                       # cpsi3 for unstable stratification [dimensionless; default=1.0]
+      cpsi3plus: 1.5                       # cpsi3 for unstable stratification [dimensionless; default=1.0]
       cpsi4: 0.0                           # empirical coefficient cpsi4 in psi equation [dimensionless; default=0.0]
       sig_kpsi: 1.0                        # Schmidt number for TKE diffusivity [dimensionless; default=1.0]
       sig_psi: 1.3                         # Schmidt number for psi diffusivity [dimensionless; default=1.3]
@@ -361,7 +361,7 @@ equation_of_state:                         # equation of state
 restart:
    load: false                             # initialize simulation with state stored in restart.nc [default=false]
 output:
-   entrainment.cvmix:                      # path of output file, excluding extension
+   entrainment.gls:                        # path of output file, excluding extension
       time_unit: dt                        # time unit [second, hour, day, month, year, dt=model time step; default=day]
       time_step: 60                        # number of time units between output [min=1; default=1]
       time_method: point                   # treatment of time dimension [point=instantaneous, mean, integrated; default=point]
