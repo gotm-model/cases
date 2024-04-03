@@ -2,7 +2,7 @@
 # You can generate a configuration with every possible setting with: gotm --write_yaml <OUTFILE> --detail full
 # To see only the settings that differ from the default, use: gotm --write_yaml <OUTFILE> --detail minimal
 version: 7                                 # version of configuration file [default=7]
-title: GOTM Simulation                     # simulation title used in output [default=GOTM simulation]
+title: Resolute Bay                        # simulation title used in output [default=GOTM simulation]
 location:
    name: Resolute                          # station name used in output [default=GOTM site]
    latitude: 75.0                          # latitude [degrees North; min=-90.0; max=90.0; default=0.0]
