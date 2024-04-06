@@ -167,7 +167,7 @@ turbulence:
       compute_c3: true                       # compute c3 (E3 for Mellor-Yamada) from steady-state Richardson number [default=true]
       Ri_st: 0.25                            # desired steady-state Richardson number [dimensionless; min=0.0; default=0.25]
       length_lim: true                       # apply Galperin et al. (1988) length scale limitation [default=true]
-      galp: 0.53                             # coefficient for length scale limitation [dimensionless; min=0.0; default=0.27]
+      galp: 0.27                             # coefficient for length scale limitation [dimensionless; min=0.0; default=0.27]
       const_num: 5.00000000E-04              # constant eddy diffusivity [m^2/s; min=0.0; default=5.00000000E-04]
       const_nuh: 5.00000000E-04              # constant heat diffusivity [m^2/s; min=0.0; default=5.00000000E-04]
       k_min: 1.00000000E-10                  # minimum turbulent kinetic energy [m^2/s^2; min=0.0; default=1.00000000E-10]
@@ -195,7 +195,7 @@ turbulence:
       ce3minus: -0.4                         # ce3 for stable stratification [dimensionless; default=0.0]
       ce3plus: 1.5                           # ce3 for unstable stratification [dimensionless; default=1.5]
       ce4: 0.0                               # empirical coefficient ce4 in dissipation equation [dimensionless; default=0.0]
-      sig_k: 2.0                             # Schmidt number for TKE diffusivity [dimensionless; default=1.0]
+      sig_k: 1.0                             # Schmidt number for TKE diffusivity [dimensionless; default=1.0]
       sig_e: 1.3                             # Schmidt number for dissipation diffusivity [dimensionless; default=1.3]
       sig_peps: false                        # use Burchard (2001) wave breaking parameterisation [default=false]
    kw:                                       # k-omega model
@@ -204,7 +204,7 @@ turbulence:
       cw3minus: 0.0                          # cw3 for stable stratification [dimensionless; default=0.0]
       cw3plus: 0.5                           # cw3 for unstable stratification [dimensionless; default=0.5]
       cw4: 0.15                              # empirical coefficient cw4 in omega equation [dimensionless; default=0.15]
-      sig_k: 2.0                             # Schmidt number for TKE diffusivity [dimensionless; default=2.0]
+      sig_kw: 2.0                             # Schmidt number for TKE diffusivity [dimensionless; default=2.0]
       sig_w: 2.0                             # Schmidt number for omega diffusivity [dimensionless; default=2.0]
    my:                                       # Mellor-Yamada model
       e1: 1.8                                # coefficient e1 in q^2 l equation [dimensionless; default=1.8]
