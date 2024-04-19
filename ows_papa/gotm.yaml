@@ -120,7 +120,7 @@ surface:
       constant_value: 0.0                  # constant value to use throughout the simulation [fraction; min=0.0; max=1.0; default=0.0]
    sst:                                    # observed surface temperature [Celsius]
       method: file                         # method [constant, file=from file; default=constant]
-      file: sst_file.dat                   # path to file with time series [default=]
+      file: sst_3hourly.dat                # path to file with time series [default=]
    ice:
       model: no_ice                        # model [no_ice=no ice model, simple=freezing temperature, basal_melt=Basal Melt , lebedev=Lebedev (1938), mylake=Saloranta and Andersen (2007), winton=Michael Winton (2000); default=simple]
       H: 0.0                               # initial ice thickness [m; default=0.0]
