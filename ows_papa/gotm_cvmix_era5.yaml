@@ -4,9 +4,9 @@
 version: 7                                 # version of configuration file [default=7]
 title: OWS Papa                            # simulation title used in output [default=GOTM simulation]
 location:
-   name: Ocean Weather Station Papa        # station name used in output [default=GOTM site]
-   latitude: 50.0                          # latitude [degrees North; min=-90.0; max=90.0; default=0.0]
-   longitude: -145.0                       # longitude [degrees East; min=-360.0; max=360.0; default=0.0]
+   name: ows_papa                          # station name used in output [default=GOTM site]
+   latitude: 50.1                          # latitude [degrees North; min=-90.0; max=90.0; default=0.0]
+   longitude: -144.9                       # longitude [degrees East; min=-360.0; max=360.0; default=0.0]
    depth: 250.0                            # water depth [m; min=0.0; default=100.0]
 time:
    start: 2010-01-01 00:00:00              # start date and time [yyyy-mm-dd HH:MM:SS; default=2017-01-01 00:00:00]
@@ -20,51 +20,49 @@ grid:
    file:                                   # path to file with layer thicknesses [default=]
 temperature:                               # temperature profile used for initialization and optionally relaxation [Celsius]
    method: file                            # method [off, file=from file, constant, two_layer=two layers with linear gradient in between, buoyancy=from salinity and buoyancy frequency; default=off]
-   constant_value: 20.0                    # value to use throughout the simulation [Celsius; default=0.0]
+   constant_value: 0.0                     # value to use throughout the simulation [Celsius; default=0.0]
    file: tprof_papa_hourly.dat             # path to file with series of profiles [default=]
    column: 1                               # index of column to read from [default=1]
    type: in-situ                           # temperature measure [in-situ, potential, conservative; default=in-situ]
    two_layer:
-      z_s: 30.0                            # depth where upper layer ends [m; min=0.0; default=0.0]
-      t_s: 20.0                            # upper layer temperature [Celsius; min=-2.0; max=40.0; default=0.0]
-      z_b: 40.0                            # depth where lower layer begins [m; min=0.0; default=0.0]
-      t_b: 15.0                            # lower layer temperature [Celsius; min=-2.0; max=40.0; default=0.0]
-   NN: 2.56000000E-04                      # square of buoyancy frequency [s^-2; min=0.0; default=0.0]
+      z_s: 0.0                             # depth where upper layer ends [m; min=0.0; default=0.0]
+      t_s: 0.0                             # upper layer temperature [Celsius; min=-2.0; max=40.0; default=0.0]
+      z_b: 0.0                             # depth where lower layer begins [m; min=0.0; default=0.0]
+      t_b: 0.0                             # lower layer temperature [Celsius; min=-2.0; max=40.0; default=0.0]
+   NN: 0.0                                 # square of buoyancy frequency [s^-2; min=0.0; default=0.0]
    relax:                                  # relax model temperature to observed/prescribed value
-      tau: 3.15000000E+07                  # time scale for interior layer [s; min=0.0; default=1.00000000E+15]
+      tau: 1.00000000E+15                  # time scale for interior layer [s; min=0.0; default=1.00000000E+15]
 salinity:                                  # salinity profile used for initialization and optionally relaxation [psu]
    method: file                            # method [off, file=from file, constant, two_layer=two layers with linear gradient in between, buoyancy=from temperature and buoyancy frequency; default=off]
-   constant_value: 20.0                    # value to use throughout the simulation [psu; min=0.0; default=0.0]
+   constant_value: 0.0                     # value to use throughout the simulation [psu; min=0.0; default=0.0]
    file: sprof_papa_hourly.dat             # path to file with series of profiles [default=]
    column: 1                               # index of column to read from [default=1]
    type: practical                         # salinity measure [practical, absolute; default=practical]
    two_layer:
-      z_s: 30.0                            # depth where upper layer ends [m; min=0.0; default=0.0]
-      s_s: 20.0                            # upper layer salinity [g/kg; min=0.0; max=40.0; default=0.0]
-      z_b: 40.0                            # depth where lower layer begins [m; min=0.0; default=0.0]
-      s_b: 15.0                            # lower layer salinity [g/kg; min=0.0; max=40.0; default=0.0]
-   NN: 2.56000000E-04                      # square of buoyancy frequency [s^-2; min=0.0; default=0.0]
+      z_s: 0.0                             # depth where upper layer ends [m; min=0.0; default=0.0]
+      s_s: 0.0                             # upper layer salinity [g/kg; min=0.0; max=40.0; default=0.0]
+      z_b: 0.0                             # depth where lower layer begins [m; min=0.0; default=0.0]
+      s_b: 0.0                             # lower layer salinity [g/kg; min=0.0; max=40.0; default=0.0]
+   NN: 0.0                                 # square of buoyancy frequency [s^-2; min=0.0; default=0.0]
    relax:                                  # relax model salinity to observed/prescribed value
-      tau: 3.15000000E+07                  # time scale for interior layer [s; min=0.0; default=1.00000000E+15]
-      tau_s: 86400.0                       # time scale for surface layer [s; min=0.0; default=1.00000000E+15]
-      tau_b: 86400.0                       # time scale for bottom layer [s; min=0.0; default=1.00000000E+15]
+      tau: 1.00000000E+15                  # time scale for interior layer [s; min=0.0; default=1.00000000E+15]
 surface:
    fluxes:                                 # heat and momentum fluxes
       method: kondo                        # method to calculate fluxes from meteorological conditions [off=use prescribed fluxes, kondo=Kondo (1975), fairall=Fairall et al. (1996); default=off]
       heat:                                # prescribed total heat flux (sensible, latent and net back-radiation) [W/m^2]
          method: file                      # method [constant, file=from file; default=constant]
          constant_value: 0.0               # value to use throughout the simulation [W/m^2; default=0.0]
-         file: heatflux_file.dat           # path to file with time series [default=]
+         file: heat_flux.dat               # path to file with time series [default=]
          column: 1                         # index of column to read from [default=1]
       tx:                                  # prescribed momentum flux in West-East direction [Pa]
          method: file                      # method [constant, file=from file; default=constant]
          constant_value: 0.0               # value to use throughout the simulation [Pa; default=0.0]
-         file: momentumflux_file.dat       # path to file with time series [default=]
+         file: momentum_flux.dat           # path to file with time series [default=]
          column: 1                         # index of column to read from [default=1]
       ty:                                  # prescribed momentum flux in South-North direction [Pa]
          method: file                      # method [constant, file=from file; default=constant]
          constant_value: 0.0               # value to use throughout the simulation [Pa; default=0.0]
-         file: momentumflux_file.dat       # path to file with time series [default=]
+         file: momentum_flux.dat           # path to file with time series [default=]
          column: 2                         # index of column to read from [default=1]
    u10:                                    # wind speed in West-East direction @ 10 m [m/s]
       method: file                         # method [constant, file=from file; default=constant]
@@ -125,7 +123,7 @@ surface:
       column: 1                            # index of column to read from [default=1]
    sss:                                    # observed surface salinity [psu]
       method: file                         # method [constant, file=from file; default=constant]
-      constant_value: 0.0                  # value to use throughout the simulation [psu; default=0.0] 
+      constant_value: 0.0                  # value to use throughout the simulation [psu; default=0.0]
       file: sss_hourly.dat                 # path to file with time series [default=]
       column: 1                            # index of column to read from [default=1]
    ice:
@@ -155,9 +153,9 @@ light_extinction:
       file:                                # path to file with time series [default=]
       column: 1                            # index of column to read from [default=1]
 turbulence:
-   turb_method: second_order               # turbulence closure [no_model=constant nuh and num, first_order=first-order, second_order=second-order, cvmix; default=second_order]
+   turb_method: cvmix                      # turbulence closure [no_model=constant nuh and num, first_order=first-order, second_order=second-order, cvmix; default=second_order]
    tke_method: tke                         # turbulent kinetic energy equation [local_eq=algebraic length scale equation, tke=differential equation for tke (k-eps or k-w style), mellor_yamada=differential equation for q^2/2 (Mellor-Yamada style); default=tke]
-   len_scale_method: dissipation           # dissipative length scale [parabolic, triangular, xing_davies=Xing and Davies (1995), robert_ouellet=Robert and Ouellet (1987), blackadar=Blackadar (two boundaries) (1962), bougeault_andre=Bougeault and Andre (1986), dissipation=dynamic dissipation rate equation, mellor_yamada=dynamic Mellor-Yamada q^2 l-equation, gls=generic length scale (GLS), omega=dynamic omega equation; default=dissipation]
+   len_scale_method: omega                 # dissipative length scale [parabolic, triangular, xing_davies=Xing and Davies (1995), robert_ouellet=Robert and Ouellet (1987), blackadar=Blackadar (two boundaries) (1962), bougeault_andre=Bougeault and Andre (1986), dissipation=dynamic dissipation rate equation, mellor_yamada=dynamic Mellor-Yamada q^2 l-equation, gls=generic length scale (GLS), omega=dynamic omega equation; default=dissipation]
    stab_method: constant                   # stability functions [constant, munk_anderson=Munk and Anderson (1954), schumann_gerz=Schumann and Gerz (1995); default=constant]
    bc:                                     # boundary conditions
       k_ubc: neumann                       # upper boundary condition for k-equation [dirichlet, neumann; default=neumann]
@@ -178,7 +176,7 @@ turbulence:
       galp: 0.27                           # coefficient for length scale limitation [dimensionless; min=0.0; default=0.27]
       const_num: 5.00000000E-04            # constant eddy diffusivity [m^2/s; min=0.0; default=5.00000000E-04]
       const_nuh: 5.00000000E-04            # constant heat diffusivity [m^2/s; min=0.0; default=5.00000000E-04]
-      k_min: 1.00000000E-05                # minimum turbulent kinetic energy [m^2/s^2; min=0.0; default=1.00000000E-10]
+      k_min: 1.00000000E-10                # minimum turbulent kinetic energy [m^2/s^2; min=0.0; default=1.00000000E-10]
       eps_min: 1.00000000E-12              # minimum dissipation rate [m^2/s^3; min=0.0; default=1.00000000E-12]
       kb_min: 1.00000000E-10               # minimum buoyancy variance [m^2/s^4; min=0.0; default=1.00000000E-10]
       epsb_min: 1.00000000E-14             # minimum buoyancy variance destruction rate [m^2/s^5; min=0.0; default=1.00000000E-14]
@@ -200,7 +198,7 @@ turbulence:
    keps:                                   # k-epsilon model
       ce1: 1.44                            # empirical coefficient ce1 in dissipation equation [dimensionless; default=1.44]
       ce2: 1.92                            # empirical coefficient ce2 in dissipation equation [dimensionless; default=1.92]
-      ce3minus: -0.4                       # ce3 for stable stratification [dimensionless; default=0.0]
+      ce3minus: 0.0                        # ce3 for stable stratification [dimensionless; default=0.0]
       ce3plus: 1.5                         # ce3 for unstable stratification [dimensionless; default=1.5]
       ce4: 0.0                             # empirical coefficient ce4 in dissipation equation [dimensionless; default=0.0]
       sig_k: 1.0                           # Schmidt number for TKE diffusivity [dimensionless; default=1.0]
@@ -221,13 +219,10 @@ turbulence:
       e6: 4.0                              # coefficient e6 in q^2 l equation [dimensionless; default=4.0]
       sq: 0.2                              # turbulent diffusivities of q^2 (= 2k) [dimensionless; default=0.2]
       sl: 0.2                              # turbulent diffusivities of q^2 l [dimensionless; default=0.2]
-      length: linear                       # barotropic length scale in q^2 l equation [parabolic, triangular, linear=linear from surface; default=parabolic]
+      length: parabolic                    # barotropic length scale in q^2 l equation [parabolic, triangular, linear=linear from surface; default=parabolic]
    scnd:                                   # second-order model
-      method: quasi_eq                     # method [quasi_eq=quasi-equilibrium, weak_eq_kb_eq=weak equilibrium with algebraic buoyancy variance; default=weak_eq_kb_eq]
-      scnd_coeff: canuto-a                    # coefficients of second-order model [custom, gibson_launder=Gibson and Launder (1978), mellor_yamada=Mellor and Yamada (1982), kantha_clayson=Kantha and Clayson (1994), luyten=Luyten et al. (1996), canuto-a=Canuto et al. (2001) (version A), canuto-b=Canuto et al. (2001) (version B), cheng=Cheng et al. (2002); default=canuto-a]
-   iw:                                     # internal wave mixing
-      method: large                        # method [off, mellor=Mellor (1989), large=Large et al. (1994); default=off]
-      alpha: 0.7                           # coefficient for Mellor internal wave model [dimensionless; default=0.0]
+      method: weak_eq_kb_eq                # method [quasi_eq=quasi-equilibrium, weak_eq_kb_eq=weak equilibrium with algebraic buoyancy variance; default=weak_eq_kb_eq]
+      scnd_coeff: canuto-a                 # coefficients of second-order model [custom, gibson_launder=Gibson and Launder (1978), mellor_yamada=Mellor and Yamada (1982), kantha_clayson=Kantha and Clayson (1994), luyten=Luyten et al. (1996), canuto-a=Canuto et al. (2001) (version A), canuto-b=Canuto et al. (2001) (version B), cheng=Cheng et al. (2002); default=canuto-a]
 mimic_3d:                                  # effects of horizontal gradients
    ext_pressure:                           # external pressure
       type: elevation                      # pressure metric [elevation=horizontal gradient in surface elevation, velocity=horizontal velocities at given height above bed, average_velocity=vertically averaged horizontal velocities; default=elevation]
@@ -297,7 +292,7 @@ mimic_3d:                                  # effects of horizontal gradients
          amp_1: 1.0                        # amplitude of 1st harmonic [m; default=0.0]
          phase_1: 0.0                      # phase of 1st harmonic [s; default=0.0]
          period_2: 43200.0                 # period of 2nd harmonic (eg. S2-tide) [s; default=43200.0]
-         amp_2: 0.5                        # amplitude of 2nd harmonic [m; default=0.0]
+         amp_2: 0.0                        # amplitude of 2nd harmonic [m; default=0.0]
          phase_2: 0.0                      # phase of 2nd harmonic [s; default=0.0]
    w:                                      # vertical velocity
       max:                                 # maximum velocity [m/s]
@@ -311,8 +306,6 @@ mimic_3d:                                  # effects of horizontal gradients
          file:                             # path to file with time series [default=]
          column: 1                         # index of column to read from [default=1]
       adv_discr: p2_pdm                    # vertical advection scheme [upstream=first-order upstream, p2=third-order upstream-biased polynomial, superbee=third-order TVD with Superbee limiter, muscl=third-order TVD with MUSCL limiter, p2_pdm=third-order TVD with ULTIMATE QUICKEST limiter; default=p2_pdm]
-o2:                                        # oxygen
-   scale_factor: 31.25                     # scale factor to be applied to values read from file [default=1.0]
 cvmix:
    surface_layer:                          # surface layer mixing
       use: true                            # compute surface layer mixing coefficients [default=true]
@@ -367,7 +360,7 @@ equation_of_state:                         # equation of state
    method: full_teos-10                    # density formulation [full_teos-10=TEOS-10, linear_teos-10=linearized from user-specified T0, S0, p0 (alpha, beta, cp calculated), linear_custom=linearized from user-specified T0, S0, rho0, alpha, beta, cp; default=full_teos-10]
    rho0: 1027.0                            # reference density [kg/m3; default=1027.0]
    linear:
-      T0: 10.0                             # reference temperature [Celsius; min=-2.0; default=15.0]
+      T0: 15.0                             # reference temperature [Celsius; min=-2.0; default=15.0]
       S0: 35.0                             # reference salinity [g/kg; min=0.0; default=35.0]
       p0: 0.0                              # reference pressure [dbar; min=0.0; default=0.0]
       alpha: 2.00000000E-04                # thermal expansion coefficient [1/K; default=2.00000000E-04]
@@ -376,9 +369,9 @@ equation_of_state:                         # equation of state
 restart:
    load: false                             # initialize simulation with state stored in restart.nc [default=false]
 output:
-   ows_papa_keps_era5:                     # path of output file, excluding extension
-      time_unit: day                       # time unit [second, hour, day, month, year, dt=model time step; default=day]
-      time_step: 1                         # number of time units between output [min=1; default=1]
-      time_method: mean                    # treatment of time dimension [point=instantaneous, mean, integrated; default=point]
+   ows_papa_cvmix_era5:                    # path of output file, excluding extension
+      time_unit: hour                      # time unit [second, hour, day, month, year, dt=model time step; default=day]
+      time_step: 3                         # number of time units between output [min=1; default=1]
+      time_method: point                   # treatment of time dimension [point=instantaneous, mean, integrated; default=point]
       variables:
       - source: /*                         # variable name in model
