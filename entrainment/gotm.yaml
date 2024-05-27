@@ -117,7 +117,7 @@ surface:
       method: constant                     # method to compute albedo [constant, payne=Payne (1972), cogley=Cogley (1979); default=payne]
       constant_value: 0.0                  # constant value to use throughout the simulation [fraction; min=0.0; max=1.0; default=0.0]
    ice:
-      model: simple                        # model [no_ice=no ice model, simple=freezing temperature, basal_melt=Basal Melt , lebedev=Lebedev (1938), mylake=Saloranta and Andersen (2007), winton=Michael Winton (2000); default=simple]
+      model: no_ice                        # model [no_ice=no ice model, simple=freezing temperature, basal_melt=Basal Melt , lebedev=Lebedev (1938), mylake=Saloranta and Andersen (2007), winton=Michael Winton (2000); default=simple]
       H: 0.0                               # initial ice thickness [m; default=0.0]
    roughness:
       charnock: false                      # use Charnock (1955) roughness adaptation [default=false]
@@ -301,18 +301,26 @@ o2:                                        # oxygen
 cvmix:
    surface_layer:                          # surface layer mixing
       use: true                            # compute surface layer mixing coefficients [default=true]
-      kpp:                                 # K-Profile Parameterization
-         use: true                         # use the K-Profile Parameterization [default=true]
-         langmuir_method: none             # method of Langmuir turbulence pararmeterization [none, lwf16=Li et al. (2016), lf17=Li and Fox-Kemper (2017), rwh16=Reichl et al. (2016); default=none]
-         surface_layer_extent: 0.1         # extent of surface layer in fraction of the boundary layer [dimensionless; min=0.0; max=1.0; default=0.1]
-         Ri_c: 0.3                         # critical Richardson number [dimensionless; min=0.0; default=0.3]
-         check_Ekman_length: false         # limit the OBL by the Ekman depth [default=false]
-         check_MonOb_length: false         # limit the OBL by the Monin-Obukhov depth [default=false]
-         use_enhanced_diff: true           # enhance diffusivity at OBL [default=true]
-         use_noDGat1: true                 # zero gradient of the shape function at OBL [default=true]
-         match_technique: simple           # matching technique of shape functions with the ocean interior [simple=simple shapes, gradient=gradient term, both=both gradient and nonlocal terms, parabolic=parabolic nonlocal term; default=simple]
-         bulk_Ri_interp_type: quadratic    # interpolation type for the bulk Richardson number [linear, quadratic, cubic; default=quadratic]
-         OBL_interp_type: lmd94            # interpolation type for diffusivity and viscosity at OBL [linear, quadratic, cubic, lmd94=Large et al. (1994); default=lmd94]
+      langmuir_method: none                # method of Langmuir turbulence pararmeterization [none, lwf16=Li et al. (2016), lf17=Li and Fox-Kemper (2017), rwh16=Reichl et al. (2016); default=none]
+      surface_layer_extent: 0.1            # extent of surface layer in fraction of the boundary layer [dimensionless; min=0.0; max=1.0; default=0.1]
+      Ri_c: 0.3                            # critical Richardson number [dimensionless; min=0.0; default=0.3]
+      check_Ekman_length: false            # limit the OBL by the Ekman depth [default=false]
+      check_MonOb_length: false            # limit the OBL by the Monin-Obukhov depth [default=false]
+      use_enhanced_diff: true              # enhance diffusivity at OBL [default=true]
+      use_noDGat1: true                    # zero gradient of the shape function at OBL [default=true]
+      match_technique: simple              # matching technique of shape functions with the ocean interior [simple=simple shapes, gradient=gradient term, both=both gradient and nonlocal terms, parabolic=parabolic nonlocal term; default=simple]
+      bulk_Ri_interp_type: quadratic       # interpolation type for the bulk Richardson number [linear, quadratic, cubic; default=quadratic]
+      OBL_interp_type: lmd94               # interpolation type for diffusivity and viscosity at OBL [linear, quadratic, cubic, lmd94=Large et al. (1994); default=lmd94]
+   bottom_layer:                           # bottom layer mixing
+      use: false                           # compute bottom layer mixing coefficients [default=false]
+      surface_layer_extent: 0.1            # extent of surface layer in fraction of the boundary layer [dimensionless; min=0.0; max=1.0; default=0.1]
+      Ri_c: 0.3                            # critical Richardson number [dimensionless; min=0.0; default=0.3]
+      check_Ekman_length: false            # limit the OBL by the Ekman depth [default=false]
+      check_MonOb_length: false            # limit the OBL by the Monin-Obukhov depth [default=false]
+      use_noDGat1: true                    # zero gradient of the shape function at OBL [default=true]
+      match_technique: simple              # matching technique of shape functions with the ocean interior [simple=simple shapes, gradient=gradient term, both=both gradient and nonlocal terms, parabolic=parabolic nonlocal term; default=simple]
+      bulk_Ri_interp_type: quadratic       # interpolation type for the bulk Richardson number [linear, quadratic, cubic; default=quadratic]
+      OBL_interp_type: lmd94               # interpolation type for diffusivity and viscosity at OBL [linear, quadratic, cubic, lmd94=Large et al. (1994); default=lmd94]
    interior:                               # interior mixing
       use: false                           # compute interior mixing coefficients [default=false]
       background:
