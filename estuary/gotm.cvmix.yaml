@@ -311,7 +311,7 @@ o2:                                            # oxygen
    scale_factor: 31.25                         # scale factor to be applied to values read from file [default=1.0]
 cvmix:
    surface_layer:                       # surface layer mixing
-      use: true                         # compute surface layer mixing coefficients [default=true]
+      use: false                        # compute surface layer mixing coefficients [default=true]
       langmuir_method: none             # method of Langmuir turbulence pararmeterization [none, lwf16=Li et al. (2016), lf17=Li and Fox-Kemper (2017), rwh16=Reichl et al. (2016); default=none]
       surface_layer_extent: 0.1         # extent of surface layer in fraction of the boundary layer [dimensionless; min=0.0; max=1.0; default=0.1]
       Ri_c: 0.3                         # critical Richardson number [dimensionless; min=0.0; default=0.3]
@@ -328,14 +328,14 @@ cvmix:
       Ri_c: 0.3                         # critical Richardson number [dimensionless; min=0.0; default=0.3]
       check_Ekman_length: false         # limit the OBL by the Ekman depth [default=false]
       check_MonOb_length: false         # limit the OBL by the Monin-Obukhov depth [default=false]
-      use_noDGat1: true                 # zero gradient of the shape function at OBL [default=true]
-      match_technique: simple           # matching technique of shape functions with the ocean interior [simple=simple shapes, gradient=gradient term, both=both gradient and nonlocal terms, parabolic=parabolic nonlocal term; default=simple]
+      use_noDGat1: false                # zero gradient of the shape function at OBL [default=true]
+      match_technique: gradient         # matching technique of shape functions with the ocean interior [simple=simple shapes, gradient=gradient term, both=both gradient and nonlocal terms, parabolic=parabolic nonlocal term; default=simple]
       bulk_Ri_interp_type: quadratic    # interpolation type for the bulk Richardson number [linear, quadratic, cubic; default=quadratic]
       OBL_interp_type: lmd94            # interpolation type for diffusivity and viscosity at OBL [linear, quadratic, cubic, lmd94=Large et al. (1994); default=lmd94]
    interior:                                   # interior mixing
       use: true                                # compute interior mixing coefficients [default=false]
       background:
-         use: false                            # use interior background mixing coefficients [default=false]
+         use: true                             # use interior background mixing coefficients [default=false]
          diffusivity: 1.00000000E-05           # background diffusivity [m^2/s; default=1.00000000E-05]
          viscosity: 1.00000000E-04             # background viscosity [m^2/s; default=1.00000000E-04]
       shear:
@@ -380,7 +380,7 @@ equation_of_state:                             # equation of state
 restart:
    load: false                                 # initialize simulation with state stored in restart.nc [default=false]
 output:
-   estuary-cvmix:                              # path of output file, excluding extension
+   estuary.cvmix:                              # path of output file, excluding extension
       time_unit: dt                            # time unit [second, hour, day, month, year, dt=model time step; default=day]
       time_step: 10                            # number of time units between output [min=1; default=1]
       time_method: point                       # treatment of time dimension [point=instantaneous, mean, integrated; default=point]
