@@ -371,7 +371,7 @@ restart:
 output:
    entrainment:                            # path of output file, excluding extension
       time_unit: dt                        # time unit [second, hour, day, month, year, dt=model time step; default=day]
-      time_step: 6                        # number of time units between output [min=1; default=1]
+      time_step: 6                         # number of time units between output [min=1; default=1]
       time_method: point                   # treatment of time dimension [point=instantaneous, mean, integrated; default=point]
       variables:
       - source: /*                         # variable name in model

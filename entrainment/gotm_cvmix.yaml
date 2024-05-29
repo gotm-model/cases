@@ -143,9 +143,9 @@ light_extinction:
       file:                                # path to file with time series [default=]
       column: 1                            # index of column to read from [default=1]
 turbulence:
-   turb_method: second_order               # turbulence closure [no_model=constant nuh and num, first_order=first-order, second_order=second-order, cvmix; default=second_order]
-   tke_method: mellor_yamada               # turbulent kinetic energy equation [local_eq=algebraic length scale equation, tke=differential equation for tke (k-eps or k-w style), mellor_yamada=differential equation for q^2/2 (Mellor-Yamada style); default=tke]
-   len_scale_method: mellor_yamada                 # dissipative length scale [parabolic, triangular, xing_davies=Xing and Davies (1995), robert_ouellet=Robert and Ouellet (1987), blackadar=Blackadar (two boundaries) (1962), bougeault_andre=Bougeault and Andre (1986), dissipation=dynamic dissipation rate equation, mellor_yamada=dynamic Mellor-Yamada q^2 l-equation, gls=generic length scale (GLS), omega=dynamic omega equation; default=dissipation]
+   turb_method: cvmix                      # turbulence closure [no_model=constant nuh and num, first_order=first-order, second_order=second-order, cvmix; default=second_order]
+   tke_method: tke                         # turbulent kinetic energy equation [local_eq=algebraic length scale equation, tke=differential equation for tke (k-eps or k-w style), mellor_yamada=differential equation for q^2/2 (Mellor-Yamada style); default=tke]
+   len_scale_method: omega                 # dissipative length scale [parabolic, triangular, xing_davies=Xing and Davies (1995), robert_ouellet=Robert and Ouellet (1987), blackadar=Blackadar (two boundaries) (1962), bougeault_andre=Bougeault and Andre (1986), dissipation=dynamic dissipation rate equation, mellor_yamada=dynamic Mellor-Yamada q^2 l-equation, gls=generic length scale (GLS), omega=dynamic omega equation; default=dissipation]
    stab_method: constant                   # stability functions [constant, munk_anderson=Munk and Anderson (1954), schumann_gerz=Schumann and Gerz (1995); default=constant]
    bc:                                     # boundary conditions
       k_ubc: neumann                       # upper boundary condition for k-equation [dirichlet, neumann; default=neumann]
@@ -161,9 +161,9 @@ turbulence:
       compute_kappa: true                  # compute von Karman constant from model parameters [default=true]
       kappa: 0.4                           # von Karman constant [dimensionless; min=0.0; default=0.4]
       compute_c3: true                     # compute c3 (E3 for Mellor-Yamada) from steady-state Richardson number [default=true]
-      Ri_st: 0.23                          # desired steady-state Richardson number [dimensionless; min=0.0; default=0.25]
+      Ri_st: 0.25                          # desired steady-state Richardson number [dimensionless; min=0.0; default=0.25]
       length_lim: true                     # apply Galperin et al. (1988) length scale limitation [default=true]
-      galp: 0.53                           # coefficient for length scale limitation [dimensionless; min=0.0; default=0.27]
+      galp: 0.27                           # coefficient for length scale limitation [dimensionless; min=0.0; default=0.27]
       const_num: 5.00000000E-04            # constant eddy diffusivity [m^2/s; min=0.0; default=5.00000000E-04]
       const_nuh: 5.00000000E-04            # constant heat diffusivity [m^2/s; min=0.0; default=5.00000000E-04]
       k_min: 1.00000000E-10                # minimum turbulent kinetic energy [m^2/s^2; min=0.0; default=1.00000000E-10]
@@ -212,7 +212,7 @@ turbulence:
       length: parabolic                    # barotropic length scale in q^2 l equation [parabolic, triangular, linear=linear from surface; default=parabolic]
    scnd:                                   # second-order model
       method: weak_eq_kb_eq                # method [quasi_eq=quasi-equilibrium, weak_eq_kb_eq=weak equilibrium with algebraic buoyancy variance; default=weak_eq_kb_eq]
-      scnd_coeff: kantha_clayson           # coefficients of second-order model [custom, gibson_launder=Gibson and Launder (1978), mellor_yamada=Mellor and Yamada (1982), kantha_clayson=Kantha and Clayson (1994), luyten=Luyten et al. (1996), canuto-a=Canuto et al. (2001) (version A), canuto-b=Canuto et al. (2001) (version B), cheng=Cheng et al. (2002); default=canuto-a]
+      scnd_coeff: canuto-a                 # coefficients of second-order model [custom, gibson_launder=Gibson and Launder (1978), mellor_yamada=Mellor and Yamada (1982), kantha_clayson=Kantha and Clayson (1994), luyten=Luyten et al. (1996), canuto-a=Canuto et al. (2001) (version A), canuto-b=Canuto et al. (2001) (version B), cheng=Cheng et al. (2002); default=canuto-a]
 mimic_3d:                                  # effects of horizontal gradients
    ext_pressure:                           # external pressure
       type: elevation                      # pressure metric [elevation=horizontal gradient in surface elevation, velocity=horizontal velocities at given height above bed, average_velocity=vertically averaged horizontal velocities; default=elevation]
@@ -369,9 +369,9 @@ equation_of_state:                         # equation of state
 restart:
    load: false                             # initialize simulation with state stored in restart.nc [default=false]
 output:
-   entrainment.my:                            # path of output file, excluding extension
+   entrainment.cvmix:                      # path of output file, excluding extension
       time_unit: dt                        # time unit [second, hour, day, month, year, dt=model time step; default=day]
-      time_step: 6                        # number of time units between output [min=1; default=1]
+      time_step: 6                         # number of time units between output [min=1; default=1]
       time_method: point                   # treatment of time dimension [point=instantaneous, mean, integrated; default=point]
       variables:
       - source: /*                         # variable name in model
