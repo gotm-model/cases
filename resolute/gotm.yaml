@@ -194,7 +194,7 @@ turbulence:
       ce3minus: -0.4                    # ce3 for stable stratification [dimensionless; default=0.0]
       ce3plus: 1.5                      # ce3 for unstable stratification [dimensionless; default=1.5]
       ce4: 0.0                          # empirical coefficient ce4 in dissipation equation [dimensionless; default=0.0]
-      sig_k: 2.0                        # Schmidt number for TKE diffusivity [dimensionless; default=1.0]
+      sig_k: 1.0                        # Schmidt number for TKE diffusivity [dimensionless; default=1.0]
       sig_e: 1.3                        # Schmidt number for dissipation diffusivity [dimensionless; default=1.3]
       sig_peps: false                   # use Burchard (2001) wave breaking parameterisation [default=false]
    kw:                                  # k-omega model

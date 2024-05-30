@@ -171,7 +171,7 @@ turbulence:
       kb_min: 1.00000000E-10            # minimum buoyancy variance [m^2/s^4; min=0.0; default=1.00000000E-10]
       epsb_min: 1.00000000E-14          # minimum buoyancy variance destruction rate [m^2/s^5; min=0.0; default=1.00000000E-14]
    generic:                             # generic length scale (GLS) model
-      compute_param: false              # compute the model parameters [default=false]
+      compute_param: true              # compute the model parameters [default=false]
       gen_m: 0.5                        # exponent for k [dimensionless; default=1.5]
       gen_n: -1.0                       # exponent for l [dimensionless; default=-1.0]
       gen_p: -1.0                       # exponent for cm0 [dimensionless; default=3.0]
