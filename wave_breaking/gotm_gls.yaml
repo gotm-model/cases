@@ -171,7 +171,7 @@ turbulence:
       kb_min: 1.00000000E-10            # minimum buoyancy variance [m^2/s^4; min=0.0; default=1.00000000E-10]
       epsb_min: 1.00000000E-14          # minimum buoyancy variance destruction rate [m^2/s^5; min=0.0; default=1.00000000E-14]
    generic:                             # generic length scale (GLS) model
-      compute_param: true              # compute the model parameters [default=false]
+      compute_param: true               # compute the model parameters [default=false]
       gen_m: 0.5                        # exponent for k [dimensionless; default=1.5]
       gen_n: -1.0                       # exponent for l [dimensionless; default=-1.0]
       gen_p: -1.0                       # exponent for cm0 [dimensionless; default=3.0]
@@ -211,7 +211,7 @@ turbulence:
       sl: 0.2                           # turbulent diffusivities of q^2 l [dimensionless; default=0.2]
       length: parabolic                 # barotropic length scale in q^2 l equation [parabolic, triangular, linear=linear from surface; default=parabolic]
    scnd:                                # second-order model
-      method: weak_eq_kb_eq             # method [quasi_eq=quasi-equilibrium, weak_eq_kb_eq=weak equilibrium with algebraic buoyancy variance; default=weak_eq_kb_eq]
+      method: weak_eq_kb_eq             # method [quasi_eq=quasi-equilibrium, weak_eq_kb_eq=weak equilibrium with algebraic buoyancy variance, quasi_eq_h15=quasi-equilibrium with Langmuir (Harcourt, 2015); default=weak_eq_kb_eq]
       scnd_coeff: canuto-a              # coefficients of second-order model [custom, gibson_launder=Gibson and Launder (1978), mellor_yamada=Mellor and Yamada (1982), kantha_clayson=Kantha and Clayson (1994), luyten=Luyten et al. (1996), canuto-a=Canuto et al. (2001) (version A), canuto-b=Canuto et al. (2001) (version B), cheng=Cheng et al. (2002); default=canuto-a]
 mimic_3d:                               # effects of horizontal gradients
    ext_pressure:                        # external pressure

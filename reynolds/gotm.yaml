@@ -219,7 +219,7 @@ turbulence:
       sl: 0.2                           # turbulent diffusivities of q^2 l [dimensionless; default=0.2]
       length: linear                    # barotropic length scale in q^2 l equation [parabolic, triangular, linear=linear from surface; default=parabolic]
    scnd:                                # second-order model
-      method: quasi_eq                  # method [quasi_eq=quasi-equilibrium, weak_eq_kb_eq=weak equilibrium with algebraic buoyancy variance; default=weak_eq_kb_eq]
+      method: quasi_eq                  # method [quasi_eq=quasi-equilibrium, weak_eq_kb_eq=weak equilibrium with algebraic buoyancy variance, quasi_eq_h15=quasi-equilibrium with Langmuir (Harcourt, 2015); default=weak_eq_kb_eq]
       scnd_coeff: cheng                 # coefficients of second-order model [custom, gibson_launder=Gibson and Launder (1978), mellor_yamada=Mellor and Yamada (1982), kantha_clayson=Kantha and Clayson (1994), luyten=Luyten et al. (1996), canuto-a=Canuto et al. (2001) (version A), canuto-b=Canuto et al. (2001) (version B), cheng=Cheng et al. (2002); default=canuto-a]
    iw:                                  # internal wave mixing
       alpha: 0.7                        # coefficient for Mellor internal wave model [dimensionless; default=0.0]
