@@ -1,69 +1,208 @@
-#! /usr/bin/env python
-# encoding: utf-8
-
-import netCDF4
+import os
 import numpy as np
+import xarray as xr
+from scipy.io import netcdf_file
 import matplotlib.pyplot as plt
-import matplotlib.gridspec
 
-if __name__  == '__main__':
+# define a function to load data into xarray.DataArray
+def load_data(filename, **kwargs):
+    # load z and zi
+    with netcdf_file(filename, 'r', mmap=False) as ncfile:
+        nc_z  = ncfile.variables['z']
+        nc_zi = ncfile.variables['zi']
+        z = xr.DataArray(
+                nc_z[0,:,0,0],
+                dims=('z'),
+                coords={'z': nc_z[0,:,0,0]},
+                attrs={'long_name': nc_z.long_name.decode(), 'units': nc_z.units.decode()}
+                )
+        zi = xr.DataArray(
+                nc_zi[0,:,0,0],
+                dims=('zi'),
+                coords={'zi': nc_zi[0,:,0,0]},
+                attrs={'long_name': nc_zi.long_name.decode(), 'units': nc_zi.units.decode()}
+                )
+    # load other variables
+    out = xr.load_dataset(
+            filename,
+            drop_variables=['z', 'zi'],
+            **kwargs,
+            )
+    out = out.assign_coords({
+        'z': z,
+        'zi': zi,
+        })
+    out = out.assign_coords({
+        'z_2d': (('time', 'z'), nc_z[:,:,0,0]),
+        'zi_2d': (('time', 'zi'), nc_zi[:,:,0,0]),
+        })
+    for var in out.data_vars:
+        if 'z' in out.data_vars[var].dims:
+            out.data_vars[var].assign_coords({'z':z})
+        elif 'zi' in out.data_vars[var].dims:
+            out.data_vars[var].assign_coords({'zi':zi})
+    # return a reorderd view
+    return out.transpose('z', 'zi', 'time', 'lon', 'lat')
 
-  NC = netCDF4.Dataset('flex.nc')
+# read the data
+filename1 = os.path.join('flex.cvmix.nc')
+filename2 = os.path.join('flex.cvmix.nc')
+ds_gotm1 = load_data(filename1)
+ds_gotm2 = load_data(filename2)
 
-  TIME = NC.variables['time']
-  time = TIME[:]
-  h    = NC.variables['h'   ][:]
-  temp = NC.variables['temp'][:]
 
-  temp_obs_name = ''
-  varname = 'tprof'
-  if varname in NC.variables:
-    temp_obs_name = varname
-  varname = 'temp_obs'
-  if varname in NC.variables:
-    temp_obs_name = varname
-  if temp_obs_name is not '':
-    temp_obs = NC.variables[temp_obs_name][:]
-    
-  N, K, J, I = temp.shape
+# plot temperature profile
+fig, axarr = plt.subplots(3, sharex='col')
+fig.set_size_inches([8,6])
 
-  zi = np.insert(h, 0, 0.0, axis=1)
-  zi = zi.cumsum(axis=1)
-  # broadcasting does not work with "-=" !!!
-  zi = zi - zi[0, -1, ...]
+ax = axarr[0]
+levels = np.linspace(6.0,9.6,37)
+ds_gotm1.data_vars['temp_obs'].plot(ax=ax, levels=levels, add_colorbar=False)
 
-  i = j = 0
+ax = axarr[1]
+im =ds_gotm1.data_vars['temp'].plot(ax=ax, levels=levels, add_colorbar=False)
 
-  # temporal avg. positions
-  timex = 0.5 * ( time[:-1     ] + time[1:     ] )
-  zx    = 0.5 * ( zi  [:-1, ...] + zi  [1:, ...] )
+ax = axarr[2]
+ds_gotm2.data_vars['temp'].plot(ax=ax, levels=levels, add_colorbar=False)
 
-  timex2d = np.expand_dims(timex, 1)
-  timex2d = timex2d.repeat(K+1, axis=1)
-  datex2d = netCDF4.netcdftime.utime(TIME.units).num2date(timex2d)
+labels = ['(a) Observation', '(b) $k$-$\epsilon$', '(c) CVMix']
 
-  golden_ratio = (1.+np.sqrt(5.))/2.
-  figwidth=7.48 # 3.54 (Elsevier 2-columnwidth), 7.48 (Elsevier 1-columnwidth)
-  figsize=(figwidth,figwidth/golden_ratio) # golden_ratio landscape format
-  fig, ax = plt.subplots(2, 1, sharex='col', sharey='all', squeeze=False, figsize=figsize)
-  modAxes = ax[0,0]
-  obsAxes = ax[1,0]
+for i, ax in enumerate(axarr):
+    ax.set_title('')
+    ax.set_xlabel('')
+    ax.set_ylabel('$z$ [m]')
+    ax.text(0.03, 0.05, labels[i], transform=ax.transAxes, color='w', fontsize=11, va='bottom')
 
-  fig.autofmt_xdate()
+plt.subplots_adjust(top=0.97, bottom=0.1, right=0.86, left=0.1, hspace=0.1, wspace=0.1)
+label_str = '$T$ [$^\circ$C]'
+cax = plt.axes([0.8, 0.28, 0.1, 0.5])
+cax.set_visible(False)
+cb = plt.colorbar(im, ax=cax)
+cb.formatter.set_powerlimits((-2, 2))
+cb.update_ticks()
+cb.set_label(label_str)
 
-  vmin = min( temp.min() , temp_obs.min() )
-  vmax = max( temp.max() , temp_obs.max() )
+fig.savefig('flex_temp.png', dpi=300)
 
-  qm = modAxes.pcolormesh(datex2d,zx[...,j,i],temp    [1:-1,:,j,i],vmin=vmin,vmax=vmax)
-  qm = obsAxes.pcolormesh(datex2d,zx[...,j,i],temp_obs[1:-1,:,j,i],vmin=vmin,vmax=vmax)
-  cb = plt.colorbar(qm,ax=ax.ravel().tolist())
 
-  modAxes.set_ylim((zi.min(),zi.max()))
-  modAxes.set_ylabel('z [m]')
-  obsAxes.set_ylabel('z [m]')
-  cb.set_label('temperature [degC]')
+# plot velocity profile
+fig, axarr = plt.subplots(2, sharex='col')
+fig.set_size_inches([8,4])
 
-  modAxes.text(0.95,0.1,'model'      ,transform=modAxes.transAxes,va='bottom',ha='right',bbox={'edgecolor':'0.0','facecolor':'None','boxstyle':'round'})
-  obsAxes.text(0.95,0.1,'observation',transform=obsAxes.transAxes,va='bottom',ha='right',bbox={'edgecolor':'0.0','facecolor':'None','boxstyle':'round'})
+levels = np.linspace(-0.6, 0.6, 41)
+ax = axarr[0]
+im =ds_gotm1.data_vars['u'].plot(ax=ax, levels=levels, add_colorbar=False)
 
-  fig.savefig('flex.png',dpi=300)
+ax = axarr[1]
+ds_gotm2.data_vars['u'].plot(ax=ax, levels=levels, add_colorbar=False)
+
+labels = ['(a) $k$-$\epsilon$', '(b) CVMix']
+
+for i, ax in enumerate(axarr):
+    ax.set_title('')
+    ax.set_xlabel('')
+    ax.set_ylabel('$z$ [m]')
+    ax.text(0.03, 0.05, labels[i], transform=ax.transAxes, color='k', fontsize=11, va='bottom')
+
+plt.subplots_adjust(top=0.97, bottom=0.1, right=0.86, left=0.1, hspace=0.1, wspace=0.1)
+label_str = '$u$ [m s$^{-1}$]'
+cax = plt.axes([0.8, 0.28, 0.1, 0.5])
+cax.set_visible(False)
+cb = plt.colorbar(im, ax=cax)
+cb.formatter.set_powerlimits((-2, 2))
+cb.update_ticks()
+cb.set_label(label_str)
+
+fig.savefig('flex_u.png', dpi=300)
+
+
+fig, axarr = plt.subplots(2, sharex='col')
+fig.set_size_inches([8,4])
+
+levels = np.linspace(-1, 1, 41)
+ax = axarr[0]
+im =ds_gotm1.data_vars['v'].plot(ax=ax, levels=levels, add_colorbar=False)
+
+ax = axarr[1]
+ds_gotm2.data_vars['v'].plot(ax=ax, levels=levels, add_colorbar=False)
+
+labels = ['(a) $k$-$\epsilon$', '(b) CVMix']
+
+for i, ax in enumerate(axarr):
+    ax.set_title('')
+    ax.set_xlabel('')
+    ax.set_ylabel('$z$ [m]')
+    ax.text(0.03, 0.05, labels[i], transform=ax.transAxes, color='k', fontsize=11, va='bottom')
+
+plt.subplots_adjust(top=0.97, bottom=0.1, right=0.86, left=0.1, hspace=0.1, wspace=0.1)
+label_str = '$v$ [m s$^{-1}$]'
+cax = plt.axes([0.8, 0.28, 0.1, 0.5])
+cax.set_visible(False)
+cb = plt.colorbar(im, ax=cax)
+cb.formatter.set_powerlimits((-2, 2))
+cb.update_ticks()
+cb.set_label(label_str)
+
+fig.savefig('flex_v.png', dpi=300)
+
+
+# plot viscosity profile
+fig, axarr = plt.subplots(2, sharex='col')
+fig.set_size_inches([8,4])
+
+levels = np.linspace(0,0.24,25)
+ax = axarr[0]
+im =ds_gotm1.data_vars['num'].plot(ax=ax, levels=levels, add_colorbar=False)
+
+ax = axarr[1]
+ds_gotm2.data_vars['num'].plot(ax=ax, levels=levels, add_colorbar=False)
+
+labels = ['(a) $k$-$\epsilon$', '(b) CVMix']
+
+for i, ax in enumerate(axarr):
+    ax.set_title('')
+    ax.set_xlabel('')
+    ax.set_ylabel('$z$ [m]')
+    ax.text(0.03, 0.05, labels[i], transform=ax.transAxes, color='w', fontsize=11, va='bottom')
+
+plt.subplots_adjust(top=0.97, bottom=0.1, right=0.86, left=0.1, hspace=0.1, wspace=0.1)
+label_str = '$\\nu_m$ [m$^2$ s$^{-1}$]'
+cax = plt.axes([0.8, 0.28, 0.1, 0.5])
+cax.set_visible(False)
+cb = plt.colorbar(im, ax=cax)
+cb.formatter.set_powerlimits((-2, 2))
+cb.update_ticks()
+cb.set_label(label_str)
+
+fig.savefig('flex_num.png', dpi=300)
+
+
+# plot diffusivity profile
+fig, axarr = plt.subplots(2, sharex='col')
+fig.set_size_inches([8,4])
+
+levels = np.linspace(0,0.27,28)
+ax = axarr[0]
+im =ds_gotm1.data_vars['nuh'].plot(ax=ax, levels=levels, add_colorbar=False)
+
+ax = axarr[1]
+ds_gotm2.data_vars['nuh'].plot(ax=ax, levels=levels, add_colorbar=False)
+
+labels = ['(a) $k$-$\epsilon$', '(b) CVMix']
+
+for i, ax in enumerate(axarr):
+    ax.set_title('')
+    ax.set_xlabel('')
+    ax.set_ylabel('$z$ [m]')
+    ax.text(0.03, 0.05, labels[i], transform=ax.transAxes, color='w', fontsize=11, va='bottom')
+
+plt.subplots_adjust(top=0.97, bottom=0.1, right=0.86, left=0.1, hspace=0.1, wspace=0.1)
+label_str = '$\\nu_h$ [m$^2$ s$^{-1}$]'
+cax = plt.axes([0.8, 0.28, 0.1, 0.5])
+cax.set_visible(False)
+cb = plt.colorbar(im, ax=cax)
+cb.formatter.set_powerlimits((-2, 2))
+cb.update_ticks()
+cb.set_label(label_str)
+
+fig.savefig('flex_nuh.png', dpi=300)
