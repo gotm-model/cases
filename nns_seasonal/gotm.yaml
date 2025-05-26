@@ -128,6 +128,7 @@ surface:
       charnock_val: 1400.0                   # empirical constant for roughness adaptation [dimensionless; min=0.0; default=1400.0]
       z0s_min: 0.02                          # hydrodynamic roughness (minimum value if Charnock adaptation is used) [m; min=0.0; default=0.02]
 bottom:
+   calc_bottom_stress: true                  # compute bottom stress (default: true) [default=true]
    h0b: 0.03                                 # physical bottom roughness [m; min=0.0; default=0.05]
 light_extinction:
    method: jerlov-i                          # water type [jerlov-i=Jerlov type I, jerlov-1-50m=Jerlov type 1 (upper 50 m), jerlov-ia=Jerlov type IA, jerlov-ib=Jerlov type IB, jerlov-ii=Jerlov type II, jerlov-iii=Jerlov type III, custom; default=jerlov-i]
@@ -183,6 +184,7 @@ turbulence:
       cpsi2: 1.22                            # empirical coefficient cpsi2 in psi equation [dimensionless; default=1.92]
       cpsi3minus: 0.05                       # cpsi3 for stable stratification [dimensionless; default=0.0]
       cpsi3plus: 1.0                         # cpsi3 for unstable stratification [dimensionless; default=1.0]
+      cpsix: 1.0                             # empirical coefficient cpsix in psi equation [dimensionless; default=1.0]
       cpsi4: 0.0                             # empirical coefficient cpsi4 in psi equation [dimensionless; default=0.0]
       sig_kpsi: 0.8                          # Schmidt number for TKE diffusivity [dimensionless; default=1.0]
       sig_psi: 1.07                          # Schmidt number for psi diffusivity [dimensionless; default=1.3]
@@ -194,6 +196,7 @@ turbulence:
       ce2: 1.92                              # empirical coefficient ce2 in dissipation equation [dimensionless; default=1.92]
       ce3minus: -0.4                         # ce3 for stable stratification [dimensionless; default=0.0]
       ce3plus: 1.5                           # ce3 for unstable stratification [dimensionless; default=1.5]
+      cex: 1.44                              # empirical coefficient cex in dissipation equation [dimensionless; default=1.44]
       ce4: 0.0                               # empirical coefficient ce4 in dissipation equation [dimensionless; default=0.0]
       sig_k: 1.0                             # Schmidt number for TKE diffusivity [dimensionless; default=1.0]
       sig_e: 1.3                             # Schmidt number for dissipation diffusivity [dimensionless; default=1.3]
@@ -203,6 +206,7 @@ turbulence:
       cw2: 0.833                             # empirical coefficient cw2 in omega equation [dimensionless; default=0.833]
       cw3minus: 0.0                          # cw3 for stable stratification [dimensionless; default=0.0]
       cw3plus: 0.5                           # cw3 for unstable stratification [dimensionless; default=0.5]
+      cwx: 0.555                             # empirical coefficient cwx in omega equation [dimensionless; default=0.555]
       cw4: 0.15                              # empirical coefficient cw4 in omega equation [dimensionless; default=0.15]
       sig_kw: 2.0                            # Schmidt number for TKE diffusivity [dimensionless; default=2.0]
       sig_w: 2.0                             # Schmidt number for omega diffusivity [dimensionless; default=2.0]
@@ -210,6 +214,7 @@ turbulence:
       e1: 1.8                                # coefficient e1 in q^2 l equation [dimensionless; default=1.8]
       e2: 1.33                               # coefficient e2 in q^2 l equation [dimensionless; default=1.33]
       e3: 1.8                                # coefficient e3 in q^2 l equation [dimensionless; default=1.8]
+      ex: 1.8                                # coefficient ex in q^2 l equation [dimensionless; default=1.8]
       e6: 4.0                                # coefficient e6 in q^2 l equation [dimensionless; default=4.0]
       sq: 0.2                                # turbulent diffusivities of q^2 (= 2k) [dimensionless; default=0.2]
       sl: 0.2                                # turbulent diffusivities of q^2 l [dimensionless; default=0.2]
@@ -384,7 +389,7 @@ equation_of_state:                           # equation of state
       beta: 7.50000000E-04                   # saline contraction coefficient [kg/g; default=7.50000000E-04]
       cp: 3.99186796E+03                     # specific heat capacity [J/(kg/K); min=0.0; default=3.99186796E+03]
 seagrass:                                    # calculate seagrass effect on turbulence
-   method: 0                                 #  [0=off, 1=from file; default=0]
+   method: 32765                             #  [0=off, 1=from file; default=0]
    file: seagrass.dat                        # path to file with grass specifications [default=seagrass.dat]
    alpha: 0.0                                # efficiency of leafes turbulence production [default=0.0]
 restart:
