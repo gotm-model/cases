@@ -372,7 +372,7 @@ equation_of_state:                         # equation of state
       beta: 7.50000000E-04                 # saline contraction coefficient [kg/g; default=7.50000000E-04]
       cp: 3.99186796E+03                   # specific heat capacity [J/(kg/K); min=0.0; default=3.99186796E+03]
 seagrass:                                  # calculate seagrass effect on turbulence
-   method: 32766                           #  [0=off, 1=from file; default=0]
+   method: 0                               #  [0=off, 1=from file; default=0]
    file: seagrass.dat                      # path to file with grass specifications [default=seagrass.dat]
    alpha: 0.0                              # efficiency of leafes turbulence production [default=0.0]
 restart:
